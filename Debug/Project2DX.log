@@ -1,0 +1,4 @@
+﻿  Main.cpp
+c:\users\admin\documents\visual studio 2017\projects\project2dx\main.cpp(40): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+c:\users\admin\documents\visual studio 2017\projects\project2dx\main.cpp(43): warning C4018: '<': signed と unsigned の数値を比較しようとしました。
+  Project2DX.vcxproj -> C:\Users\admin\documents\visual studio 2017\Projects\Project2DX\Debug\Project2DX.exe

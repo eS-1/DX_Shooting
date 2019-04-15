@@ -6,6 +6,8 @@ class Enemy
 public:
 	// コンストラクタ
 	Enemy();
+	// コンストラクタ
+	Enemy(myVector2 pos);
 	// デストラクタ
 	~Enemy();
 

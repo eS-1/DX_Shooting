@@ -3,9 +3,7 @@
 #include "Player.h"
 
 Player::Player()
-{
-	pos = myVector2(230.0, 540.0);
-}
+	:pos(myVector2(230.0, 540.0)) {}
 
 Player::~Player()
 {

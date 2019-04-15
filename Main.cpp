@@ -20,7 +20,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player* player = new Player;
-	Enemy* enemy = new Enemy;
+	std::deque<Enemy*> enemys;
+	
+	for (int i = 1; i < 6; i++)
+	{
+		enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
+	}
 
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
@@ -35,19 +40,14 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		for (int i = 0; i < player->getBullets().size(); i++)
 		{
 			player->getBullets()[i]->move();
-			if (enemy != nullptr && player->getBullets()[i]->getPos().distanceFrom(enemy->getPos()) <= 10)
+			for (int j = 0; j < enemys.size(); j++)
 			{
-				delete enemy;
-				enemy = nullptr;
-
-				
-				/* ‚±‚±‚Å“G‚É“–‚½‚Á‚½’e‚ðÁ‚µ‚½‚¢
-				Bullet* bul = player->getBullets()[i];
-				player->getBullets().erase(player->getBullets().begin() + i);
-				delete bul;
-				
-				continue;
-				*/
+				if (player->getBullets()[i]->getPos().distanceFrom(enemys[j]->getPos()) <= 15)
+				{
+					Enemy* en = enemys[j];
+					enemys.erase(enemys.begin() + j);
+					delete en;
+				}
 			}
 			player->getBullets()[i]->draw();
 		}
@@ -56,17 +56,21 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		player->eraseBullet();
 
 		// enemy‚Ìó‘ÔXV
-		if (enemy != nullptr)
+		for (Enemy* en : enemys)
 		{
-			enemy->move();
-			enemy->draw();
+			en->move();
+			en->draw();
 		}
 
 		ScreenFlip();
 	}
 
 	delete player;
-	delete enemy;
+
+	for (Enemy* en : enemys)
+	{
+		delete en;
+	}
 
 	DxLib_End();
 

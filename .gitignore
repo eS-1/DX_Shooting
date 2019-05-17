@@ -1,3 +1,5 @@
-Log.txt
+/Log.txt
+/MyVector2D.h
+/MyVector2D.cpp
 .vs/
 Debug/

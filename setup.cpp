@@ -1,4 +1,4 @@
 #include "setup.h"
 
-int mySetup::X = 460;
-int mySetup::Y = 640;
+unsigned int mySetup::X = 460;
+unsigned int mySetup::Y = 640;

@@ -3,7 +3,7 @@
 #include "Player.h"
 
 Player::Player()
-	:pos(myVector2(230.0, 540.0)) {}
+	:pos(myVector2(230.0, 540.0)), key(0), oldKey(0) {}
 
 Player::~Player()
 {
@@ -27,22 +27,22 @@ void Player::move()
 {
 	if (CheckHitKey(KEY_INPUT_A) && pos.x > 10)
 	{
-		pos.x -= 1.0;
+		pos.x -= 3.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::X - 10)
 	{
-		pos.x += 1.0;
+		pos.x += 3.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_W) && pos.y > 10)
 	{
-		pos.y -= 1.0;
+		pos.y -= 3.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_S) && pos.y < mySetup::Y - 10)
 	{
-		pos.y += 1.0;
+		pos.y += 3.0;
 	}
 }
 

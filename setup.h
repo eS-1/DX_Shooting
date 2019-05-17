@@ -3,7 +3,7 @@
 struct mySetup
 {
 	// x画面サイズ
-	static int X;
+	static unsigned int X;
 	// y画面サイズ
-	static int Y;
+	static unsigned int Y;
 };

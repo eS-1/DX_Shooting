@@ -1,3 +1,4 @@
+#include "setup.h"
 #include "DxLib.h"
 #include "Enemy.h"
 
@@ -24,7 +25,7 @@ void Enemy::draw()
 
 void Enemy::move()
 {
-	if (pos.x > 460)
+	if (pos.x > mySetup::X)
 	{
 		direction.x = 0.0;
 	}

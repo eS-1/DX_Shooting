@@ -4,16 +4,10 @@
 Bullet::Bullet() = default;
 
 Bullet::Bullet(double bx, double by)
-{
-	pos = myVector2(bx, by);
-	moveDirection = myVector2(0.0, -5.0);
-}
+	: pos(myVector2(bx, by)), moveDirection(myVector2(0.0, -5.0)) {}
 
 Bullet::Bullet(const myVector2 &p)
-{
-	pos = p;
-	moveDirection = myVector2(0.0, -5.0);
-}
+	: pos(p), moveDirection(myVector2(0.0, -5.0)) {}
 
 Bullet::~Bullet()
 {

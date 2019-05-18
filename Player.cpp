@@ -3,7 +3,7 @@
 #include "Player.h"
 
 Player::Player()
-	:pos(myVector2(230.0, 540.0)), key(0), oldKey(0) {}
+	: pos(myVector2(230.0, 540.0)), key(0), oldKey(0) {}
 
 Player::~Player()
 {

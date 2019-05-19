@@ -27,22 +27,22 @@ void Player::move()
 {
 	if (CheckHitKey(KEY_INPUT_A) && pos.x > 10)
 	{
-		pos.x -= 3.0;
+		pos.x -= 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::X - 10)
 	{
-		pos.x += 3.0;
+		pos.x += 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_W) && pos.y > 10)
 	{
-		pos.y -= 3.0;
+		pos.y -= 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_S) && pos.y < mySetup::Y - 10)
 	{
-		pos.y += 3.0;
+		pos.y += 4.0;
 	}
 }
 

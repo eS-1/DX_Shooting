@@ -152,6 +152,7 @@
     <ClCompile Include="Bullet.cpp" />
     <ClCompile Include="Enemy.cpp" />
     <ClCompile Include="Main.cpp" />
+    <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyVector2D.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="setup.cpp" />
@@ -159,6 +160,7 @@
   <ItemGroup>
     <ClInclude Include="Bullet.h" />
     <ClInclude Include="Enemy.h" />
+    <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyVector2D.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="setup.h" />

@@ -3,14 +3,19 @@
 #include "Enemy.h"
 
 Enemy::Enemy()
-	: pos(myVector2(230.0, 50.0)), direction(myVector2(0.0, 0.0)) {}
+	: MyObject(myVector2(230.0, 50.0)), direction(myVector2(0.0, 0.0)) {}
 
 Enemy::Enemy(myVector2 pos)
-	: pos(pos), direction(myVector2(0.0, 0.0)) {}
+	: MyObject(pos), direction(myVector2(0.0, 0.0)) {}
 
 Enemy::~Enemy()
 {
 	// デストラクタ
+}
+
+bool Enemy::isEnemy()
+{
+	return true;
 }
 
 myVector2 Enemy::getPos()

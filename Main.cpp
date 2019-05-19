@@ -4,14 +4,13 @@
 #include "Enemy.h"
 
 
-
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
 {
 	ChangeWindowMode(TRUE);
 
 	SetGraphMode(mySetup::X, mySetup::Y, GetColorBitDepth());
 
-	// DXLibèâä˙âª
+	// initialize of DXLib
 	if (DxLib_Init() == -1)
 	{
 		return -1;
@@ -19,13 +18,14 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	Player* player = new Player;
+	Player* player = new Player(myVector2(230.0, 540.0));
 	std::deque<Enemy*> enemys;
 	
 	for (int i = 1; i < 6; i++)
 	{
 		enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
 	}
+
 
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{

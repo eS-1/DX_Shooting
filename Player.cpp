@@ -2,15 +2,17 @@
 #include "DxLib.h"
 #include "Player.h"
 
-Player::Player()
-	: pos(myVector2(230.0, 540.0)), key(0), oldKey(0) {}
+Player::Player(myVector2 position)
+	: MyObject(position), key(0), oldKey(0) {}
 
 Player::~Player()
 {
-	for (Bullet* bul : bullets)
-	{
-		delete bul;
-	}
+	// デストラクタ
+}
+
+bool Player::isPlayer()
+{
+	return true;
 }
 
 std::deque<Bullet*> Player::getBullets()

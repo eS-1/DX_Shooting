@@ -1,24 +1,21 @@
 #pragma once
+#include "MyObject.h"
 #include "Bullet.h"
 
-class Enemy
+
+class Enemy : public MyObject
 {
 public:
-	// コンストラクタ
 	Enemy();
-	// コンストラクタ
-	Enemy(myVector2 pos);
-	// デストラクタ
+	Enemy(myVector2 position);
 	~Enemy();
 
 	myVector2 getPos();
 
-	void move();
-	void draw();
+	bool isEnemy() override;
+	void move() override;
+	void draw() override;
 
 private:
-	// 座標
-	myVector2 pos;
-	// 進行方向
 	myVector2 direction;
 };

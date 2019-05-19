@@ -1,29 +1,24 @@
 #pragma once
 #include <deque>
+#include "MyObject.h"
 #include "Bullet.h"
 
-class Player
+
+class Player : public MyObject
 {
 public:
-	// コンストラクタ
-	Player();
-	// デストラクタ
+	Player(myVector2 position);
 	~Player();
 
-	std::deque<Bullet*> getBullets();
-
-	void move();
-	void draw();
+	bool isPlayer() override;
+	void move() override;
+	void draw() override;
 	void fire();
 	void eraseBullet();
+	std::deque<Bullet*> getBullets();
 
 private:
-	//座標
-	myVector2 pos;
-	// 弾を保管する配列
 	std::deque<Bullet*> bullets;
-	// キー入力状態
 	int key;
-	// 前フレームのキー入力状態
 	int oldKey;
 };

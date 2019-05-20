@@ -1,5 +1,6 @@
 #pragma once
 #include "MyVector2D.h"
+#include "MyObject.h"
 
 class Bullet
 {
@@ -9,7 +10,7 @@ public:
 	// double型で初期化
 	Bullet(double bx, double by);
 	// vectorで初期化
-	Bullet(const myVector2 &p);
+	Bullet(const myVector2& p);
 	// デストラクタ
 	~Bullet();
 
@@ -18,6 +19,7 @@ public:
 
 	void move();
 	void draw();
+	bool CheckHit(MyObject& obj);
 
 private:
 	// 座標

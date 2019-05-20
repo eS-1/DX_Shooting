@@ -42,7 +42,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			player->getBullets()[i]->move();
 			for (int j = 0; j < enemys.size(); j++)
 			{
-				if (player->getBullets()[i]->getPos().distanceFrom(enemys[j]->getPos()) <= 15)
+				if (player->getBullets()[i]->CheckHit(*enemys[j]))
 				{
 					Enemy* en = enemys[j];
 					enemys.erase(enemys.begin() + j);

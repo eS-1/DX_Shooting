@@ -2,11 +2,12 @@
 #include "DxLib.h"
 #include "Enemy.h"
 
+
 Enemy::Enemy()
 	: MyObject(myVector2(230.0, 50.0)), direction(myVector2(0.0, 0.0)) {}
 
 Enemy::Enemy(myVector2 pos)
-	: MyObject(pos), direction(myVector2(0.0, 0.0)) {}
+	: MyObject(pos), direction(myVector2(2.0, 0.0)) {}
 
 Enemy::~Enemy()
 {
@@ -30,13 +31,13 @@ void Enemy::draw()
 
 void Enemy::move()
 {
-	if (pos.x > mySetup::X)
+	if (pos.x + 10 > mySetup::X)
 	{
-		direction.x = 0.0;
+		direction.x = -2.0;
 	}
-	else if (pos.x < 0)
+	else if (pos.x - 10 < 0)
 	{
-		direction.x = 0.0;
+		direction.x = 2.0;
 	}
 
 	pos += direction;

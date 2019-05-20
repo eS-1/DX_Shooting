@@ -2,6 +2,7 @@
 #include "DxLib.h"
 #include "Player.h"
 
+
 Player::Player(myVector2 position)
 	: MyObject(position), key(0), oldKey(0) {}
 
@@ -13,11 +14,6 @@ Player::~Player()
 bool Player::isPlayer()
 {
 	return true;
-}
-
-std::deque<Bullet*> Player::getBullets()
-{
-	return bullets;
 }
 
 void Player::draw()
@@ -48,7 +44,7 @@ void Player::move()
 	}
 }
 
-void Player::fire()
+void Player::fire(std::deque<Bullet*>& bullets)
 {
 	oldKey = key;
 	key = CheckHitKey(KEY_INPUT_SPACE);
@@ -60,7 +56,7 @@ void Player::fire()
 	}
 }
 
-void Player::eraseBullet()
+void Player::eraseBullet(std::deque<Bullet*>& bullets)
 {
 	for (int i = 0; i < bullets.size(); i++)
 	{

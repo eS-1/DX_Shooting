@@ -1,7 +1,8 @@
 #include "MyObject.h"
 
+
 MyObject::MyObject(myVector2 position)
-	: pos(position), removeFlag(false) {}
+	: pos(position) {}
 
 MyObject::~MyObject()
 {

@@ -1,6 +1,7 @@
 #pragma once
 #include "MyVector2D.h"
 
+
 class MyObject
 {
 public:
@@ -8,7 +9,6 @@ public:
 	~MyObject();
 
 	myVector2 pos;
-	bool removeFlag;
 
 	virtual bool isPlayer();
 	virtual bool isEnemy();

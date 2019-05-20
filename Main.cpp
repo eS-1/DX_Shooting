@@ -19,6 +19,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	Player* player = new Player(myVector2(230.0, 540.0));
+	std::deque<Bullet*> bullets;
 	std::deque<Enemy*> enemys;
 	
 	for (int i = 1; i < 6; i++)
@@ -33,27 +34,40 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		// playerの状態更新
 		player->move();
-		player->fire();
+		player->fire(bullets);
 		player->draw();
 
 		// bulletsの状態更新
-		for (int i = 0; i < player->getBullets().size(); i++)
+		for (int i = 0; i < bullets.size(); i++)
 		{
-			player->getBullets()[i]->move();
+			bullets[i]->move();
+
 			for (int j = 0; j < enemys.size(); j++)
 			{
-				if (player->getBullets()[i]->CheckHit(*enemys[j]))
+				if (bullets[i]->checkHit(*enemys[j]))
 				{
 					Enemy* en = enemys[j];
 					enemys.erase(enemys.begin() + j);
 					delete en;
+					bullets[i]->setRemoveFlag(true);
 				}
 			}
-			player->getBullets()[i]->draw();
+
+			bullets[i]->draw();
+		}
+
+		for (int i = 0; i < bullets.size(); i++)
+		{
+			if (bullets[i]->getRemoveFlag())
+			{
+				Bullet* bul = bullets[i];
+				bullets.erase(bullets.begin() + i);
+				delete bul;
+			}
 		}
 
 		// 画面外の弾を消す
-		player->eraseBullet();
+		player->eraseBullet(bullets);
 
 		// enemyの状態更新
 		for (Enemy* en : enemys)

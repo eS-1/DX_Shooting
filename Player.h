@@ -13,12 +13,10 @@ public:
 	bool isPlayer() override;
 	void move() override;
 	void draw() override;
-	void fire();
-	void eraseBullet();
-	std::deque<Bullet*> getBullets();
+	void fire(std::deque<Bullet*>& bullets);
+	void eraseBullet(std::deque<Bullet*>& bullets);
 
 private:
-	std::deque<Bullet*> bullets;
 	int key;
 	int oldKey;
 };

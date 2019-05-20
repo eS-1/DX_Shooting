@@ -63,9 +63,7 @@ void Player::eraseBullet(std::deque<Bullet*>& bullets)
 		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > mySetup::battleX
 			|| bullets[i]->getPos().y < 0 || bullets[i]->getPos().y > mySetup::Y)
 		{
-			Bullet* bul = bullets[i];
 			bullets.erase(bullets.begin() + i);
-			delete bul;
 		}
 	}
 }

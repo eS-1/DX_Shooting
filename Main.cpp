@@ -40,33 +40,31 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		player->draw();
 
 		// bullets‚Ìó‘ÔXV
-		for (int i = 0; i < bullets.size(); i++)
+		for (Bullet* bul : bullets)
 		{
-			bullets[i]->move();
-
-			for (int j = 0; j < enemys.size(); j++)
+			bul->move();
+			int j = 0;
+			for (Enemy* en : enemys)
 			{
-				if (bullets[i]->checkHit(*enemys[j]))
+				if (bul->checkHit(*en))
 				{
-					Enemy* en = enemys[j];
 					enemys.erase(enemys.begin() + j);
-					delete en;
-					bullets[i]->setRemoveFlag(true);
+					bul->setRemoveFlag(true);
 				}
+				j++;
 			}
-
-			bullets[i]->draw();
+			bul->draw();
 		}
 
 		// “G‚É“–‚½‚Á‚½’e‚ÌÁ‹
-		for (int i = 0; i < bullets.size(); i++)
+		int itr = 0;
+		for (Bullet* bul : bullets)
 		{
-			if (bullets[i]->getRemoveFlag())
+			if (bul->getRemoveFlag())
 			{
-				Bullet* bul = bullets[i];
-				bullets.erase(bullets.begin() + i);
-				delete bul;
+				bullets.erase(bullets.begin() + itr);
 			}
+			itr++;
 		}
 
 		// ‰æ–ÊŠO‚Ì’e‚ğÁ‚·

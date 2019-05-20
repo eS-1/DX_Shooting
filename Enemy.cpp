@@ -31,7 +31,7 @@ void Enemy::draw()
 
 void Enemy::move()
 {
-	if (pos.x + 10 > mySetup::X)
+	if (pos.x + 10 > mySetup::battleX)
 	{
 		direction.x = -2.0;
 	}

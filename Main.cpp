@@ -8,7 +8,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 {
 	ChangeWindowMode(TRUE);
 
-	SetGraphMode(mySetup::X, mySetup::Y, GetColorBitDepth());
+	SetGraphMode(mySetup::battleX + mySetup::subX, mySetup::Y, GetColorBitDepth());
 
 	// initialize of DXLib
 	if (DxLib_Init() == -1)
@@ -31,6 +31,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	while (ProcessMessage() == 0 && CheckHitKey(KEY_INPUT_ESCAPE) == 0)
 	{
 		ClearDrawScreen();
+
+		DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 180), 1);
 
 		// playerÇÃèÛë‘çXêV
 		player->move();
@@ -56,6 +58,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			bullets[i]->draw();
 		}
 
+		// ìGÇ…ìñÇΩÇ¡ÇΩíeÇÃè¡ãé
 		for (int i = 0; i < bullets.size(); i++)
 		{
 			if (bullets[i]->getRemoveFlag())
@@ -84,6 +87,11 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	for (Enemy* en : enemys)
 	{
 		delete en;
+	}
+
+	for (Bullet* bul : bullets)
+	{
+		delete bul;
 	}
 
 	DxLib_End();

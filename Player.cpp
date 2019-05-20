@@ -28,7 +28,7 @@ void Player::move()
 		pos.x -= 4.0;
 	}
 
-	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::X - 10)
+	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::battleX - 10)
 	{
 		pos.x += 4.0;
 	}
@@ -60,7 +60,7 @@ void Player::eraseBullet(std::deque<Bullet*>& bullets)
 {
 	for (int i = 0; i < bullets.size(); i++)
 	{
-		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > mySetup::X
+		if (bullets[i]->getPos().x < 0 || bullets[i]->getPos().x > mySetup::battleX
 			|| bullets[i]->getPos().y < 0 || bullets[i]->getPos().y > mySetup::Y)
 		{
 			Bullet* bul = bullets[i];

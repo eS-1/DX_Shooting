@@ -32,7 +32,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	{
 		ClearDrawScreen();
 
-		DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 180), 1);
+		DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
 
 		// playerの状態更新
 		player->move();
@@ -43,6 +43,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		for (Bullet* bul : bullets)
 		{
 			bul->move();
+			// 当たった敵の消去フラグを立てる
 			int j = 0;
 			for (Enemy* en : enemys)
 			{
@@ -53,10 +54,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				}
 				j++;
 			}
+			// 画面外の弾の消去フラグを立てる
+			if (bul->getPos().x < 0 || bul->getPos().x > mySetup::battleX
+				|| bul->getPos().y < 0 || bul->getPos().y > mySetup::Y)
+			{
+				bul->setRemoveFlag(true);
+			}
 			bul->draw();
 		}
 
-		// 敵に当たった弾の消去
+		// 弾の消去
 		int itr = 0;
 		for (Bullet* bul : bullets)
 		{
@@ -67,9 +74,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			itr++;
 		}
 
-		// 画面外の弾を消す
-		player->eraseBullet(bullets);
-
 		// enemyの状態更新
 		for (Enemy* en : enemys)
 		{
@@ -79,6 +83,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 		ScreenFlip();
 	}
+
+	// 以下終了処理
 
 	delete player;
 

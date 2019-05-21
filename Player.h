@@ -14,7 +14,6 @@ public:
 	void move() override;
 	void draw() override;
 	void fire(std::deque<Bullet*>& bullets);
-	void eraseBullet(std::deque<Bullet*>& bullets);
 
 private:
 	int key;

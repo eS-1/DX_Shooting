@@ -39,20 +39,25 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		player->fire(bullets);
 		player->draw();
 
+		// enemyの状態更新
+		for (Enemy* en : enemys)
+		{
+			en->move();
+			en->draw();
+		}
+
 		// bulletsの状態更新
 		for (Bullet* bul : bullets)
 		{
 			bul->move();
 			// 当たった敵の消去フラグを立てる
-			int j = 0;
 			for (Enemy* en : enemys)
 			{
 				if (bul->checkHit(*en))
 				{
-					enemys.erase(enemys.begin() + j);
+					en->setRemoveFlag(true);
 					bul->setRemoveFlag(true);
 				}
-				j++;
 			}
 			// 画面外の弾の消去フラグを立てる
 			if (bul->getPos().x < 0 || bul->getPos().x > mySetup::battleX
@@ -63,8 +68,19 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 			bul->draw();
 		}
 
-		// 弾の消去
+		// 敵の消去
 		int itr = 0;
+		for (Enemy* en : enemys)
+		{
+			if (en->getRemoveFlag())
+			{
+				enemys.erase(enemys.begin() + itr);
+			}
+			itr++;
+		}
+
+		// 弾の消去
+		itr = 0;
 		for (Bullet* bul : bullets)
 		{
 			if (bul->getRemoveFlag())
@@ -72,13 +88,6 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 				bullets.erase(bullets.begin() + itr);
 			}
 			itr++;
-		}
-
-		// enemyの状態更新
-		for (Enemy* en : enemys)
-		{
-			en->move();
-			en->draw();
 		}
 
 		ScreenFlip();

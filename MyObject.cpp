@@ -2,7 +2,7 @@
 
 
 MyObject::MyObject(myVector2 position)
-	: pos(position) {}
+	: pos(position), removeFlag(false) {}
 
 MyObject::~MyObject()
 {
@@ -17,6 +17,16 @@ bool MyObject::isPlayer()
 bool MyObject::isEnemy()
 {
 	return false;
+}
+
+bool MyObject::getRemoveFlag() const
+{
+	return removeFlag;
+}
+
+void MyObject::setRemoveFlag(bool state)
+{
+	removeFlag = state;
 }
 
 void MyObject::move() {}

@@ -6,6 +6,7 @@
 #include "Enemy.h"
 #include "DxLib.h"
 
+
 static myScene Scene = mySceneMenu;
 
 static bool gameInitFlag = false;

@@ -2,6 +2,7 @@
 #include "Player.h"
 #include "Enemy.h"
 
+
 typedef enum
 {
 	mySceneMenu,

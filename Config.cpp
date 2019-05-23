@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "DxLib.h"
 
+
 void ConfigUpdate()
 {
 	if (CheckHitKey(KEY_INPUT_Q) != 0)

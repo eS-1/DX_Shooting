@@ -5,6 +5,7 @@
 #include "Player.h"
 #include "Enemy.h"
 
+
 void GameInitialize(Player* &player, std::deque<Enemy*> &enemys)
 {
 	player = new Player(myVector2(230.0, 540.0));

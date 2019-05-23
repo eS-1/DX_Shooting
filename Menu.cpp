@@ -2,6 +2,7 @@
 #include "SceneMgr.h"
 #include "DxLib.h"
 
+
 void MenuUpdate()
 {
 	if (CheckHitKey(KEY_INPUT_S) != 0)

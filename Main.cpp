@@ -36,10 +36,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// ˆÈ‰ºI—¹ˆ—
 
-	if (player != nullptr)
-	{
-		delete player;
-	}
+	delete player;
 
 	for (Enemy* en : enemys)
 	{

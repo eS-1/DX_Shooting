@@ -13,6 +13,7 @@ void ConfigUpdate()
 	}
 }
 
+
 // İ’è‰æ–Ê‚Ì•`‰æ
 void ConfigDraw()
 {

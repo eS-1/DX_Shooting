@@ -17,6 +17,7 @@ void GameInitialize(Player* &player, std::deque<Enemy*> &enemys)
 	}
 }
 
+
 // ƒQ[ƒ€‰æ–Ê‚ÌXV
 void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
 {
@@ -40,6 +41,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 		SceneMgrChange(mySceneMenu);
 	}
 }
+
 
 // ƒQ[ƒ€‰æ–Ê‚Ì•`‰æ
 void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)

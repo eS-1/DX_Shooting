@@ -18,6 +18,7 @@ void MenuUpdate()
 	}
 }
 
+
 // ƒƒjƒ…[‰æ–Ê‚Ì•`‰æ
 void MenuDraw()
 {

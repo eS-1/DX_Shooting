@@ -10,9 +10,9 @@ typedef enum
 	mySceneConfig,
 } myScene;
 
-// 更新
+// シーン管理の更新
 void SceneMgrUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys);
-// 描画
+// シーン管理の描画
 void SceneMgrDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys);
-// シーン遷移
+// シーン遷移用の関数
 void SceneMgrChange(myScene next);

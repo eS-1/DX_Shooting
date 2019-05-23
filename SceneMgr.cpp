@@ -7,10 +7,14 @@
 #include "DxLib.h"
 
 
+// 画面遷移用の変数
 static myScene Scene = mySceneMenu;
 
+// ゲーム画面の初期化フラグ
 static bool gameInitFlag = false;
 
+
+// シーン管理の更新
 void SceneMgrUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
 {
 	switch (Scene)
@@ -27,6 +31,8 @@ void SceneMgrUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<En
 	}
 }
 
+
+// シーン管理の描画
 void SceneMgrDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
 {
 	switch (Scene)
@@ -50,6 +56,8 @@ void SceneMgrDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enem
 	}
 }
 
+
+// シーン遷移用の関数
 void SceneMgrChange(myScene next)
 {
 	Scene = next;

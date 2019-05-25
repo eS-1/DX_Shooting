@@ -1,3 +1,4 @@
+#include "setup.h"
 #include "Menu.h"
 #include "SceneMgr.h"
 #include "DxLib.h"
@@ -22,7 +23,7 @@ void MenuUpdate()
 // メニュー画面の描画
 void MenuDraw()
 {
-	DrawString(0, 0, "メニュー画面", GetColor(255, 255, 255));
-	DrawString(0, 20, "'s'キーで開始", GetColor(255, 255, 255));
-	DrawString(0, 40, "'c'キーで設定", GetColor(255, 255, 255));
+	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3, "メニュー画面", GetColor(255, 255, 255));
+	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 20, "'s'キーで開始", GetColor(255, 255, 255));
+	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 40, "'c'キーで設定", GetColor(255, 255, 255));
 }

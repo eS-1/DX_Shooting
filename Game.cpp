@@ -19,7 +19,7 @@ void GameInitialize(Player* &player, std::deque<Enemy*> &enemys)
 
 
 // ゲーム画面の更新
-void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
+void GameUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
 {
 	// メニュー画面に遷移
 	if (CheckHitKey(KEY_INPUT_Q) != 0)

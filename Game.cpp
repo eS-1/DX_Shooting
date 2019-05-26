@@ -39,6 +39,7 @@ void GameUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*
 		}
 
 		SceneMgrChange(mySceneMenu);
+		return;
 	}
 
 	// player‚Ìó‘ÔXV

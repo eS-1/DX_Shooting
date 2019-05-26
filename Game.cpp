@@ -40,26 +40,15 @@ void GameUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*
 
 		SceneMgrChange(mySceneMenu);
 	}
-}
-
-
-// ゲーム画面の描画
-void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
-{
-	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
-
-	DrawString(mySetup::battleX, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
 
 	// playerの状態更新
 	player->move();
 	player->fire(bullets);
-	player->draw();
 
 	// enemyの状態更新
 	for (Enemy* en : enemys)
 	{
 		en->move();
-		en->draw();
 	}
 
 	// bulletsの状態更新
@@ -81,7 +70,6 @@ void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> 
 		{
 			bul->setRemoveFlag(true);
 		}
-		bul->draw();
 	}
 
 	// 敵の消去
@@ -121,5 +109,29 @@ void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> 
 		{
 			break;
 		}
+	}
+}
+
+
+// ゲーム画面の描画
+void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
+{
+	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
+
+	DrawString(mySetup::battleX, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+
+	// playerの描画
+	player->draw();
+
+	// enemyの描画
+	for (Enemy* en : enemys)
+	{
+		en->draw();
+	}
+
+	// bulletsの描画
+	for (Bullet* bul : bullets)
+	{
+		bul->draw();
 	}
 }

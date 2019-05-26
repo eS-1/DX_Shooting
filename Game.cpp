@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "setup.h"
 #include "Game.h"
 #include "SceneMgr.h"
@@ -19,24 +20,20 @@ void GameInitialize(Player* &player, std::deque<Enemy*> &enemys)
 
 
 // ƒQ[ƒ€‰æ–Ê‚ÌXV
-void GameUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
+void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
 {
 	// ƒƒjƒ…[‰æ–Ê‚É‘JˆÚ
 	if (CheckHitKey(KEY_INPUT_Q) != 0)
 	{
 		player = nullptr;
 
-		for (Enemy* en : enemys)
-		{
-			delete en;
-			enemys.pop_front();
-		}
+		// enemy‚ÌÁ‹
+		std::for_each(enemys.begin(), enemys.end(), [](Enemy*& en) { delete en; });
+		enemys.clear();
 
-		for (Bullet* bul : bullets)
-		{
-			delete bul;
-			bullets.pop_front();
-		}
+		// bullet‚ÌÁ‹
+		std::for_each(bullets.begin(), bullets.end(), [](Bullet*& bul) { delete bul; });
+		bullets.clear();
 
 		SceneMgrChange(mySceneMenu);
 		return;
@@ -115,7 +112,7 @@ void GameUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*
 
 
 // ƒQ[ƒ€‰æ–Ê‚Ì•`‰æ
-void GameDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
+void GameDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
 {
 	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
 

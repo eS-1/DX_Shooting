@@ -15,7 +15,7 @@ static bool gameInitFlag = false;
 
 
 // シーン管理の更新
-void SceneMgrUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
+void SceneMgrUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
 {
 	switch (Scene)
 	{
@@ -33,7 +33,7 @@ void SceneMgrUpdate(Player* &player, std::deque<Bullet*> &bullets, std::deque<En
 
 
 // シーン管理の描画
-void SceneMgrDraw(Player* &player, std::deque<Bullet*> &bullets, std::deque<Enemy*> &enemys)
+void SceneMgrDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
 {
 	switch (Scene)
 	{

@@ -12,10 +12,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetGraphMode(mySetup::battleX + mySetup::subX, mySetup::Y, GetColorBitDepth());
 
 	// initialize of DXLib
-	if (DxLib_Init() == -1)
-	{
-		return -1;
-	}
+	if (DxLib_Init() == -1) { return -1; }
 
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -28,27 +25,16 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		SceneMgrUpdate(player, bullets, enemys);
 		SceneMgrDraw(player, bullets, enemys);
 
-		if (CheckHitKey(KEY_INPUT_ESCAPE) != 0)
-		{
-			break;
-		}
+		if (CheckHitKey(KEY_INPUT_ESCAPE) != 0) { break; }
 	}
 
 	// à»â∫èIóπèàóù
 
 	delete player;
-
-	for (Enemy* en : enemys)
-	{
-		delete en;
-	}
-
-	for (Bullet* bul : bullets)
-	{
-		delete bul;
-	}
-
+	for (Enemy* en : enemys) { delete en; }
+	for (Bullet* bul : bullets) { delete bul; }
 
 	DxLib_End();
+
 	return 0;
 }

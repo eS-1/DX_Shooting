@@ -1,4 +1,3 @@
-#include <algorithm>
 #include "setup.h"
 #include "Game.h"
 #include "SceneMgr.h"
@@ -28,11 +27,11 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 		player = nullptr;
 
 		// enemy‚ÌÁ‹
-		std::for_each(enemys.begin(), enemys.end(), [](Enemy*& en) { delete en; });
+		for (Enemy* en : enemys) { delete en; }
 		enemys.clear();
 
 		// bullet‚ÌÁ‹
-		std::for_each(bullets.begin(), bullets.end(), [](Bullet*& bul) { delete bul; });
+		for (Bullet* bul : bullets) { delete bul; }
 		bullets.clear();
 
 		SceneMgrChange(mySceneMenu);
@@ -44,10 +43,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 	player->fire(bullets);
 
 	// enemy‚Ìó‘ÔXV
-	for (Enemy* en : enemys)
-	{
-		en->move();
-	}
+	for (Enemy* en : enemys) { en->move(); }
 
 	// bullets‚Ìó‘ÔXV
 	for (Bullet* bul : bullets)
@@ -84,10 +80,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 				break;
 			}
 		}
-		if (isRemove)
-		{
-			break;
-		}
+		if (isRemove) { break; }
 	}
 
 	// ’e‚ÌÁ‹
@@ -103,10 +96,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 				break;
 			}
 		}
-		if (isRemove)
-		{
-			break;
-		}
+		if (isRemove) { break; }
 	}
 }
 
@@ -122,14 +112,8 @@ void GameDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>&
 	player->draw();
 
 	// enemy‚Ì•`‰æ
-	for (Enemy* en : enemys)
-	{
-		en->draw();
-	}
+	for (Enemy* en : enemys) { en->draw(); }
 
 	// bullets‚Ì•`‰æ
-	for (Bullet* bul : bullets)
-	{
-		bul->draw();
-	}
+	for (Bullet* bul : bullets) { bul->draw(); }
 }

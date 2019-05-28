@@ -158,6 +158,7 @@
     <ClCompile Include="MyObject.cpp" />
     <ClCompile Include="MyVector2D.cpp" />
     <ClCompile Include="Player.cpp" />
+    <ClCompile Include="Result.cpp" />
     <ClCompile Include="SceneMgr.cpp" />
     <ClCompile Include="setup.cpp" />
   </ItemGroup>
@@ -170,6 +171,7 @@
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyVector2D.h" />
     <ClInclude Include="Player.h" />
+    <ClInclude Include="Result.h" />
     <ClInclude Include="SceneMgr.h" />
     <ClInclude Include="setup.h" />
   </ItemGroup>

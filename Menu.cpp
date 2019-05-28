@@ -1,5 +1,5 @@
-#include "setup.h"
 #include "Menu.h"
+#include "setup.h"
 #include "SceneMgr.h"
 #include "DxLib.h"
 
@@ -17,6 +17,11 @@ void MenuUpdate()
 	{
 		SceneMgrChange(mySceneConfig);
 	}
+	// リザルト画面に遷移
+	if (CheckHitKey(KEY_INPUT_R) != 0)
+	{
+		SceneMgrChange(mySceneResult);
+	}
 }
 
 
@@ -25,5 +30,6 @@ void MenuDraw()
 {
 	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3, "メニュー画面", GetColor(255, 255, 255));
 	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 20, "'s'キーで開始", GetColor(255, 255, 255));
-	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 40, "'c'キーで設定", GetColor(255, 255, 255));
+	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 40, "'c'キーで設定画面", GetColor(255, 255, 255));
+	DrawString((mySetup::battleX + mySetup::subX) * 3 / 7, mySetup::Y / 3 + 60, "'r'キーでリザルト画面", GetColor(255, 255, 255));
 }

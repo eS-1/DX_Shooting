@@ -2,6 +2,7 @@
 #include "Config.h"
 #include "Game.h"
 #include "Menu.h"
+#include "Result.h"
 #include "Player.h"
 #include "Enemy.h"
 #include "DxLib.h"
@@ -28,6 +29,9 @@ void SceneMgrUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<En
 	case mySceneConfig:
 		ConfigUpdate();
 		break;
+	case mySceneResult:
+		ResultUpdate();
+		break;
 	}
 }
 
@@ -51,6 +55,10 @@ void SceneMgrDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enem
 		break;
 	case mySceneConfig:
 		ConfigDraw();
+		gameInitFlag = true;
+		break;
+	case mySceneResult:
+		ResultDraw();
 		gameInitFlag = true;
 		break;
 	}

@@ -8,6 +8,7 @@ typedef enum
 	mySceneMenu,
 	mySceneGame,
 	mySceneConfig,
+	mySceneResult
 } myScene;
 
 // シーン管理の更新

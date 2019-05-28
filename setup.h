@@ -8,4 +8,6 @@ struct mySetup
 	static unsigned int subX;
 	// 画面サイズのy成分
 	static unsigned int Y;
+	// ゲーム画面のスコア
+	static unsigned int gameScore;
 };

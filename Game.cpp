@@ -34,6 +34,8 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 		for (Bullet* bul : bullets) { delete bul; }
 		bullets.clear();
 
+		mySetup::gameScore = 0;
+
 		SceneMgrChange(mySceneMenu);
 		return;
 	}
@@ -76,6 +78,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 			if (enemys[i]->getRemoveFlag())
 			{
 				enemys.erase(enemys.begin() + i);
+				mySetup::gameScore++;
 				isRemove = false;
 				break;
 			}
@@ -107,6 +110,7 @@ void GameDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>&
 	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
 
 	DrawString(mySetup::battleX, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawFormatString(mySetup::battleX, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
 
 	// playerの描画
 	player->draw();

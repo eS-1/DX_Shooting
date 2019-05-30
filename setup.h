@@ -1,4 +1,5 @@
 #pragma once
+#include <array>
 
 struct mySetup
 {
@@ -10,4 +11,6 @@ struct mySetup
 	static unsigned int Y;
 	// ゲーム画面のスコア
 	static unsigned int gameScore;
+	// リザルト画面で表示するスコア
+	static std::array<unsigned int, 5> resultScores;
 };

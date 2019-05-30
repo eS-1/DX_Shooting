@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "setup.h"
 #include "Game.h"
 #include "SceneMgr.h"
@@ -6,8 +7,24 @@
 #include "Enemy.h"
 
 
+// arrayの最小値を返す関数
+unsigned int MinOfArray(std::array<unsigned int, 5> result)
+{
+	if (!result.empty())
+	{
+		unsigned int mini = UINT_MAX;
+		for (auto num : result)
+		{
+			if (num < mini) { mini = num; }
+		}
+		return mini;
+	}
+	return 0;
+}
+
+
 // ゲーム画面の初期化
-void GameInitialize(Player* &player, std::deque<Enemy*> &enemys)
+void GameInitialize(Player*& player, std::deque<Enemy*>& enemys)
 {
 	player = new Player(myVector2(230.0, 540.0));
 
@@ -34,6 +51,14 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 		for (Bullet* bul : bullets) { delete bul; }
 		bullets.clear();
 
+		// リザルトスコアにゲームスコアを追加
+		if (mySetup::gameScore > MinOfArray(mySetup::resultScores))
+		{
+			mySetup::resultScores[0] = mySetup::gameScore;
+			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end());
+		}
+
+		// ゲームスコアのリセット
 		mySetup::gameScore = 0;
 
 		SceneMgrChange(mySceneMenu);

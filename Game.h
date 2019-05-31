@@ -5,8 +5,8 @@
 
 void GameInitialize(Player*& player, std::vector<Enemy*>& enemys);
 
-void GameUpdate(Player*& player, std::vector<Bullet*> &bullets, std::vector<Enemy*> &enemys);
+void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys);
 
-void GameDraw(Player* &player, std::vector<Bullet*> &bullets, std::vector<Enemy*> &enemys);
+void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys);
 
-unsigned int MinOfArray(std::array<unsigned int, 5> result);
+std::vector<unsigned int>::iterator MinItrOfArray(std::vector<unsigned int>& result);

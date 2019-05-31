@@ -9,7 +9,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 {
 	ChangeWindowMode(TRUE);
 
-	SetGraphMode(mySetup::battleX + mySetup::subX, mySetup::Y, GetColorBitDepth());
+	SetGraphMode(mySetup::allX, mySetup::Y, GetColorBitDepth());
 
 	// initialize of DXLib
 	if (DxLib_Init() == -1) { return -1; }

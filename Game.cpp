@@ -7,19 +7,15 @@
 #include "Enemy.h"
 
 
-// arrayの最小値を返す関数
-unsigned int MinOfArray(std::array<unsigned int, 5> result)
+// arrayの最小値のイテレータを返す関数
+std::vector<unsigned int>::iterator MinItrOfArray(std::vector<unsigned int>& result)
 {
-	if (!result.empty())
+	auto minItr = result.begin();
+	for (auto itr = result.begin(); itr != result.end(); itr++)
 	{
-		unsigned int mini = UINT_MAX;
-		for (auto num : result)
-		{
-			if (num < mini) { mini = num; }
-		}
-		return mini;
+		if (*minItr > *itr) { minItr = itr; }
 	}
-	return 0;
+	return minItr;
 }
 
 
@@ -50,11 +46,12 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		// bulletの消去
 		for (Bullet* bul : bullets) { delete bul; }
 		bullets.clear();
-
+		
 		// リザルトスコアにゲームスコアを追加
-		if (mySetup::gameScore > MinOfArray(mySetup::resultScores))
+		auto minItr = MinItrOfArray(mySetup::resultScores);
+		if (mySetup::gameScore > *minItr)
 		{
-			mySetup::resultScores[0] = mySetup::gameScore;
+			*minItr = mySetup::gameScore;
 			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end());
 		}
 

@@ -44,7 +44,7 @@ void Player::move()
 	}
 }
 
-void Player::fire(std::deque<Bullet*>& bullets)
+void Player::fire(std::vector<Bullet*>& bullets)
 {
 	oldKey = key;
 	key = CheckHitKey(KEY_INPUT_SPACE);

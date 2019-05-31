@@ -24,7 +24,7 @@ unsigned int MinOfArray(std::array<unsigned int, 5> result)
 
 
 // ƒQ[ƒ€‰æ–Ê‚Ì‰Šú‰»
-void GameInitialize(Player*& player, std::deque<Enemy*>& enemys)
+void GameInitialize(Player*& player, std::vector<Enemy*>& enemys)
 {
 	player = new Player(myVector2(230.0, 540.0));
 
@@ -36,7 +36,7 @@ void GameInitialize(Player*& player, std::deque<Enemy*>& enemys)
 
 
 // ƒQ[ƒ€‰æ–Ê‚ÌXV
-void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
+void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
 {
 	// ƒƒjƒ…[‰æ–Ê‚É‘JˆÚ
 	if (CheckHitKey(KEY_INPUT_Q) != 0)
@@ -130,7 +130,7 @@ void GameUpdate(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*
 
 
 // ƒQ[ƒ€‰æ–Ê‚Ì•`‰æ
-void GameDraw(Player*& player, std::deque<Bullet*>& bullets, std::deque<Enemy*>& enemys)
+void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
 {
 	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
 

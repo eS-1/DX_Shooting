@@ -1,5 +1,5 @@
 #pragma once
-#include <deque>
+#include <vector>
 #include "MyObject.h"
 #include "Bullet.h"
 
@@ -13,7 +13,7 @@ public:
 	bool isPlayer() override;
 	void move() override;
 	void draw() override;
-	void fire(std::deque<Bullet*>& bullets);
+	void fire(std::vector<Bullet*>& bullets);
 
 private:
 	int key;

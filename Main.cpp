@@ -17,8 +17,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	static Player* player;
-	static std::deque<Bullet*> bullets;
-	static std::deque<Enemy*> enemys;
+	static std::vector<Bullet*> bullets;
+	static std::vector<Enemy*> enemys;
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0)
 	{

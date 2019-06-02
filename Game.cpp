@@ -7,7 +7,7 @@
 #include "Enemy.h"
 
 
-// arrayの最小値のイテレータを返す関数
+// vectorの最小値のイテレータを返す関数
 std::vector<unsigned int>::iterator MinItrOfArray(std::vector<unsigned int>& result)
 {
 	auto minItr = result.begin();
@@ -53,6 +53,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		{
 			*minItr = mySetup::gameScore;
 			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end());
+			std::reverse(mySetup::resultScores.begin(), mySetup::resultScores.end());
 		}
 
 		// ゲームスコアのリセット

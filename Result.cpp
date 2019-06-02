@@ -17,8 +17,8 @@ void ResultUpdate()
 // リザルト画面の描画
 void ResultDraw()
 {
-	DrawString(0, 0, "リザルト画面", GetColor(255, 255, 255));
-	DrawString(0, 20, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawString(mySetup::battleX / 2, mySetup::Y / 4, "ハイスコア", GetColor(255, 255, 255));
+	DrawString(0, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
 
 	// スコア表示
 	int i = 1;

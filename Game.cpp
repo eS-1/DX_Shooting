@@ -37,6 +37,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 	// メニュー画面に遷移
 	if (CheckHitKey(KEY_INPUT_Q) != 0)
 	{
+		delete player;
 		player = nullptr;
 
 		// enemyの消去
@@ -64,20 +65,35 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 	}
 
 	// playerの状態更新
-	player->move();
-	player->fire(bullets);
+	if (player != nullptr)
+	{
+		player->move();
+	    player->fire(bullets);
+	}
 
 	// enemyの状態更新
-	for (Enemy* en : enemys) { en->move(); }
+	for (Enemy* en : enemys)
+	{
+		en->move();
+		en->fire(bullets);
+	}
 
 	// bulletsの状態更新
 	for (Bullet* bul : bullets)
 	{
 		bul->move();
+		// プレイヤーに当たった時の処理
+		if (player != nullptr)
+		{
+			if (bul->checkHit(*player) && bul->getIsEnBul())
+			{
+				player->setRemoveFlag(true);
+			}
+		}
 		// 当たった敵の消去フラグを立てる
 		for (Enemy* en : enemys)
 		{
-			if (bul->checkHit(*en))
+			if (bul->checkHit(*en) && bul->getIsPlaBul())
 			{
 				en->setRemoveFlag(true);
 				bul->setRemoveFlag(true);
@@ -91,6 +107,15 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		}
 	}
 
+	if (player != nullptr)
+	{
+		if (player->getRemoveFlag())
+		{
+			delete player;
+			player = nullptr;
+		}
+	}
+
 	// 敵の消去
 	bool isRemove;
 	while (true)
@@ -100,6 +125,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		{
 			if (enemys[i]->getRemoveFlag())
 			{
+				delete enemys[i];
 				enemys.erase(enemys.begin() + i);
 				mySetup::gameScore++;
 				isRemove = false;
@@ -117,6 +143,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		{
 			if (bullets[i]->getRemoveFlag())
 			{
+				delete bullets[i];
 				bullets.erase(bullets.begin() + i);
 				isRemove = false;
 				break;
@@ -136,7 +163,14 @@ void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*
 	DrawFormatString(mySetup::battleX, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
 
 	// playerの描画
-	player->draw();
+	if (player != nullptr)
+	{
+		player->draw();
+	}
+	else
+	{
+		DrawFormatString(mySetup::battleX * 3 / 7, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
+	}
 
 	// enemyの描画
 	for (Enemy* en : enemys) { en->draw(); }

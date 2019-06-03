@@ -3,7 +3,7 @@
 #include "Player.h"
 
 
-Player::Player(myVector2 position)
+Player::Player(const myVector2& position)
 	: MyObject(position), key(0), oldKey(0) {}
 
 Player::~Player()
@@ -25,23 +25,25 @@ void Player::move()
 {
 	if (CheckHitKey(KEY_INPUT_A) && pos.x > 10)
 	{
-		pos.x -= 4.0;
+		direction.x -= 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::battleX - 10)
 	{
-		pos.x += 4.0;
+		direction.x += 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_W) && pos.y > 10)
 	{
-		pos.y -= 4.0;
+		direction.y -= 4.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_S) && pos.y < mySetup::Y - 10)
 	{
-		pos.y += 4.0;
+		direction.y += 4.0;
 	}
+	pos += direction;
+	direction = myVector2(0, 0);
 }
 
 void Player::fire(std::vector<Bullet*>& bullets)
@@ -51,7 +53,8 @@ void Player::fire(std::vector<Bullet*>& bullets)
 
 	if ((key & ~oldKey) & KEY_INPUT_SPACE)
 	{
-		Bullet* bul = new Bullet(pos);
+		Bullet* bul = new Bullet(pos, -5.0);
+		bul->setIsPlaBul(true);
 		bullets.push_back(bul);
 	}
 }

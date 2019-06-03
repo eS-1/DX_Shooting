@@ -2,35 +2,45 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(double bx, double by)
-	: pos(myVector2(bx, by)), moveDirection(myVector2(0.0, -5.0)), removeFlag(false) {}
-
-Bullet::Bullet(const myVector2& p)
-	: pos(p), moveDirection(myVector2(0.0, -5.0)), removeFlag(false) {}
+Bullet::Bullet(const myVector2& p, double dy)
+	: MyObject(p), isPlaBullet(false), isEnBullet(false)
+{
+	direction = myVector2(0.0, dy);
+}
 
 Bullet::~Bullet()
 {
 	// デストラクタ
 }
 
-myVector2 Bullet::getPos() const
+bool Bullet::isBullet()
 {
-	return pos;
+	return true;
 }
 
-bool Bullet::getRemoveFlag() const
+bool Bullet::getIsPlaBul()
 {
-	return removeFlag;
+	return isPlaBullet;
 }
 
-void Bullet::setRemoveFlag(bool state)
+bool Bullet::getIsEnBul()
 {
-	removeFlag = state;
+	return isEnBullet;
+}
+
+void Bullet::setIsPlaBul(bool state)
+{
+	isPlaBullet = state;
+}
+
+void Bullet::setIsEnBul(bool state)
+{
+	isEnBullet = state;
 }
 
 void Bullet::move()
 {
-	pos += moveDirection;
+	pos += direction;
 }
 
 void Bullet::draw()
@@ -40,5 +50,5 @@ void Bullet::draw()
 
 bool Bullet::checkHit(MyObject& obj)
 {
-	return obj.isEnemy() && pos.distanceFrom(obj.pos) <= 15;
+	return pos.distanceFrom(obj.getPos()) <= 15;
 }

@@ -1,5 +1,15 @@
 #pragma once
 #include <vector>
+#include <string>
+
+// 難易度
+enum difficulty
+{
+	easy,
+	normal,
+	hard
+};
+
 
 struct mySetup
 {
@@ -15,4 +25,8 @@ struct mySetup
 	static unsigned int gameScore;
 	// リザルト画面で表示するスコア
 	static std::vector<unsigned int> resultScores;
+	// ゲームの難易度
+	static difficulty diff;
 };
+
+std::string NameOf(difficulty diff);

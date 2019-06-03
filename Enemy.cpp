@@ -3,11 +3,10 @@
 #include "Enemy.h"
 
 
-Enemy::Enemy()
-	: MyObject(myVector2(230.0, 50.0)), direction(myVector2(0.0, 0.0)) {}
-
-Enemy::Enemy(myVector2 pos)
-	: MyObject(pos), direction(myVector2(2.0, 0.0)) {}
+Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0)
+{
+	direction = myVector2(2.0, 0.0);
+}
 
 Enemy::~Enemy()
 {
@@ -17,11 +16,6 @@ Enemy::~Enemy()
 bool Enemy::isEnemy()
 {
 	return true;
-}
-
-myVector2 Enemy::getPos()
-{
-	return pos;
 }
 
 void Enemy::draw()
@@ -41,4 +35,16 @@ void Enemy::move()
 	}
 
 	pos += direction;
+}
+
+void Enemy::fire(std::vector<Bullet*>& bullets)
+{
+	fireCount++;
+	if (fireCount == 40)
+	{
+		Bullet* bul = new Bullet(pos, 4.0);
+		bul->setIsEnBul(true);
+		bullets.push_back(bul);
+		fireCount = 0;
+	}
 }

@@ -2,11 +2,16 @@
 
 
 MyObject::MyObject(myVector2 position)
-	: pos(position), removeFlag(false) {}
+	: pos(position), direction(myVector2(0, 0)), removeFlag(false) {}
 
 MyObject::~MyObject()
 {
 	// デストラクタ
+}
+
+myVector2 MyObject::getPos() const
+{
+	return pos;
 }
 
 bool MyObject::isPlayer()
@@ -15,6 +20,11 @@ bool MyObject::isPlayer()
 }
 
 bool MyObject::isEnemy()
+{
+	return false;
+}
+
+bool MyObject::isBullet()
 {
 	return false;
 }

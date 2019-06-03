@@ -7,7 +7,7 @@
 class Player : public MyObject
 {
 public:
-	Player(myVector2 position);
+	Player(const myVector2& position);
 	~Player();
 
 	bool isPlayer() override;

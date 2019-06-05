@@ -40,7 +40,7 @@ void Enemy::move()
 void Enemy::fire(std::vector<Bullet*>& bullets)
 {
 	fireCount++;
-	if (fireCount == 40)
+	if (fireCount == 50)
 	{
 		Bullet* bul = new Bullet(pos, 4.0);
 		bul->setIsEnBul(true);

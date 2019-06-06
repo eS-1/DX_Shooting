@@ -8,7 +8,7 @@
 
 
 // vectorの最小値のイテレータを返す関数
-std::vector<unsigned int>::iterator MinItrOfArray(std::vector<unsigned int>& result)
+std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& result)
 {
 	auto minItr = result.begin();
 	for (auto itr = result.begin(); itr != result.end(); itr++)
@@ -49,7 +49,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		bullets.clear();
 		
 		// リザルトスコアにゲームスコアを追加
-		auto minItr = MinItrOfArray(mySetup::resultScores);
+		auto minItr = MinItrOfVector(mySetup::resultScores);
 		if (mySetup::gameScore > *minItr)
 		{
 			*minItr = mySetup::gameScore;

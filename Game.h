@@ -9,4 +9,4 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 
 void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys);
 
-std::vector<unsigned int>::iterator MinItrOfArray(std::vector<unsigned int>& result);
+std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& result);

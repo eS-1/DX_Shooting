@@ -53,8 +53,8 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		if (mySetup::gameScore > *minItr)
 		{
 			*minItr = mySetup::gameScore;
-			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end());
-			std::reverse(mySetup::resultScores.begin(), mySetup::resultScores.end());
+			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end(),
+				std::greater<std::vector<int>::value_type>());
 		}
 
 		// ゲームスコアのリセット

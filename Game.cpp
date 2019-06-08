@@ -169,7 +169,7 @@ void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*
 
 		if (enemys.empty())
 		{
-			DrawFormatString(mySetup::battleX * 3 / 7, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
+			DrawFormatString(mySetup::battleX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
 		}
 	}
 	else

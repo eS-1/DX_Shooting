@@ -24,9 +24,26 @@ void GameInitialize(Player*& player, std::vector<Enemy*>& enemys)
 {
 	player = new Player(myVector2(230.0, 540.0));
 
-	for (int i = 1; i < 6; i++)
+	if (mySetup::diff == easy)
 	{
-		enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
+		for (int i = 1; i < 4; i++)
+		{
+			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
+		}
+	}
+	else if (mySetup::diff == normal)
+	{
+		for (int i = 1; i < 6; i++)
+		{
+			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
+		}
+	}
+	else if (mySetup::diff == hard)
+	{
+		for (int i = 1; i < 11; i++)
+		{
+			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
+		}
 	}
 }
 

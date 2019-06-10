@@ -5,7 +5,7 @@
 class Bullet : public MyObject
 {
 public:
-	Bullet(const myVector2& p, double dy);
+	Bullet(const myVector2& p, const myVector2& dir);
 	~Bullet();
 
 	bool isBullet() override;

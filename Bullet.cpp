@@ -2,10 +2,10 @@
 #include "Bullet.h"
 
 
-Bullet::Bullet(const myVector2& p, double dy)
+Bullet::Bullet(const myVector2& p, const myVector2& dir)
 	: MyObject(p), isPlaBullet(false), isEnBullet(false)
 {
-	direction = myVector2(0.0, dy);
+	direction = dir;
 }
 
 Bullet::~Bullet()

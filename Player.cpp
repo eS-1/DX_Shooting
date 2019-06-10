@@ -53,7 +53,7 @@ void Player::fire(std::vector<Bullet*>& bullets)
 
 	if ((key & ~oldKey) & KEY_INPUT_SPACE)
 	{
-		Bullet* bul = new Bullet(pos, -5.0);
+		Bullet* bul = new Bullet(pos, myVector2(0.0, -5.0));
 		bul->setIsPlaBul(true);
 		bullets.push_back(bul);
 	}

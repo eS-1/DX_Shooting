@@ -24,26 +24,27 @@ void GameInitialize(Player*& player, std::vector<Enemy*>& enemys)
 {
 	player = new Player(myVector2(230.0, 540.0));
 
-	if (mySetup::diff == easy)
+	int enemyNum = 0;
+
+	switch (mySetup::diff)
 	{
-		for (int i = 1; i < 4; i++)
-		{
-			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
-		}
+	case easy:
+		enemyNum = 3;
+		break;
+	case normal:
+		enemyNum = 5;
+		break;
+	case hard:
+		enemyNum = 8;
+		break;
+	case extreme:
+		enemyNum = 10;
+	default:
+		break;
 	}
-	else if (mySetup::diff == normal)
+	for (int i = 0; i < enemyNum; i++)
 	{
-		for (int i = 1; i < 6; i++)
-		{
-			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
-		}
-	}
-	else if (mySetup::diff == hard)
-	{
-		for (int i = 1; i < 11; i++)
-		{
-			enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
-		}
+		enemys.push_back(new Enemy(myVector2(40.0 * i, 50.0)));
 	}
 }
 

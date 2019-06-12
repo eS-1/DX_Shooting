@@ -2,12 +2,14 @@
 #include <vector>
 #include <string>
 
+
 // “ïˆÕ“x
 enum difficulty
 {
 	easy,
 	normal,
-	hard
+	hard,
+	extreme
 };
 
 
@@ -29,4 +31,23 @@ struct mySetup
 	static difficulty diff;
 };
 
-std::string NameOf(difficulty diff);
+
+struct keyInput
+{
+	static int W;
+	static int A;
+	static int S;
+	static int D;
+
+	static int oldW;
+	static int oldA;
+	static int oldS;
+	static int oldD;
+};
+
+
+namespace setup
+{
+	std::string NameOf(difficulty diff);
+	void KeyInput();
+}

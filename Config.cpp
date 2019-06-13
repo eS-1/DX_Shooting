@@ -13,6 +13,7 @@ void ConfigUpdate()
 		SceneMgrChange(mySceneMenu);
 	}
 
+	// ƒL[‚Ì“ü—Íó‘Ô‚ğæ“¾
 	setup::KeyInput();
 	
 	if (keyInput::D != 0 && mySetup::diff < extreme && (keyInput::D & ~keyInput::oldD))

@@ -170,6 +170,7 @@
     <ClInclude Include="Menu.h" />
     <ClInclude Include="MyObject.h" />
     <ClInclude Include="MyVector2D.h" />
+    <ClInclude Include="Objects.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="Result.h" />
     <ClInclude Include="SceneMgr.h" />

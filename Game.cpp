@@ -1,10 +1,9 @@
 #include <algorithm>
 #include "setup.h"
+#include "Objects.h"
 #include "Game.h"
 #include "SceneMgr.h"
 #include "DxLib.h"
-#include "Player.h"
-#include "Enemy.h"
 
 
 // vectorの最小値のイテレータを返す関数
@@ -20,9 +19,9 @@ std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& re
 
 
 // ゲーム画面の初期化
-void GameInitialize(Player*& player, std::vector<Enemy*>& enemys)
+void GameInitialize()
 {
-	player = new Player(myVector2(230.0, 540.0));
+	obj::player = new Player(myVector2(230.0, 540.0));
 
 	int enemyNum = 0;
 
@@ -44,27 +43,27 @@ void GameInitialize(Player*& player, std::vector<Enemy*>& enemys)
 	}
 	for (int i = 0; i < enemyNum; i++)
 	{
-		enemys.push_back(new Enemy(myVector2(40.0 * i, 50.0)));
+		obj::enemys.push_back(new Enemy(myVector2(40.0 * i, 50.0)));
 	}
 }
 
 
 // ゲーム画面の更新
-void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
+void GameUpdate()
 {
 	// メニュー画面に遷移
 	if (CheckHitKey(KEY_INPUT_Q) != 0)
 	{
-		delete player;
-		player = nullptr;
+		delete obj::player;
+		obj::player = nullptr;
 
 		// enemyの消去
-		for (Enemy* en : enemys) { delete en; }
-		enemys.clear();
+		for (Enemy* en : obj::enemys) { delete en; }
+		obj::enemys.clear();
 
 		// bulletの消去
-		for (Bullet* bul : bullets) { delete bul; }
-		bullets.clear();
+		for (Bullet* bul : obj::bullets) { delete bul; }
+		obj::bullets.clear();
 		
 		// リザルトスコアにゲームスコアを追加
 		auto minItr = MinItrOfVector(mySetup::resultScores);
@@ -83,33 +82,33 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 	}
 
 	// playerの状態更新
-	if (player != nullptr)
+	if (obj::player != nullptr)
 	{
-		player->move();
-	    player->fire(bullets);
+		obj::player->move();
+	    obj::player->fire(obj::bullets);
 	}
 
 	// enemyの状態更新
-	for (Enemy* en : enemys)
+	for (Enemy* en : obj::enemys)
 	{
 		en->move();
-		en->fire(bullets);
+		en->fire(obj::bullets);
 	}
 
 	// bulletsの状態更新
-	for (Bullet* bul : bullets)
+	for (Bullet* bul : obj::bullets)
 	{
 		bul->move();
 		// プレイヤーに当たった時の処理
-		if (player != nullptr)
+		if (obj::player != nullptr)
 		{
-			if (bul->checkHit(*player) && bul->getIsEnBul())
+			if (bul->checkHit(*obj::player) && bul->getIsEnBul())
 			{
-				player->setRemoveFlag(true);
+				obj::player->setRemoveFlag(true);
 			}
 		}
 		// 当たった敵の消去フラグを立てる
-		for (Enemy* en : enemys)
+		for (Enemy* en : obj::enemys)
 		{
 			if (bul->checkHit(*en) && bul->getIsPlaBul())
 			{
@@ -125,12 +124,12 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 		}
 	}
 
-	if (player != nullptr)
+	if (obj::player != nullptr)
 	{
-		if (player->getRemoveFlag())
+		if (obj::player->getRemoveFlag())
 		{
-			delete player;
-			player = nullptr;
+			delete obj::player;
+			obj::player = nullptr;
 		}
 	}
 
@@ -139,12 +138,12 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 	while (true)
 	{
 		isRemove = true;
-		for (int i = 0; i < enemys.size(); i++)
+		for (int i = 0; i < obj::enemys.size(); i++)
 		{
-			if (enemys[i]->getRemoveFlag())
+			if (obj::enemys[i]->getRemoveFlag())
 			{
-				delete enemys[i];
-				enemys.erase(enemys.begin() + i);
+				delete obj::enemys[i];
+				obj::enemys.erase(obj::enemys.begin() + i);
 				mySetup::gameScore++;
 				isRemove = false;
 				break;
@@ -157,12 +156,12 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 	while (true)
 	{
 		isRemove = true;
-		for (int i = 0; i < bullets.size(); i++)
+		for (int i = 0; i < obj::bullets.size(); i++)
 		{
-			if (bullets[i]->getRemoveFlag())
+			if (obj::bullets[i]->getRemoveFlag())
 			{
-				delete bullets[i];
-				bullets.erase(bullets.begin() + i);
+				delete obj::bullets[i];
+				obj::bullets.erase(obj::bullets.begin() + i);
 				isRemove = false;
 				break;
 			}
@@ -173,7 +172,7 @@ void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enem
 
 
 // ゲーム画面の描画
-void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
+void GameDraw()
 {
 	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
 
@@ -181,11 +180,11 @@ void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*
 	DrawFormatString(mySetup::battleX, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
 
 	// playerの描画
-	if (player != nullptr)
+	if (obj::player != nullptr)
 	{
-		player->draw();
+		obj::player->draw();
 
-		if (enemys.empty())
+		if (obj::enemys.empty())
 		{
 			DrawFormatString(mySetup::battleX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
 		}
@@ -196,8 +195,8 @@ void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*
 	}
 
 	// enemyの描画
-	for (Enemy* en : enemys) { en->draw(); }
+	for (Enemy* en : obj::enemys) { en->draw(); }
 
 	// bulletsの描画
-	for (Bullet* bul : bullets) { bul->draw(); }
+	for (Bullet* bul : obj::bullets) { bul->draw(); }
 }

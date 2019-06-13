@@ -1,12 +1,11 @@
 #pragma once
-#include "Player.h"
-#include "Enemy.h"
+#include <vector>
 
 
-void GameInitialize(Player*& player, std::vector<Enemy*>& enemys);
+void GameInitialize();
 
-void GameUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys);
+void GameUpdate();
 
-void GameDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys);
+void GameDraw();
 
 std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& result);

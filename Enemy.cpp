@@ -1,6 +1,6 @@
+#include "Enemy.h"
 #include "setup.h"
 #include "DxLib.h"
-#include "Enemy.h"
 
 
 Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0)

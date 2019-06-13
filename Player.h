@@ -1,6 +1,5 @@
 #pragma once
 #include <vector>
-#include "MyObject.h"
 #include "Bullet.h"
 
 

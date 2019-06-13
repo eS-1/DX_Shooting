@@ -1,6 +1,6 @@
 #include "setup.h"
-#include "DxLib.h"
 #include "Player.h"
+#include "DxLib.h"
 
 
 Player::Player(const myVector2& position)

@@ -3,9 +3,6 @@
 #include "Game.h"
 #include "Menu.h"
 #include "Result.h"
-#include "Player.h"
-#include "Enemy.h"
-#include "DxLib.h"
 
 
 // 画面遷移用の変数
@@ -16,7 +13,7 @@ static bool gameInitFlag = false;
 
 
 // シーン管理の更新
-void SceneMgrUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
+void SceneMgrUpdate()
 {
 	switch (Scene)
 	{
@@ -24,7 +21,7 @@ void SceneMgrUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<
 		MenuUpdate();
 		break;
 	case mySceneGame:
-		GameUpdate(player, bullets, enemys);
+		GameUpdate();
 		break;
 	case mySceneConfig:
 		ConfigUpdate();
@@ -37,7 +34,7 @@ void SceneMgrUpdate(Player*& player, std::vector<Bullet*>& bullets, std::vector<
 
 
 // シーン管理の描画
-void SceneMgrDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<Enemy*>& enemys)
+void SceneMgrDraw()
 {
 	switch (Scene)
 	{
@@ -48,10 +45,10 @@ void SceneMgrDraw(Player*& player, std::vector<Bullet*>& bullets, std::vector<En
 	case mySceneGame:
 		if (gameInitFlag)
 		{
-			GameInitialize(player, enemys);
+			GameInitialize();
 			gameInitFlag = false;
 		}
-		GameDraw(player, bullets, enemys);
+		GameDraw();
 		break;
 	case mySceneConfig:
 		ConfigDraw();

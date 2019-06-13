@@ -1,6 +1,6 @@
 #include "Config.h"
-#include "SceneMgr.h"
 #include "setup.h"
+#include "SceneMgr.h"
 #include "DxLib.h"
 
 

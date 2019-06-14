@@ -18,6 +18,14 @@ std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& re
 }
 
 
+// 弾の全消去
+void EraseAllBullets()
+{
+	for (Bullet* bul : obj::bullets) { delete bul; }
+	obj::bullets.clear();
+}
+
+
 // ゲーム画面の初期化
 void GameInitialize()
 {
@@ -62,8 +70,7 @@ void GameUpdate()
 		obj::enemys.clear();
 
 		// bulletの消去
-		for (Bullet* bul : obj::bullets) { delete bul; }
-		obj::bullets.clear();
+		EraseAllBullets();
 		
 		// リザルトスコアにゲームスコアを追加
 		auto minItr = MinItrOfVector(mySetup::resultScores);
@@ -79,6 +86,12 @@ void GameUpdate()
 
 		SceneMgrChange(mySceneMenu);
 		return;
+	}
+
+	// ゲームクリア時に弾を全消去
+	if (obj::enemys.empty())
+	{
+		EraseAllBullets();
 	}
 
 	// playerの状態更新
@@ -105,6 +118,7 @@ void GameUpdate()
 			if (bul->checkHit(*obj::player) && bul->getIsEnBul())
 			{
 				obj::player->setRemoveFlag(true);
+				bul->setRemoveFlag(true);
 			}
 		}
 		// 当たった敵の消去フラグを立てる
@@ -124,13 +138,10 @@ void GameUpdate()
 		}
 	}
 
-	if (obj::player != nullptr)
+	if (obj::player != nullptr && obj::player->getRemoveFlag())
 	{
-		if (obj::player->getRemoveFlag())
-		{
-			delete obj::player;
-			obj::player = nullptr;
-		}
+		delete obj::player;
+		obj::player = nullptr;
 	}
 
 	// 敵の消去

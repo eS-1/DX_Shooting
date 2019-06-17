@@ -26,6 +26,28 @@ void EraseAllBullets()
 }
 
 
+// 敵の弾全消去
+void EraseEnemyBullets()
+{
+	bool isRemove;
+	while (true)
+	{
+		isRemove = true;
+		for (int i = 0; i < obj::bullets.size(); i++)
+		{
+			if (obj::bullets[i]->getIsEnBul())
+			{
+				delete obj::bullets[i];
+				obj::bullets.erase(obj::bullets.begin() + i);
+				isRemove = false;
+				break;
+			}
+		}
+		if (isRemove) { break; }
+	}
+}
+
+
 // ゲーム画面の初期化
 void GameInitialize()
 {
@@ -91,7 +113,7 @@ void GameUpdate()
 	// ゲームクリア時に弾を全消去
 	if (obj::enemys.empty())
 	{
-		EraseAllBullets();
+		EraseEnemyBullets();
 	}
 
 	// playerの状態更新

@@ -25,7 +25,7 @@ void Enemy::draw()
 
 void Enemy::move()
 {
-	if (pos.x + 10 > mySetup::battleX)
+	if (pos.x + 10 > mySetup::allX)
 	{
 		direction.x = -2.0;
 	}

@@ -2,7 +2,7 @@
 #include <vector>
 
 
-void GameInitialize();
+void Game_Init();
 
 void GameUpdate();
 

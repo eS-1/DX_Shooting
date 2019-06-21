@@ -45,7 +45,7 @@ void SceneMgrDraw()
 	case mySceneGame:
 		if (gameInitFlag)
 		{
-			GameInitialize();
+			Game_Init();
 			gameInitFlag = false;
 		}
 		GameDraw();

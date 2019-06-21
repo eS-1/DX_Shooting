@@ -49,7 +49,7 @@ void EraseEnemyBullets()
 
 
 // ゲーム画面の初期化
-void GameInitialize()
+void Game_Init()
 {
 	obj::player = new Player(myVector2(230.0, 540.0));
 
@@ -67,13 +67,13 @@ void GameInitialize()
 		enemyNum = 8;
 		break;
 	case extreme:
-		enemyNum = 10;
+		enemyNum = 20;
 	default:
 		break;
 	}
 	for (int i = 0; i < enemyNum; i++)
 	{
-		obj::enemys.push_back(new Enemy(myVector2(40.0 * i, 50.0)));
+		obj::enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
 	}
 }
 
@@ -153,7 +153,7 @@ void GameUpdate()
 			}
 		}
 		// 画面外の弾の消去フラグを立てる
-		if (bul->getPos().x < 0 || bul->getPos().x > mySetup::battleX
+		if (bul->getPos().x < 0 || bul->getPos().x > mySetup::allX
 			|| bul->getPos().y < 0 || bul->getPos().y > mySetup::Y)
 		{
 			bul->setRemoveFlag(true);
@@ -207,10 +207,10 @@ void GameUpdate()
 // ゲーム画面の描画
 void GameDraw()
 {
-	DrawBox(0, 0, mySetup::battleX, mySetup::Y, GetColor(0, 0, 150), 1);
+	DrawBox(0, 0, mySetup::allX, mySetup::Y, GetColor(0, 0, 150), 1);
 
-	DrawString(mySetup::battleX, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
-	DrawFormatString(mySetup::battleX, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
+	DrawString(0, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawFormatString(0, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
 
 	// playerの描画
 	if (obj::player != nullptr)
@@ -219,12 +219,12 @@ void GameDraw()
 
 		if (obj::enemys.empty())
 		{
-			DrawFormatString(mySetup::battleX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
+			DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
 		}
 	}
 	else
 	{
-		DrawFormatString(mySetup::battleX * 3 / 7, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
+		DrawFormatString(mySetup::allX * 3 / 7, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
 	}
 
 	// enemyの描画

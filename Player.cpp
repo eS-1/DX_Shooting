@@ -28,7 +28,7 @@ void Player::move()
 		direction.x -= 4.0;
 	}
 
-	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::battleX - 10)
+	if (CheckHitKey(KEY_INPUT_D) && pos.x < mySetup::allX - 10)
 	{
 		direction.x += 4.0;
 	}

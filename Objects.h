@@ -10,3 +10,5 @@ namespace obj
 	static std::vector<Bullet*> bullets;
 	static std::vector<Enemy*> enemys;
 }
+
+void Objects_End();

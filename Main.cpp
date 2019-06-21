@@ -25,9 +25,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// à»â∫èIóπèàóù
 
-	delete obj::player;
-	for (Enemy* en : obj::enemys) { delete en; }
-	for (Bullet* bul : obj::bullets) { delete bul; }
+	Objects_End();
 
 	DxLib_End();
 

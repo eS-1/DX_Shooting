@@ -40,7 +40,7 @@ void Bullet::setIsEnBul(bool state)
 
 void Bullet::move()
 {
-	pos += direction;
+	position += direction;
 }
 
 void Bullet::draw()
@@ -54,10 +54,10 @@ void Bullet::draw()
 	{
 		color = GetColor(255, 0, 255);
 	}
-	DrawBox(pos.x - 5.0, pos.y - 5.0, pos.x + 5.0, pos.y + 5.0, color, 1);
+	DrawBox(position.x - 5.0, position.y - 5.0, position.x + 5.0, position.y + 5.0, color, 1);
 }
 
 bool Bullet::checkHit(MyObject& obj)
 {
-	return pos.distanceFrom(obj.getPos()) <= 15;
+	return position.distanceFrom(obj.getPosition()) <= 15;
 }

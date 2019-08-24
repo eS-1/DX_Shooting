@@ -1,4 +1,5 @@
 #include <algorithm>
+#include <time.h>
 #include "setup.h"
 #include "Objects.h"
 #include "Game.h"
@@ -22,28 +23,19 @@ std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& re
 void EraseAllBullets()
 {
 	for (Bullet* bul : obj::bullets) { delete bul; }
+	for (Bullet* bul : obj::enBullets) { delete bul; }
 	obj::bullets.clear();
+	obj::enBullets.clear();
 }
 
 
-// 敵の弾全消去
+// 敵の弾座標初期化
 void EraseEnemyBullets()
 {
-	bool isRemove;
-	while (true)
+	for (Bullet* bul : obj::enBullets)
 	{
-		isRemove = true;
-		for (int i = 0; i < obj::bullets.size(); i++)
-		{
-			if (obj::bullets[i]->getIsEnBul())
-			{
-				delete obj::bullets[i];
-				obj::bullets.erase(obj::bullets.begin() + i);
-				isRemove = false;
-				break;
-			}
-		}
-		if (isRemove) { break; }
+		bul->setDirection(myVector2(0.0, 0.0));
+		bul->setPosition(myVector2(10.0, -5.0));
 	}
 }
 
@@ -51,30 +43,60 @@ void EraseEnemyBullets()
 // ゲーム画面の初期化
 void Game_Init()
 {
-	obj::player = new Player(myVector2(230.0, 540.0));
-
-	int enemyNum = 0;
-
+	// 自機の生成
+	obj::player = new Player(myVector2(mySetup::allX / 2, mySetup::Y * 7 / 8));
+	// 自機の弾生成
+	for (int i = 0; i < 30; i++)
+	{
+		Bullet* bul = new Bullet(myVector2(5.0, -5.0), myVector2(0.0, 0.0));
+		bul->setRemoveFlag(true);
+		bul->setIsPlaBul(true);
+		obj::bullets.push_back(bul);
+	}
+	// 敵の弾生成
+	for (int i = 0; i < 50; i++)
+	{
+		Bullet* bul = new Bullet(myVector2(10.0, -5.0), myVector2(0.0, 0.0));
+		bul->setRemoveFlag(true);
+		obj::enBullets.push_back(bul);
+	}
+	// 敵の生成
+	int rand_y;
 	switch (mySetup::diff)
 	{
 	case easy:
-		enemyNum = 3;
+		for (int i = 1; i < 6; i++)
+		{
+			rand_y = GetRand(100);
+			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
+		}
 		break;
 	case normal:
-		enemyNum = 5;
+		for (int i = 1; i < 9; i++)
+		{
+			rand_y = GetRand(100);
+			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
+		}
 		break;
 	case hard:
-		enemyNum = 8;
+		for (int i = 1; i < 13; i++)
+		{
+			rand_y = GetRand(100);
+			obj::enemys.push_back(new Enemy(myVector2(60.0 * i, rand_y - 140.0)));
+		}
 		break;
 	case extreme:
-		enemyNum = 20;
+		for (int i = 1; i < 16; i++)
+		{
+			rand_y = GetRand(100);
+			obj::enemys.push_back(new Enemy(myVector2(60.0 * i, rand_y - 140.0)));
+		}
 	default:
 		break;
 	}
-	for (int i = 0; i < enemyNum; i++)
-	{
-		obj::enemys.push_back(new Enemy(myVector2(50.0 * i, 50.0)));
-	}
+	// タイマーの初期化
+	obj::startTime = time(NULL);
+	obj::remainingTime = 60;
 }
 
 
@@ -110,96 +132,103 @@ void GameUpdate()
 		return;
 	}
 
-	// ゲームクリア時に弾を全消去
-	if (obj::enemys.empty())
-	{
-		EraseEnemyBullets();
-	}
-
 	// playerの状態更新
 	if (obj::player != nullptr)
 	{
 		obj::player->move();
 	    obj::player->fire(obj::bullets);
+
+		// タイマーのカウントダウン
+		obj::diffTime = time(NULL) - obj::startTime;
+		if (obj::diffTime == 1)
+		{
+			obj::remainingTime--;
+			obj::startTime = time(NULL);
+		}
 	}
 
 	// enemyの状態更新
 	for (Enemy* en : obj::enemys)
 	{
 		en->move();
-		en->fire(obj::bullets);
+		en->fire(obj::enBullets);
 	}
 
 	// bulletsの状態更新
 	for (Bullet* bul : obj::bullets)
 	{
-		bul->move();
-		// プレイヤーに当たった時の処理
-		if (obj::player != nullptr)
+		if (!bul->getRemoveFlag())
 		{
-			if (bul->checkHit(*obj::player) && bul->getIsEnBul())
+			bul->move();
+			// 当たった敵の消去処理
+			for (Enemy* en : obj::enemys)
 			{
-				obj::player->setRemoveFlag(true);
+				if (bul->checkHit(*en))
+				{
+					en->setIsReached(true);
+					en->setPosition(en->getInitPosition());
+					bul->setRemoveFlag(true);
+					mySetup::gameScore++;
+				}
+			}
+			// 画面外の弾の消去フラグを立てる
+			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::allX + 50.0
+				|| bul->getPosition().y < -50 || bul->getPosition().y > mySetup::Y + 50.0)
+			{
 				bul->setRemoveFlag(true);
 			}
-		}
-		// 当たった敵の消去フラグを立てる
-		for (Enemy* en : obj::enemys)
-		{
-			if (bul->checkHit(*en) && bul->getIsPlaBul())
-			{
-				en->setRemoveFlag(true);
-				bul->setRemoveFlag(true);
-			}
-		}
-		// 画面外の弾の消去フラグを立てる
-		if (bul->getPos().x < 0 || bul->getPos().x > mySetup::allX
-			|| bul->getPos().y < 0 || bul->getPos().y > mySetup::Y)
-		{
-			bul->setRemoveFlag(true);
 		}
 	}
 
+	// enBulletsの状態更新
+	for (Bullet* bul : obj::enBullets)
+	{
+		if (!bul->getRemoveFlag())
+		{
+			bul->move();
+			// プレイヤーに当たった時の処理
+			if (obj::player != nullptr)
+			{
+				if (bul->checkHit(*obj::player))
+				{
+					obj::player->setRemoveFlag(true);
+					bul->setRemoveFlag(true);
+				}
+			}
+			// 画面外の弾の消去フラグを立てる
+			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::allX + 50.0
+				|| bul->getPosition().y < -50 || bul->getPosition().y > mySetup::Y + 50.0)
+			{
+				bul->setRemoveFlag(true);
+			}
+		}
+	}
+
+	// 自機の消去
 	if (obj::player != nullptr && obj::player->getRemoveFlag())
 	{
 		delete obj::player;
 		obj::player = nullptr;
 	}
 
-	// 敵の消去
-	bool isRemove;
-	while (true)
+	// 自機の弾消去(座標初期化)
+	for (Bullet* bul : obj::bullets)
 	{
-		isRemove = true;
-		for (int i = 0; i < obj::enemys.size(); i++)
+		if (bul->getRemoveFlag())
 		{
-			if (obj::enemys[i]->getRemoveFlag())
-			{
-				delete obj::enemys[i];
-				obj::enemys.erase(obj::enemys.begin() + i);
-				mySetup::gameScore++;
-				isRemove = false;
-				break;
-			}
+			bul->setDirection(myVector2(0.0, 0.0));
+			bul->setPosition(myVector2(5.0, -5.0));
 		}
-		if (isRemove) { break; }
 	}
 
-	// 弾の消去
-	while (true)
+	// 敵の弾消去(座標初期化)
+	for (Bullet* bul : obj::enBullets)
 	{
-		isRemove = true;
-		for (int i = 0; i < obj::bullets.size(); i++)
+		if (bul->getRemoveFlag())
 		{
-			if (obj::bullets[i]->getRemoveFlag())
-			{
-				delete obj::bullets[i];
-				obj::bullets.erase(obj::bullets.begin() + i);
-				isRemove = false;
-				break;
-			}
+			bul->setDirection(myVector2(0.0, 0.0));
+			bul->setPosition(myVector2(10.0, -5.0));
 		}
-		if (isRemove) { break; }
 	}
 }
 
@@ -209,22 +238,18 @@ void GameDraw()
 {
 	DrawBox(0, 0, mySetup::allX, mySetup::Y, GetColor(0, 0, 150), 1);
 
-	DrawString(0, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawString(0, 0, "qキーでメニューに戻る", GetColor(255, 255, 255));
 	DrawFormatString(0, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
+	DrawFormatString(0, 40, GetColor(255, 255, 255), "remaining time: %d", obj::remainingTime);
 
 	// playerの描画
 	if (obj::player != nullptr)
 	{
 		obj::player->draw();
-
-		if (obj::enemys.empty())
-		{
-			DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Clear!!");
-		}
 	}
 	else
 	{
-		DrawFormatString(mySetup::allX * 3 / 7, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
+		DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
 	}
 
 	// enemyの描画
@@ -232,4 +257,7 @@ void GameDraw()
 
 	// bulletsの描画
 	for (Bullet* bul : obj::bullets) { bul->draw(); }
+
+	// enBuolletsの描画
+	for (Bullet* bul : obj::enBullets) { bul->draw(); }
 }

@@ -1,17 +1,32 @@
 #include "MyObject.h"
 
 
-MyObject::MyObject(myVector2 position)
-	: pos(position), direction(myVector2(0, 0)), removeFlag(false) {}
+MyObject::MyObject(const myVector2& pos)
+	: position(pos), direction(myVector2(0, 0)), removeFlag(false) {}
 
 MyObject::~MyObject()
 {
 	// デストラクタ
 }
 
-myVector2 MyObject::getPos() const
+myVector2 MyObject::getPosition() const
 {
-	return pos;
+	return position;
+}
+
+myVector2 MyObject::getDirection() const
+{
+	return direction;
+}
+
+void MyObject::setDirection(const myVector2& dir)
+{
+	direction = dir;
+}
+
+void MyObject::setPosition(const myVector2& pos)
+{
+	position = pos;
 }
 
 bool MyObject::isPlayer()

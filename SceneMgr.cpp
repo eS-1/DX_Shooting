@@ -5,12 +5,13 @@
 #include "Result.h"
 
 
-// 画面遷移用の変数
-static myScene Scene = mySceneMenu;
-
-// ゲーム画面の初期化フラグ
-static bool gameInitFlag = false;
-
+namespace
+{
+	// 画面遷移用の変数
+	myScene Scene = mySceneMenu;
+	// ゲーム画面の初期化フラグ
+	bool gameInitFlag = false;
+}
 
 // シーン管理の更新
 void SceneMgrUpdate()

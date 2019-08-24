@@ -3,9 +3,10 @@
 #include "DxLib.h"
 
 
-Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0)
+Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0), isReached(true), initPosition(pos),
+                                     destination(myVector2(pos.x, pos.y + 200.0))
 {
-	direction = myVector2(2.0, 0.0);
+	direction = myVector2(0.0, 3.0);
 }
 
 Enemy::~Enemy()
@@ -20,21 +21,31 @@ bool Enemy::isEnemy()
 
 void Enemy::draw()
 {
-	DrawBox(pos.x - 10, pos.y - 10, pos.x + 10, pos.y + 10, GetColor(255, 255, 255), 1);
+	DrawBox(position.x - 10, position.y - 10, position.x + 10, position.y + 10, GetColor(255, 255, 255), 1);
 }
 
 void Enemy::move()
 {
-	if (pos.x + 10 > mySetup::allX)
+	if (isReached)
 	{
-		direction.x = -2.0;
-	}
-	else if (pos.x - 10 < 0)
-	{
-		direction.x = 2.0;
+		direction = myVector2(0.0, 3.0);
+		if (position.y > destination.y)
+		{
+			direction = myVector2(2.0, 0.0);
+			isReached = false;
+		}
 	}
 
-	pos += direction;
+	if (position.x > mySetup::allX)
+	{
+		direction = myVector2(-2.0, 0.0);
+	}
+	else if (position.x < 0)
+	{
+		direction = myVector2(2.0, 0.0);
+	}
+
+	position += direction;
 }
 
 void Enemy::fire(std::vector<Bullet*>& bullets)
@@ -42,9 +53,26 @@ void Enemy::fire(std::vector<Bullet*>& bullets)
 	fireCount++;
 	if (fireCount == 60)
 	{
-		Bullet* bul = new Bullet(pos, myVector2(0.0, 4.0));
-		bul->setIsEnBul(true);
-		bullets.push_back(bul);
+		for (Bullet* bul : bullets)
+		{
+			if (bul->getRemoveFlag())
+			{
+				bul->setRemoveFlag(false);
+				bul->setDirection(myVector2(0.0, 5.0));
+				bul->setPosition(position);
+				break;
+			}
+		}
 		fireCount = 0;
 	}
+}
+
+myVector2 Enemy::getInitPosition()
+{
+	return initPosition;
+}
+
+void Enemy::setIsReached(bool state)
+{
+	isReached = state;
 }

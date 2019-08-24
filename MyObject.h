@@ -5,15 +5,18 @@
 class MyObject
 {
 protected:
-	myVector2 pos;
+	myVector2 position;
 	myVector2 direction;
 	bool removeFlag;
 
 public:
-	MyObject(myVector2 position);
+	MyObject(const myVector2& pos);
 	~MyObject();
 
-	virtual myVector2 getPos() const;
+	virtual myVector2 getPosition() const;
+	virtual myVector2 getDirection() const;
+	virtual void setDirection(const myVector2& dir);
+	virtual void setPosition(const myVector2& pos);
 	virtual bool isPlayer();
 	virtual bool isEnemy();
 	virtual bool isBullet();

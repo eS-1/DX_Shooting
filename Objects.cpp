@@ -1,6 +1,12 @@
 #include "Objects.h"
 
 
+int obj::fontTitle;
+Player* obj::player;
+std::vector<Bullet*> obj::bullets;
+std::vector<Enemy*> obj::enemys;
+std::vector<Bullet*> obj::enBullets;
+
 void Objects_End()
 {
 	delete obj::player;

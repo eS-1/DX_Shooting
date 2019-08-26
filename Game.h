@@ -2,6 +2,15 @@
 #include <vector>
 
 
+namespace
+{
+	time_t startTime;
+	time_t diffTime;
+	int remainingTime;
+	bool isTimeOver;
+	bool isGameOver;
+}
+
 void Game_Init();
 
 void GameUpdate();

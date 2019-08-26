@@ -7,14 +7,11 @@
 
 namespace obj
 {
-	static Player* player;
-	static std::vector<Bullet*> bullets;
-	static std::vector<Enemy*> enemys;
-	static std::vector<Bullet*> enBullets;
-	static time_t startTime;
-	static time_t diffTime;
-	static int remainingTime;
-	static int fontTitle;
+	extern Player* player;
+	extern std::vector<Bullet*> bullets;
+	extern std::vector<Enemy*> enemys;
+	extern std::vector<Bullet*> enBullets;
+	extern int fontTitle;
 }
 
 void Objects_End();

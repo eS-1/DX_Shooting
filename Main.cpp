@@ -15,7 +15,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	SetDrawScreen(DX_SCREEN_BACK);
 
-	obj::fontTitle = CreateFontToHandle(NULL, 40, 3);
+	// ÉtÉHÉìÉgçÏê¨
+	obj::fontTitle = CreateFontToHandle(NULL, 40, 3, DX_FONTTYPE_ANTIALIASING);
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0)
 	{

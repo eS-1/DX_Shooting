@@ -1,5 +1,6 @@
 #include "SceneMgr.h"
 #include "Config.h"
+#include "Objects.h"
 #include "Game.h"
 #include "Menu.h"
 #include "Result.h"
@@ -22,6 +23,11 @@ void SceneMgrUpdate()
 		MenuUpdate();
 		break;
 	case mySceneGame:
+		if (gameInitFlag)
+		{
+			Game_Init();
+			gameInitFlag = false;
+		}
 		GameUpdate();
 		break;
 	case mySceneConfig:
@@ -44,11 +50,6 @@ void SceneMgrDraw()
 		gameInitFlag = true;
 		break;
 	case mySceneGame:
-		if (gameInitFlag)
-		{
-			Game_Init();
-			gameInitFlag = false;
-		}
 		GameDraw();
 		break;
 	case mySceneConfig:

@@ -94,9 +94,14 @@ void Game_Init()
 	default:
 		break;
 	}
+
 	// タイマーの初期化
-	obj::startTime = time(NULL);
-	obj::remainingTime = 60;
+	startTime = time(NULL);
+	remainingTime = 60;
+	// タイムオーバーフラグの初期化
+	isTimeOver = false;
+	// ゲームオーバーフラグの初期化
+	isGameOver = false;
 }
 
 
@@ -132,6 +137,12 @@ void GameUpdate()
 		return;
 	}
 
+	if (remainingTime <= 0)
+	{
+		isTimeOver = true;
+		return;
+	}
+
 	// playerの状態更新
 	if (obj::player != nullptr)
 	{
@@ -139,11 +150,11 @@ void GameUpdate()
 	    obj::player->fire(obj::bullets);
 
 		// タイマーのカウントダウン
-		obj::diffTime = time(NULL) - obj::startTime;
-		if (obj::diffTime == 1)
+		diffTime = time(NULL) - startTime;
+		if (diffTime == 1)
 		{
-			obj::remainingTime--;
-			obj::startTime = time(NULL);
+			remainingTime--;
+			startTime = time(NULL);
 		}
 	}
 
@@ -209,6 +220,7 @@ void GameUpdate()
 	{
 		delete obj::player;
 		obj::player = nullptr;
+		isGameOver = true;
 	}
 
 	// 自機の弾消去(座標初期化)
@@ -238,18 +250,15 @@ void GameDraw()
 {
 	DrawBox(0, 0, mySetup::allX, mySetup::Y, GetColor(0, 0, 150), 1);
 
-	DrawString(0, 0, "qキーでメニューに戻る", GetColor(255, 255, 255));
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
-	DrawFormatString(0, 40, GetColor(255, 255, 255), "remaining time: %d", obj::remainingTime);
-
 	// playerの描画
 	if (obj::player != nullptr)
 	{
 		obj::player->draw();
 	}
-	else
+	
+	if (isGameOver)
 	{
-		DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Game Over");
+		DrawStringToHandle(mySetup::allX * 3 / 7, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
 	}
 
 	// enemyの描画
@@ -260,4 +269,13 @@ void GameDraw()
 
 	// enBuolletsの描画
 	for (Bullet* bul : obj::enBullets) { bul->draw(); }
+
+	DrawString(0, 0, "qキーでメニューに戻る", GetColor(255, 255, 255));
+	DrawFormatString(0, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
+	DrawFormatString(0, 40, GetColor(255, 255, 255), "remaining time: %d", remainingTime);
+
+	if (isTimeOver)
+	{
+		DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Time Over");
+	}
 }

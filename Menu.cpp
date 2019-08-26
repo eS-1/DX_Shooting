@@ -29,9 +29,7 @@ void MenuUpdate()
 // メニュー画面の描画
 void MenuDraw()
 {
-	// DrawString(mySetup::allX * 3 / 7, mySetup::Y / 3 + 20, "2Dシューティング(仮)", GetColor(255, 255, 255));
-	// タイトル表示されず
-	DrawStringToHandle(mySetup::allX * 3 / 7, mySetup::Y / 3, "2Dシューティング(仮)", GetColor(255, 255, 255), obj::fontTitle);
+	DrawStringToHandle(mySetup::allX * 2 / 7, mySetup::Y / 3, "2Dシューティング(仮)", GetColor(255, 255, 255), obj::fontTitle);
 	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 100, "eキーで開始", GetColor(255, 255, 255));
 	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 130, "cキーで設定画面", GetColor(255, 255, 255));
 	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 160, "rキーでリザルト画面", GetColor(255, 255, 255));

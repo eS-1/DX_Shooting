@@ -1,5 +1,6 @@
 #include "Result.h"
 #include "setup.h"
+#include "Objects.h"
 #include "SceneMgr.h"
 #include "DxLib.h"
 
@@ -17,8 +18,8 @@ void ResultUpdate()
 // リザルト画面の描画
 void ResultDraw()
 {
-	DrawString(mySetup::battleX / 2, mySetup::Y / 4, "ハイスコア", GetColor(255, 255, 255));
-	DrawString(0, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawStringToHandle(mySetup::battleX / 2, mySetup::Y / 4, "ハイスコア", GetColor(255, 255, 255), obj::fontTitle);
+	DrawString(0, 5, "qキーでメニューに戻る", GetColor(255, 255, 255));
 
 	// スコア表示
 	int i = 1;

@@ -1,5 +1,6 @@
 #include "Config.h"
 #include "setup.h"
+#include "Objects.h"
 #include "SceneMgr.h"
 #include "DxLib.h"
 
@@ -33,22 +34,20 @@ void ConfigDraw()
 	unsigned int bX = mySetup::battleX / 2;
 	unsigned int Y = mySetup::Y / 4;
 
-	DrawString(bX, Y, "設定", GetColor(255, 255, 255));
+	DrawStringToHandle(bX, Y, "設定", GetColor(255, 255, 255), obj::fontTitle);
 
 	// 難易度調整描画
-	DrawString(bX, Y + 40, "難易度：", GetColor(255, 255, 255));
-	DrawFormatString(bX + 100, Y + 40, GetColor(255, 255, 255),
+	DrawString(bX, Y + 60, "難易度: ", GetColor(255, 255, 255));
+	DrawFormatString(bX + 100, Y + 60, GetColor(255, 255, 255),
 		"%s", setup::NameOf(mySetup::diff).c_str());
 	if (mySetup::diff < extreme)
 	{
-		DrawTriangle(bX + 180, Y + 43, bX + 180, Y + 53,
-			bX * sqrt(2.0) + 100, Y + 48, GetColor(255, 255, 255), 1);
+		setup::drawCursor(bX + 180, Y + 68, GetColor(255, 255, 255), 1, 0);
 	}
 	if (mySetup::diff > easy)
 	{
-		DrawTriangle(bX + 80, Y + 48, bX * sqrt(2.0), Y + 43,
-			bX * sqrt(2.0), Y + 53, GetColor(255, 255, 255), 1);
+		setup::drawCursor(bX + 80, Y + 68, GetColor(255, 255, 255), 1, 1);
 	}
 
-	DrawString(0, 0, "'q'キーでメニューに戻る", GetColor(255, 255, 255));
+	DrawString(0, 5, "qキーでメニューに戻る", GetColor(255, 255, 255));
 }

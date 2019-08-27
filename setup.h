@@ -13,41 +13,42 @@ enum difficulty
 };
 
 
-struct mySetup
+namespace mySetup
 {
 	// 戦闘画面サイズのx成分
-	static unsigned int battleX;
+	extern unsigned int battleX;
 	// 情報表示画面サイズのx成分
-	static unsigned int subX;
+	extern unsigned int subX;
 	// 全体画面サイズのx成分
-	static unsigned int allX;
+	extern unsigned int allX;
 	// 画面サイズのy成分
-	static unsigned int Y;
+	extern unsigned int Y;
 	// ゲーム画面のスコア
-	static unsigned int gameScore;
+	extern unsigned int gameScore;
 	// リザルト画面で表示するスコア
-	static std::vector<unsigned int> resultScores;
+	extern std::vector<unsigned int> resultScores;
 	// ゲームの難易度
-	static difficulty diff;
+	extern difficulty diff;
 };
 
 
-struct keyInput
+namespace keyInput
 {
-	static int W;
-	static int A;
-	static int S;
-	static int D;
+	extern int W;
+	extern int A;
+	extern int S;
+	extern int D;
 
-	static int oldW;
-	static int oldA;
-	static int oldS;
-	static int oldD;
+	extern int oldW;
+	extern int oldA;
+	extern int oldS;
+	extern int oldD;
 };
 
 
 namespace setup
 {
-	std::string NameOf(difficulty diff);
-	void KeyInput();
+	extern std::string NameOf(difficulty diff);
+	extern void KeyInput();
+	extern void drawCursor(int x, int y, unsigned int Color, int FillFlag, int direction);
 }

@@ -2,7 +2,6 @@
 #include "Bullet.h"
 #include "Enemy.h"
 #include "Player.h"
-#include "DxLib.h"
 
 
 namespace obj
@@ -12,6 +11,7 @@ namespace obj
 	extern std::vector<Enemy*> enemys;
 	extern std::vector<Bullet*> enBullets;
 	extern int fontTitle;
+	extern int fontInGame;
 }
 
 void Objects_End();

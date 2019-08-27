@@ -49,3 +49,21 @@ void setup::KeyInput()
 	keyInput::S = CheckHitKey(KEY_INPUT_S);
 	keyInput::D = CheckHitKey(KEY_INPUT_D);
 }
+
+
+void setup::drawCursor(int x, int y, unsigned int Color, int FillFlag, int direction)
+{
+	switch (direction)
+	{
+	case 0:
+		// ‰EŒü‚«
+		DrawTriangle(x, y, x - 6 * sqrt(3.0), y - 6, x - 6 * sqrt(3.0), y + 6, Color, FillFlag);
+		break;
+	case 1:
+		// ¶Œü‚«
+		DrawTriangle(x, y, x + 6 * sqrt(3.0), y - 6, x + 6 * sqrt(3.0), y + 6, Color, FillFlag);
+		break;
+	default:
+		break;
+	}
+}

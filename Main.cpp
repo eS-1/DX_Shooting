@@ -10,6 +10,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	SetGraphMode(mySetup::allX, mySetup::Y, GetColorBitDepth());
 
+	SetMainWindowText("2Dシューティング(仮)");
+
 	// initialize of DXLib
 	if (DxLib_Init() == -1) { return -1; }
 
@@ -17,6 +19,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	// フォント作成
 	obj::fontTitle = CreateFontToHandle(NULL, 40, 3, DX_FONTTYPE_ANTIALIASING);
+	obj::fontInGame = CreateFontToHandle(NULL, 20, 3, DX_FONTTYPE_ANTIALIASING);
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0)
 	{
@@ -27,7 +30,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	}
 
 	// 以下終了処理
+
 	DeleteFontToHandle(obj::fontTitle);
+	DeleteFontToHandle(obj::fontInGame);
 
 	Objects_End();
 

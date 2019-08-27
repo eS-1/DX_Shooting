@@ -2,6 +2,7 @@
 
 
 int obj::fontTitle;
+int obj::fontInGame;
 Player* obj::player;
 std::vector<Bullet*> obj::bullets;
 std::vector<Enemy*> obj::enemys;

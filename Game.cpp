@@ -133,6 +133,8 @@ void GameUpdate()
 		// ゲームスコアのリセット
 		mySetup::gameScore = 0;
 
+		isGameOver = false;
+
 		SceneMgrChange(mySceneMenu);
 		return;
 	}
@@ -270,12 +272,11 @@ void GameDraw()
 	// enBuolletsの描画
 	for (Bullet* bul : obj::enBullets) { bul->draw(); }
 
-	DrawString(0, 0, "qキーでメニューに戻る", GetColor(255, 255, 255));
-	DrawFormatString(0, 20, GetColor(255, 255, 255), "スコア：%d", mySetup::gameScore);
-	DrawFormatString(0, 40, GetColor(255, 255, 255), "remaining time: %d", remainingTime);
+	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "スコア：%d", mySetup::gameScore);
+	DrawFormatStringToHandle(0, 20, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);
 
 	if (isTimeOver)
 	{
-		DrawFormatString(mySetup::allX * 4 / 9, mySetup::Y / 2, GetColor(255, 0, 0), "Time Over");
+		DrawStringToHandle(mySetup::allX * 4 / 9, mySetup::Y / 2, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
 	}
 }

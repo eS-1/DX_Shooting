@@ -1,13 +1,13 @@
 #pragma once
 
 
-typedef enum
+enum myScene
 {
 	mySceneMenu,
 	mySceneGame,
 	mySceneConfig,
 	mySceneResult
-} myScene;
+};
 
 // シーン管理の更新
 void SceneMgrUpdate();

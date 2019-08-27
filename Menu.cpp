@@ -5,23 +5,49 @@
 #include "DxLib.h"
 
 
+namespace
+{
+	myScene scene;
+	menuSelect selection;
+}
+
 // メニュー画面の更新
 void MenuUpdate()
 {
+	setup::KeyInput();
+
+	if (keyInput::W != 0 && (keyInput::W & ~keyInput::oldW) && selection > start)
+	{
+		selection = static_cast<menuSelect>(selection - 1);
+	}
+	else if (keyInput::S != 0 && (keyInput::S & ~keyInput::oldS) && selection < result)
+	{
+		selection = static_cast<menuSelect>(selection + 1);
+	}
+
 	// ゲーム画面に遷移
-	if (CheckHitKey(KEY_INPUT_E) != 0)
+	switch (selection)
 	{
-		SceneMgrChange(mySceneGame);
-	}
-	// 設定画面に遷移
-	else if (CheckHitKey(KEY_INPUT_C) != 0)
-	{
-		SceneMgrChange(mySceneConfig);
-	}
-	// リザルト画面に遷移
-	else if (CheckHitKey(KEY_INPUT_R) != 0)
-	{
-		SceneMgrChange(mySceneResult);
+	case start:
+		if (CheckHitKey(KEY_INPUT_E) != 0)
+		{
+			SceneMgrChange(mySceneGame);
+		}
+		break;
+	case config:
+		if (CheckHitKey(KEY_INPUT_E) != 0)
+		{
+			SceneMgrChange(mySceneConfig);
+		}
+		break;
+	case result:
+		if (CheckHitKey(KEY_INPUT_E) != 0)
+		{
+			SceneMgrChange(mySceneResult);
+		}
+		break;
+	default:
+		break;
 	}
 }
 
@@ -29,8 +55,11 @@ void MenuUpdate()
 // メニュー画面の描画
 void MenuDraw()
 {
-	DrawStringToHandle(mySetup::allX * 2 / 7, mySetup::Y / 3, "2Dシューティング(仮)", GetColor(255, 255, 255), obj::fontTitle);
-	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 100, "eキーで開始", GetColor(255, 255, 255));
-	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 130, "cキーで設定画面", GetColor(255, 255, 255));
-	DrawString(mySetup::allX * 4 / 9, mySetup::Y / 3 + 160, "rキーでリザルト画面", GetColor(255, 255, 255));
+	using namespace mySetup;
+
+	DrawStringToHandle(allX / 3, Y / 3, "2Dシューティング(仮)", GetColor(255, 255, 255), obj::fontTitle);
+	DrawString(allX * 4 / 9, Y / 3 + 130, "ゲーム開始", GetColor(255, 255, 255));
+	DrawString(allX * 4 / 9, Y / 3 + 160, "設定", GetColor(255, 255, 255));
+	DrawString(allX * 4 / 9, Y / 3 + 190, "リザルト", GetColor(255, 255, 255));
+	setup::drawCursor(allX * 4 / 9 - 5, Y / 3 + 140 + (selection * 30), GetColor(255, 255, 255), 1, 0);
 }

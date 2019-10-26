@@ -149,33 +149,33 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="Bullet.cpp" />
-    <ClCompile Include="Config.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Main.cpp" />
-    <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="MyObject.cpp" />
-    <ClCompile Include="MyVector2D.cpp" />
-    <ClCompile Include="Objects.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Result.cpp" />
-    <ClCompile Include="SceneMgr.cpp" />
-    <ClCompile Include="setup.cpp" />
+    <ClCompile Include="cpp\Bullet.cpp" />
+    <ClCompile Include="cpp\Config.cpp" />
+    <ClCompile Include="cpp\Enemy.cpp" />
+    <ClCompile Include="cpp\Game.cpp" />
+    <ClCompile Include="cpp\Main.cpp" />
+    <ClCompile Include="cpp\Menu.cpp" />
+    <ClCompile Include="cpp\MyObject.cpp" />
+    <ClCompile Include="cpp\MyVector2D.cpp" />
+    <ClCompile Include="cpp\Objects.cpp" />
+    <ClCompile Include="cpp\Player.cpp" />
+    <ClCompile Include="cpp\Result.cpp" />
+    <ClCompile Include="cpp\SceneMgr.cpp" />
+    <ClCompile Include="cpp\setup.cpp" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Bullet.h" />
-    <ClInclude Include="Config.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Menu.h" />
-    <ClInclude Include="MyObject.h" />
-    <ClInclude Include="MyVector2D.h" />
-    <ClInclude Include="Objects.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Result.h" />
-    <ClInclude Include="SceneMgr.h" />
-    <ClInclude Include="setup.h" />
+    <ClInclude Include="header\Bullet.h" />
+    <ClInclude Include="header\Config.h" />
+    <ClInclude Include="header\Enemy.h" />
+    <ClInclude Include="header\Game.h" />
+    <ClInclude Include="header\Menu.h" />
+    <ClInclude Include="header\MyObject.h" />
+    <ClInclude Include="header\MyVector2D.h" />
+    <ClInclude Include="header\Objects.h" />
+    <ClInclude Include="header\Player.h" />
+    <ClInclude Include="header\Result.h" />
+    <ClInclude Include="header\SceneMgr.h" />
+    <ClInclude Include="header\setup.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

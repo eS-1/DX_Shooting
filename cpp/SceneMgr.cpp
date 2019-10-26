@@ -1,15 +1,15 @@
-#include "SceneMgr.h"
-#include "Config.h"
-#include "Objects.h"
-#include "Game.h"
-#include "Menu.h"
-#include "Result.h"
+#include "../header/SceneMgr.h"
+#include "../header/Config.h"
+#include "../header/Objects.h"
+#include "../header/Game.h"
+#include "../header/Menu.h"
+#include "../header/Result.h"
 
 
 namespace
 {
 	// 画面遷移用の変数
-	myScene Scene = mySceneMenu;
+	myScene Scene = myScene::mySceneMenu;
 	// ゲーム画面の初期化フラグ
 	bool gameInitFlag = false;
 }
@@ -19,10 +19,10 @@ void SceneMgrUpdate()
 {
 	switch (Scene)
 	{
-	case mySceneMenu:
+	case myScene::mySceneMenu:
 		MenuUpdate();
 		break;
-	case mySceneGame:
+	case myScene::mySceneGame:
 		if (gameInitFlag)
 		{
 			Game_Init();
@@ -30,10 +30,10 @@ void SceneMgrUpdate()
 		}
 		GameUpdate();
 		break;
-	case mySceneConfig:
+	case myScene::mySceneConfig:
 		ConfigUpdate();
 		break;
-	case mySceneResult:
+	case myScene::mySceneResult:
 		ResultUpdate();
 		break;
 	}
@@ -45,18 +45,18 @@ void SceneMgrDraw()
 {
 	switch (Scene)
 	{
-	case mySceneMenu:
+	case myScene::mySceneMenu:
 		MenuDraw();
 		gameInitFlag = true;
 		break;
-	case mySceneGame:
+	case myScene::mySceneGame:
 		GameDraw();
 		break;
-	case mySceneConfig:
+	case myScene::mySceneConfig:
 		ConfigDraw();
 		gameInitFlag = true;
 		break;
-	case mySceneResult:
+	case myScene::mySceneResult:
 		ResultDraw();
 		gameInitFlag = true;
 		break;

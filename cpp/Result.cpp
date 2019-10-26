@@ -1,7 +1,7 @@
-#include "Result.h"
-#include "setup.h"
-#include "Objects.h"
-#include "SceneMgr.h"
+#include "../header/Result.h"
+#include "../header/setup.h"
+#include "../header/Objects.h"
+#include "../header/SceneMgr.h"
 #include "DxLib.h"
 
 
@@ -10,7 +10,7 @@ void ResultUpdate()
 {
 	if (CheckHitKey(KEY_INPUT_Q) != 0)
 	{
-		SceneMgrChange(mySceneMenu);
+		SceneMgrChange(myScene::mySceneMenu);
 	}
 }
 

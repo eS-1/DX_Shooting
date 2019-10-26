@@ -1,7 +1,7 @@
 #pragma once
 
 
-enum myScene
+enum class myScene
 {
 	mySceneMenu,
 	mySceneGame,

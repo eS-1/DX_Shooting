@@ -1,9 +1,9 @@
 #include <algorithm>
 #include <time.h>
-#include "setup.h"
-#include "Objects.h"
-#include "Game.h"
-#include "SceneMgr.h"
+#include "../header/setup.h"
+#include "../header/Objects.h"
+#include "../header/Game.h"
+#include "../header/SceneMgr.h"
 #include "DxLib.h"
 
 
@@ -64,28 +64,28 @@ void Game_Init()
 	int rand_y;
 	switch (mySetup::diff)
 	{
-	case easy:
+	case difficulty::easy:
 		for (int i = 1; i < 6; i++)
 		{
 			rand_y = GetRand(100);
 			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
 		}
 		break;
-	case normal:
+	case difficulty::normal:
 		for (int i = 1; i < 9; i++)
 		{
 			rand_y = GetRand(100);
 			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
 		}
 		break;
-	case hard:
+	case difficulty::hard:
 		for (int i = 1; i < 13; i++)
 		{
 			rand_y = GetRand(100);
 			obj::enemys.push_back(new Enemy(myVector2(60.0 * i, rand_y - 140.0)));
 		}
 		break;
-	case extreme:
+	case difficulty::extreme:
 		for (int i = 1; i < 16; i++)
 		{
 			rand_y = GetRand(100);
@@ -135,7 +135,7 @@ void GameUpdate()
 
 		isGameOver = false;
 
-		SceneMgrChange(mySceneMenu);
+		SceneMgrChange(myScene::mySceneMenu);
 		return;
 	}
 

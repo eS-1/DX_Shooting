@@ -2,12 +2,18 @@
 #include "setup.h"
 
 
-enum menuSelect
+enum class menuSelect
 {
 	start,
 	config,
-	result
+	result,
+	exit
 };
+
+namespace Menu
+{
+	extern bool exitFlag;
+}
 
 void MenuUpdate();
 

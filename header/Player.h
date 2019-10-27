@@ -17,4 +17,5 @@ public:
 private:
 	int key;
 	int oldKey;
+	int imgHandle;
 };

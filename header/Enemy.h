@@ -18,6 +18,7 @@ public:
 
 private:
 	int fireCount;
+	int imgHandle;
 	bool isReached;
 	myVector2 initPosition;
 	myVector2 destination;

@@ -15,12 +15,8 @@ enum class difficulty
 
 namespace mySetup
 {
-	// 戦闘画面サイズのx成分
-	extern unsigned int battleX;
-	// 情報表示画面サイズのx成分
-	extern unsigned int subX;
-	// 全体画面サイズのx成分
-	extern unsigned int allX;
+	// 画面サイズのx成分
+	extern unsigned int X;
 	// 画面サイズのy成分
 	extern unsigned int Y;
 	// ゲーム画面のスコア

@@ -4,14 +4,15 @@
 
 
 Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0), isReached(true), initPosition(pos),
-                                     destination(myVector2(pos.x, pos.y + 200.0))
+                                     destination(myVector2(pos.x, pos.y + 200.0)),
+	                                 imgHandle(LoadGraph("images/enemy.png"))
 {
 	direction = myVector2(0.0, 3.0);
 }
 
 Enemy::~Enemy()
 {
-	// デストラクタ
+	DeleteGraph(imgHandle);
 }
 
 bool Enemy::isEnemy()
@@ -21,7 +22,12 @@ bool Enemy::isEnemy()
 
 void Enemy::draw()
 {
-	DrawBox(position.x - 10, position.y - 10, position.x + 10, position.y + 10, GetColor(255, 255, 255), 1);
+	if (imgHandle == -1)
+	{
+		DrawFormatString(position.x, position.y, GetColor(255, 255, 255), "F");
+		return;
+	}
+	DrawExtendGraph(position.x - 30.0, position.y - 30.0, position.x + 30.0, position.y + 30.0, imgHandle, true);
 }
 
 void Enemy::move()
@@ -36,7 +42,7 @@ void Enemy::move()
 		}
 	}
 
-	if (position.x > mySetup::allX)
+	if (position.x > mySetup::X)
 	{
 		direction = myVector2(-2.0, 0.0);
 	}

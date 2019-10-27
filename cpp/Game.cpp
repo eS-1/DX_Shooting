@@ -44,7 +44,7 @@ void EraseEnemyBullets()
 void Game_Init()
 {
 	// é©ã@ÇÃê∂ê¨
-	obj::player = new Player(myVector2(mySetup::allX / 2, mySetup::Y * 7 / 8));
+	obj::player = new Player(myVector2(mySetup::X / 2, mySetup::Y * 7 / 8));
 	// é©ã@ÇÃíeê∂ê¨
 	for (int i = 0; i < 30; i++)
 	{
@@ -185,7 +185,7 @@ void GameUpdate()
 				}
 			}
 			// âÊñ äOÇÃíeÇÃè¡ãéÉtÉâÉOÇóßÇƒÇÈ
-			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::allX + 50.0
+			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::X + 50.0
 				|| bul->getPosition().y < -50 || bul->getPosition().y > mySetup::Y + 50.0)
 			{
 				bul->setRemoveFlag(true);
@@ -209,7 +209,7 @@ void GameUpdate()
 				}
 			}
 			// âÊñ äOÇÃíeÇÃè¡ãéÉtÉâÉOÇóßÇƒÇÈ
-			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::allX + 50.0
+			if (bul->getPosition().x < -50 || bul->getPosition().x > mySetup::X + 50.0
 				|| bul->getPosition().y < -50 || bul->getPosition().y > mySetup::Y + 50.0)
 			{
 				bul->setRemoveFlag(true);
@@ -250,8 +250,6 @@ void GameUpdate()
 // ÉQÅ[ÉÄâÊñ ÇÃï`âÊ
 void GameDraw()
 {
-	DrawBox(0, 0, mySetup::allX, mySetup::Y, GetColor(0, 0, 150), 1);
-
 	// playerÇÃï`âÊ
 	if (obj::player != nullptr)
 	{
@@ -260,7 +258,9 @@ void GameDraw()
 	
 	if (isGameOver)
 	{
-		DrawStringToHandle(mySetup::allX * 3 / 7, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7 + 40,
+			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 	}
 
 	// enemyÇÃï`âÊ
@@ -277,6 +277,8 @@ void GameDraw()
 
 	if (isTimeOver)
 	{
-		DrawStringToHandle(mySetup::allX * 4 / 9, mySetup::Y / 2, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7 + 40,
+			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 	}
 }

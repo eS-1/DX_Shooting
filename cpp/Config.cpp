@@ -35,7 +35,7 @@ void ConfigUpdate()
 // İ’è‰æ–Ê‚Ì•`‰æ
 void ConfigDraw()
 {
-	unsigned int bX = mySetup::battleX / 2;
+	unsigned int bX = mySetup::X / 3;
 	unsigned int Y = mySetup::Y / 4;
 
 	int currentDiff = static_cast<int>(mySetup::diff);

@@ -9,9 +9,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 {
 	ChangeWindowMode(1);
 
-	SetGraphMode(mySetup::allX, mySetup::Y, GetColorBitDepth());
+	SetGraphMode(mySetup::X, mySetup::Y, GetColorBitDepth());
 
-	SetMainWindowText("2Dシューティング(仮)");
+	SetMainWindowText("Koganei Shooter 2D");
 
 	// initialize of DXLib
 	if (DxLib_Init() == -1) { return -1; }

@@ -2,9 +2,7 @@
 #include "DxLib.h"
 
 
-unsigned int mySetup::battleX = 460;
-unsigned int mySetup::subX = 640;
-unsigned int mySetup::allX = mySetup::battleX + mySetup::subX;
+unsigned int mySetup::X = 1080;
 unsigned int mySetup::Y = 640;
 unsigned int mySetup::gameScore = 0;
 std::vector<unsigned int> mySetup::resultScores{ 0, 0, 0, 0, 0 };

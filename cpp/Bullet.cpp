@@ -59,5 +59,5 @@ void Bullet::draw()
 
 bool Bullet::checkHit(MyObject& obj)
 {
-	return position.distanceFrom(obj.getPosition()) <= 15;
+	return position.distanceFrom(obj.getPosition()) <= 20;
 }

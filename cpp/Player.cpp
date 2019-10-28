@@ -51,6 +51,10 @@ void Player::move()
 	{
 		direction.y += 4.0;
 	}
+	if (direction.length() > 4.0)
+	{
+		direction.normalize(4.0);
+	}
 	position += direction;
 	direction = myVector2(0, 0);
 }

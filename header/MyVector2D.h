@@ -20,10 +20,11 @@ struct  myVector2
 	myVector2& operator /=(double s);
 
 	double length() const;
-	constexpr double lengthSquare() const;
-	constexpr double dot(const myVector2& other) const;
+	double lengthSquare() const;
+	double dot(const myVector2& other) const;
 	double distanceFrom(const myVector2& other) const;
-	myVector2 normalized() const;
+	void normalize();
+	void normalize(const double val);
 	constexpr bool isZero() const;
 };
 

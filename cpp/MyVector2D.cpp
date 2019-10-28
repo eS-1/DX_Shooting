@@ -67,12 +67,12 @@ double myVector2::length() const
 	return std::sqrt(lengthSquare());
 }
 
-constexpr double myVector2::lengthSquare() const
+double myVector2::lengthSquare() const
 {
 	return dot(*this);
 }
 
-constexpr double myVector2::dot(const myVector2& other) const
+double myVector2::dot(const myVector2& other) const
 {
 	return x * other.x + y * other.y;
 }
@@ -82,9 +82,14 @@ double myVector2::distanceFrom(const myVector2& other) const
 	return (other - *this).length();
 }
 
-myVector2 myVector2::normalized() const
+void myVector2::normalize()
 {
-	return *this / length();
+	*this /= length();
+}
+
+void myVector2::normalize(const double val)
+{
+	*this = (*this / length()) * val;
 }
 
 constexpr bool myVector2::isZero() const

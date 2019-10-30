@@ -258,8 +258,8 @@ void GameDraw()
 	
 	if (isGameOver)
 	{
-		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7 + 40,
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
 			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 	}
 
@@ -269,16 +269,16 @@ void GameDraw()
 	// bulletsÇÃï`âÊ
 	for (Bullet* bul : obj::bullets) { bul->draw(); }
 
-	// enBuolletsÇÃï`âÊ
+	// enBulletsÇÃï`âÊ
 	for (Bullet* bul : obj::enBullets) { bul->draw(); }
 
-	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "ÉXÉRÉAÅF%d", mySetup::gameScore);
-	DrawFormatStringToHandle(0, 20, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);
+	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "scoreÅF%d", mySetup::gameScore);
+	DrawFormatStringToHandle(0, 30, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);
 
 	if (isTimeOver)
 	{
-		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 7, mySetup::Y * 3 / 7 + 40,
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
 			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 	}
 }

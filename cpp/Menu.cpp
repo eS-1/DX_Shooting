@@ -69,10 +69,10 @@ void MenuDraw()
 
 	int stateSelect = static_cast<int>(selection);
 
-	DrawStringToHandle(X / 3, Y / 3, "Koganei Shooter 2D", GetColor(255, 255, 255), obj::fontTitle);
-	DrawString(X * 4 / 9, Y / 3 + 130, "ゲーム開始", GetColor(255, 255, 255));
-	DrawString(X * 4 / 9, Y / 3 + 160, "設定", GetColor(255, 255, 255));
-	DrawString(X * 4 / 9, Y / 3 + 190, "リザルト", GetColor(255, 255, 255));
-	DrawString(X * 4 / 9, Y / 3 + 220, "ゲーム終了", GetColor(255, 255, 255));
-	setup::drawCursor(X * 4 / 9 - 5, Y / 3 + 140 + (stateSelect * 30), GetColor(255, 255, 255), 1, 0);
+	DrawStringToHandle(X / 4, Y / 3, "Koganei Shooter 2D", GetColor(255, 255, 255), obj::fontTitle);
+	DrawStringToHandle(X * 4 / 9, Y / 3 + 130, "ゲーム開始", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9, Y / 3 + 170, "設定", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9, Y / 3 + 210, "リザルト", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9, Y / 3 + 250, "ゲーム終了", GetColor(255, 255, 255), obj::fontInGame);
+	setup::drawCursor(X * 4 / 9 - 5, Y / 3 + 145 + (stateSelect * 40), GetColor(255, 255, 255), 1, 0);
 }

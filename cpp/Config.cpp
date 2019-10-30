@@ -45,17 +45,17 @@ void ConfigDraw()
 	DrawStringToHandle(bX, Y, "設定", GetColor(255, 255, 255), obj::fontTitle);
 
 	// 難易度調整描画
-	DrawString(bX, Y + 60, "難易度: ", GetColor(255, 255, 255));
-	DrawFormatString(bX + 100, Y + 60, GetColor(255, 255, 255),
+	DrawStringToHandle(bX, Y + 80, "難易度: ", GetColor(255, 255, 255), obj::fontInGame);
+	DrawFormatStringToHandle(bX + 150, Y + 80, GetColor(255, 255, 255), obj::fontInGame,
 		"%s", setup::NameOf(mySetup::diff).c_str());
 	if (currentDiff < extreme)
 	{
-		setup::drawCursor(bX + 180, Y + 68, GetColor(255, 255, 255), 1, 0);
+		setup::drawCursor(bX + 270, Y + 97, GetColor(255, 255, 255), 1, 0);
 	}
 	if (currentDiff > easy)
 	{
-		setup::drawCursor(bX + 80, Y + 68, GetColor(255, 255, 255), 1, 1);
+		setup::drawCursor(bX + 120, Y + 97, GetColor(255, 255, 255), 1, 1);
 	}
 
-	DrawString(0, 5, "qキーでメニューに戻る", GetColor(255, 255, 255));
+	DrawStringToHandle(0, 5, "q: 戻る", GetColor(255, 255, 255), obj::fontInGame);
 }

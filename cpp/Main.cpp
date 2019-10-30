@@ -3,6 +3,7 @@
 #include "../header/SceneMgr.h"
 #include "../header/Menu.h"
 #include "DxLib.h"
+#include "../resource1.h"
 
 
 int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _In_ LPSTR lpCmdLine, _In_ int nCmdShow)
@@ -11,7 +12,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	SetGraphMode(mySetup::X, mySetup::Y, GetColorBitDepth());
 
-	SetMainWindowText("Koganei Shooter 2D");
+	SetMainWindowText("Simple Shooter 2D");
+
+	SetWindowIconID(IDI_ICON1);
 
 	// initialize of DXLib
 	if (DxLib_Init() == -1) { return -1; }

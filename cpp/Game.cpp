@@ -114,18 +114,25 @@ void GameUpdate()
 {
 	setup::KeyInput();
 
-	if (!isPose && keyInput::Q != 0)
+	if (isGameOver || isTimeOver)
 	{
-		// ポーズ画面のフラグを建てる
-		isPose = true;
-		return;
+		if (keyInput::Q != 0 && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
 	}
-
-	if (isPose)
+	else
 	{
-		if (keyInput::E != 0 && (keyInput::E & ~keyInput::oldE)) { isPose = false; }
-		else if (keyInput::Q != 0 && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
-		else { return; }
+		if (!isPose && keyInput::Q != 0)
+		{
+			// ポーズ画面のフラグを建てる
+			isPose = true;
+			return;
+		}
+
+		if (isPose)
+		{
+			if (keyInput::E != 0 && (keyInput::E & ~keyInput::oldE)) { isPose = false; }
+			else if (keyInput::Q != 0 && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
+			else { return; }
+		}
 	}
 
 	// メニュー画面に遷移
@@ -174,7 +181,7 @@ void GameUpdate()
 
 		// タイマーのカウントダウン
 		diffTime = time(NULL) - startTime;
-		if (diffTime == 1)
+		if (diffTime >= 1)
 		{
 			remainingTime--;
 			startTime = time(NULL);

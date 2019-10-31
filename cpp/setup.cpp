@@ -13,10 +13,14 @@ int keyInput::W = 0;
 int keyInput::A = 0;
 int keyInput::S = 0;
 int keyInput::D = 0;
+int keyInput::E = 0;
+int keyInput::Q = 0;
 int keyInput::oldW = 0;
 int keyInput::oldA = 0;
 int keyInput::oldS = 0;
 int keyInput::oldD = 0;
+int keyInput::oldE = 0;
+int keyInput::oldQ = 0;
 
 
 std::string setup::NameOf(difficulty diffi)
@@ -42,10 +46,14 @@ void setup::KeyInput()
 	keyInput::oldA = keyInput::A;
 	keyInput::oldS = keyInput::S;
 	keyInput::oldD = keyInput::D;
+	keyInput::oldE = keyInput::E;
+	keyInput::oldQ = keyInput::Q;
 	keyInput::W = CheckHitKey(KEY_INPUT_W);
 	keyInput::A = CheckHitKey(KEY_INPUT_A);
 	keyInput::S = CheckHitKey(KEY_INPUT_S);
 	keyInput::D = CheckHitKey(KEY_INPUT_D);
+	keyInput::E = CheckHitKey(KEY_INPUT_E);
+	keyInput::Q = CheckHitKey(KEY_INPUT_Q);
 }
 
 

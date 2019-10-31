@@ -9,6 +9,8 @@ namespace
 	int remainingTime;
 	bool isTimeOver;
 	bool isGameOver;
+	bool isPose;
+	bool isQuit;
 }
 
 void Game_Init();

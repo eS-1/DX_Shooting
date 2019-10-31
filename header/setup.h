@@ -34,11 +34,15 @@ namespace keyInput
 	extern int A;
 	extern int S;
 	extern int D;
+	extern int E;
+	extern int Q;
 
 	extern int oldW;
 	extern int oldA;
 	extern int oldS;
 	extern int oldD;
+	extern int oldE;
+	extern int oldQ;
 };
 
 

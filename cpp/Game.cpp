@@ -102,14 +102,34 @@ void Game_Init()
 	isTimeOver = false;
 	// ゲームオーバーフラグの初期化
 	isGameOver = false;
+	// ポーズフラグの初期化
+	isPose = false;
+	// メニュー画面に戻るフラグの初期化
+	isQuit = false;
 }
 
 
 // ゲーム画面の更新
 void GameUpdate()
 {
+	setup::KeyInput();
+
+	if (!isPose && keyInput::Q != 0)
+	{
+		// ポーズ画面のフラグを建てる
+		isPose = true;
+		return;
+	}
+
+	if (isPose)
+	{
+		if (keyInput::E != 0 && (keyInput::E & ~keyInput::oldE)) { isPose = false; }
+		else if (keyInput::Q != 0 && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
+		else { return; }
+	}
+
 	// メニュー画面に遷移
-	if (CheckHitKey(KEY_INPUT_Q) != 0)
+	if (isQuit)
 	{
 		delete obj::player;
 		obj::player = nullptr;
@@ -130,10 +150,11 @@ void GameUpdate()
 				std::greater<std::vector<int>::value_type>());
 		}
 
-		// ゲームスコアのリセット
 		mySetup::gameScore = 0;
 
 		isGameOver = false;
+
+		isPose = false;
 
 		SceneMgrChange(myScene::mySceneMenu);
 		return;
@@ -255,13 +276,6 @@ void GameDraw()
 	{
 		obj::player->draw();
 	}
-	
-	if (isGameOver)
-	{
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
-			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
-	}
 
 	// enemyの描画
 	for (Enemy* en : obj::enemys) { en->draw(); }
@@ -275,10 +289,29 @@ void GameDraw()
 	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "score：%d", mySetup::gameScore);
 	DrawFormatStringToHandle(0, 30, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);
 
+	if (isGameOver)
+	{
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
+			"Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
+		return;
+	}
+
 	if (isTimeOver)
 	{
 		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
 		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
 			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
+		return;
+	}
+
+	if (isPose)
+	{
+		DrawBox(mySetup::X / 4, mySetup::Y / 4, mySetup::X * 3 / 4, mySetup::Y * 3 / 4, GetColor(128, 128, 128), true);
+		DrawFormatStringToHandle(mySetup::X * 3 / 7, mySetup::Y / 4, GetColor(255, 255, 255), obj::fontInGame, "Pose Menu");
+		DrawFormatStringToHandle(mySetup::X / 3, mySetup::Y * 3 / 7,
+			GetColor(255, 255, 255), obj::fontInGame, "Q: back to main menu");
+		DrawFormatStringToHandle(mySetup::X / 3, mySetup::Y * 3 / 7 + 40,
+			GetColor(255, 255, 255), obj::fontInGame, "E: continue");
 	}
 }

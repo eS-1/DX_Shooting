@@ -21,6 +21,7 @@ void SceneMgrUpdate()
 	{
 	case myScene::mySceneMenu:
 		MenuUpdate();
+		gameInitFlag = true;
 		break;
 	case myScene::mySceneGame:
 		if (gameInitFlag)
@@ -47,18 +48,15 @@ void SceneMgrDraw()
 	{
 	case myScene::mySceneMenu:
 		MenuDraw();
-		gameInitFlag = true;
 		break;
 	case myScene::mySceneGame:
 		GameDraw();
 		break;
 	case myScene::mySceneConfig:
 		ConfigDraw();
-		gameInitFlag = true;
 		break;
 	case myScene::mySceneResult:
 		ResultDraw();
-		gameInitFlag = true;
 		break;
 	}
 }

@@ -174,7 +174,7 @@ void GameUpdate()
 	}
 
 	// playerÇÃèÛë‘çXêV
-	if (obj::player != nullptr)
+	if (!(obj::player->getRemoveFlag()))
 	{
 		obj::player->move();
 	    obj::player->fire(obj::bullets);
@@ -228,7 +228,7 @@ void GameUpdate()
 		{
 			bul->move();
 			// ÉvÉåÉCÉÑÅ[Ç…ìñÇΩÇ¡ÇΩéûÇÃèàóù
-			if (obj::player != nullptr)
+			if (!(obj::player->getRemoveFlag()))
 			{
 				if (bul->checkHit(*obj::player))
 				{
@@ -246,10 +246,9 @@ void GameUpdate()
 	}
 
 	// é©ã@ÇÃè¡ãé
-	if (obj::player != nullptr && obj::player->getRemoveFlag())
+	if (obj::player->getRemoveFlag())
 	{
-		delete obj::player;
-		obj::player = nullptr;
+		obj::player->setPosition(myVector2(6000.0, 6000.0));
 		isGameOver = true;
 	}
 
@@ -279,19 +278,34 @@ void GameUpdate()
 void GameDraw()
 {
 	// playerÇÃï`âÊ
-	if (obj::player != nullptr)
-	{
-		obj::player->draw();
-	}
+	if (obj::player != nullptr && !(obj::player->getRemoveFlag())) { obj::player->draw(); }
 
 	// enemyÇÃï`âÊ
-	for (Enemy* en : obj::enemys) { en->draw(); }
+	for (Enemy* en : obj::enemys)
+	{
+		if (!(en->getRemoveFlag()))
+		{
+			en->draw();
+		}
+	}
 
 	// bulletsÇÃï`âÊ
-	for (Bullet* bul : obj::bullets) { bul->draw(); }
+	for (Bullet* bul : obj::bullets)
+	{
+		if (!(bul->getRemoveFlag()))
+		{
+			bul->draw();
+		}
+	}
 
 	// enBulletsÇÃï`âÊ
-	for (Bullet* bul : obj::enBullets) { bul->draw(); }
+	for (Bullet* bul : obj::enBullets)
+	{
+		if (!(bul->getRemoveFlag()))
+		{
+			bul->draw();
+		}
+	}
 
 	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "scoreÅF%d", mySetup::gameScore);
 	DrawFormatStringToHandle(0, 30, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);

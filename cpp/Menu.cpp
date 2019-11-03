@@ -69,10 +69,10 @@ void MenuDraw()
 
 	int stateSelect = static_cast<int>(selection);
 
-	DrawStringToHandle(X / 4, Y / 3, "Simple Shooter 2D", GetColor(255, 255, 255), obj::fontTitle);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 130, "ゲーム開始", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 170, "設定", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 210, "リザルト", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 250, "ゲーム終了", GetColor(255, 255, 255), obj::fontInGame);
-	setup::drawCursor(X * 4 / 9 - 15, Y / 3 + 145 + (stateSelect * 40), GetColor(255, 255, 255), 1, 0);
+	DrawStringToHandle(X * 5 / 16, Y / 3, "Simple Shooter 2D", GetColor(255, 255, 255), obj::fontTitle);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 200, "ゲーム開始", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 240, "設定", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 280, "リザルト", GetColor(255, 255, 255), obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 320, "ゲーム終了", GetColor(255, 255, 255), obj::fontInGame);
+	setup::drawCursor(X * 4 / 9 - 15, Y / 3 + 215 + (stateSelect * 40), GetColor(255, 255, 255), 1, 0);
 }

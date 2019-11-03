@@ -24,31 +24,31 @@ void Enemy::draw()
 {
 	if (imgHandle == -1)
 	{
-		DrawFormatString(position.x, position.y, GetColor(255, 255, 255), "F");
+		DrawBox(position.x - 40, position.y - 40, position.x + 40, position.y + 40, GetColor(0, 255, 0), true);
 		return;
 	}
-	DrawExtendGraph(position.x - 30.0, position.y - 30.0, position.x + 30.0, position.y + 30.0, imgHandle, true);
+	DrawExtendGraph(position.x - 40.0, position.y - 40.0, position.x + 40.0, position.y + 40.0, imgHandle, true);
 }
 
 void Enemy::move()
 {
 	if (isReached)
 	{
-		direction = myVector2(0.0, 3.0);
+		direction = myVector2(0.0, 4.0);
 		if (position.y > destination.y)
 		{
-			direction = myVector2(2.0, 0.0);
+			direction = myVector2(3.0, 0.0);
 			isReached = false;
 		}
 	}
 
 	if (position.x > mySetup::X)
 	{
-		direction = myVector2(-2.0, 0.0);
+		direction = myVector2(-3.0, 0.0);
 	}
 	else if (position.x < 0)
 	{
-		direction = myVector2(2.0, 0.0);
+		direction = myVector2(3.0, 0.0);
 	}
 
 	position += direction;

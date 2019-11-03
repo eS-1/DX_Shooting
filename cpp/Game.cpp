@@ -35,7 +35,7 @@ void EraseEnemyBullets()
 	for (Bullet* bul : obj::enBullets)
 	{
 		bul->setDirection(myVector2(0.0, 0.0));
-		bul->setPosition(myVector2(10.0, -5.0));
+		bul->setPosition(myVector2(5000.0, 5000.0));
 	}
 }
 
@@ -48,7 +48,7 @@ void Game_Init()
 	// é©ã@ÇÃíeê∂ê¨
 	for (int i = 0; i < 30; i++)
 	{
-		Bullet* bul = new Bullet(myVector2(5.0, -5.0), myVector2(0.0, 0.0));
+		Bullet* bul = new Bullet(myVector2(5000.0, 5000.0), myVector2(0.0, 0.0));
 		bul->setRemoveFlag(true);
 		bul->setIsPlaBul(true);
 		obj::bullets.push_back(bul);
@@ -56,7 +56,7 @@ void Game_Init()
 	// ìGÇÃíeê∂ê¨
 	for (int i = 0; i < 50; i++)
 	{
-		Bullet* bul = new Bullet(myVector2(10.0, -5.0), myVector2(0.0, 0.0));
+		Bullet* bul = new Bullet(myVector2(5000.0, 5000.0), myVector2(0.0, 0.0));
 		bul->setRemoveFlag(true);
 		obj::enBullets.push_back(bul);
 	}
@@ -68,28 +68,28 @@ void Game_Init()
 		for (int i = 1; i < 6; i++)
 		{
 			rand_y = GetRand(100);
-			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
+			obj::enemys.push_back(new Enemy(myVector2(260.0 * i + 20, rand_y - 140.0)));
 		}
 		break;
 	case difficulty::normal:
-		for (int i = 1; i < 9; i++)
+		for (int i = 1; i < 8; i++)
 		{
 			rand_y = GetRand(100);
-			obj::enemys.push_back(new Enemy(myVector2(80.0 * i, rand_y - 140.0)));
+			obj::enemys.push_back(new Enemy(myVector2(200.0 * i, rand_y - 140.0)));
 		}
 		break;
 	case difficulty::hard:
 		for (int i = 1; i < 13; i++)
 		{
 			rand_y = GetRand(100);
-			obj::enemys.push_back(new Enemy(myVector2(60.0 * i, rand_y - 140.0)));
+			obj::enemys.push_back(new Enemy(myVector2(130.0 * i - 50, rand_y - 140.0)));
 		}
 		break;
 	case difficulty::extreme:
 		for (int i = 1; i < 16; i++)
 		{
 			rand_y = GetRand(100);
-			obj::enemys.push_back(new Enemy(myVector2(60.0 * i, rand_y - 140.0)));
+			obj::enemys.push_back(new Enemy(myVector2(100.0 * i - 50, rand_y - 140.0)));
 		}
 	default:
 		break;
@@ -259,7 +259,7 @@ void GameUpdate()
 		if (bul->getRemoveFlag())
 		{
 			bul->setDirection(myVector2(0.0, 0.0));
-			bul->setPosition(myVector2(5.0, -5.0));
+			bul->setPosition(myVector2(5000.0, 5000.0));
 		}
 	}
 
@@ -269,7 +269,7 @@ void GameUpdate()
 		if (bul->getRemoveFlag())
 		{
 			bul->setDirection(myVector2(0.0, 0.0));
-			bul->setPosition(myVector2(10.0, -5.0));
+			bul->setPosition(myVector2(5000.0, 5000.0));
 		}
 	}
 }
@@ -299,15 +299,15 @@ void GameDraw()
 	if (isGameOver)
 	{
 		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
+		DrawStringToHandle(mySetup::X * 3 / 8 + 30, mySetup::Y * 3 / 7 + 80,
 			"Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 		return;
 	}
 
 	if (isTimeOver)
 	{
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Time Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7 + 60,
+		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Time Over", GetColor(0, 255, 0), obj::fontTitle);
+		DrawStringToHandle(mySetup::X * 3 / 8 + 30, mySetup::Y * 3 / 7 + 80,
 			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 		return;
 	}

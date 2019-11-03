@@ -2,8 +2,8 @@
 #include "DxLib.h"
 
 
-unsigned int mySetup::X = 1080;
-unsigned int mySetup::Y = 640;
+unsigned int mySetup::X = 1600;
+unsigned int mySetup::Y = 900;
 unsigned int mySetup::gameScore = 0;
 std::vector<unsigned int> mySetup::resultScores{ 0, 0, 0, 0, 0 };
 difficulty mySetup::diff = difficulty::normal;

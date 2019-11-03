@@ -22,7 +22,7 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// フォント作成
-	obj::fontTitle = CreateFontToHandle(NULL, 60, 3, DX_FONTTYPE_ANTIALIASING);
+	obj::fontTitle = CreateFontToHandle(NULL, 80, 3, DX_FONTTYPE_ANTIALIASING);
 	obj::fontInGame = CreateFontToHandle(NULL, 30, 3, DX_FONTTYPE_ANTIALIASING);
 
 	// ゲーム終了フラグの初期化

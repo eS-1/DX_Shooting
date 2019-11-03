@@ -23,10 +23,10 @@ void Player::draw()
 {
 	if (imgHandle == -1)
 	{
-		DrawFormatString(position.x, position.y, GetColor(255, 255, 255), "F");
+		DrawBox(position.x - 40, position.y - 40, position.x + 40, position.y + 40, GetColor(255, 255, 255), true);
 		return;
 	}
-	DrawExtendGraph(position.x - 30.0, position.y - 30.0, position.x + 30.0, position.y + 30.0, imgHandle, true);
+	DrawExtendGraph(position.x - 40, position.y - 40, position.x + 40, position.y + 40, imgHandle, true);
 }
 
 
@@ -34,26 +34,26 @@ void Player::move()
 {
 	if (CheckHitKey(KEY_INPUT_A) && position.x > 25)
 	{
-		direction.x -= 4.0;
+		direction.x -= 5.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_D) && position.x < mySetup::X - 25)
 	{
-		direction.x += 4.0;
+		direction.x += 5.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_W) && position.y > 25)
 	{
-		direction.y -= 4.0;
+		direction.y -= 5.0;
 	}
 
 	if (CheckHitKey(KEY_INPUT_S) && position.y < mySetup::Y - 25)
 	{
-		direction.y += 4.0;
+		direction.y += 5.0;
 	}
-	if (direction.length() > 4.0)
+	if (direction.length() > 5.0)
 	{
-		direction.normalize(4.0);
+		direction.normalize(5.0);
 	}
 	position += direction;
 	direction = myVector2(0, 0);
@@ -72,7 +72,7 @@ void Player::fire(std::vector<Bullet*>& bullets)
 			if (bul->getRemoveFlag())
 			{
 				bul->setRemoveFlag(false);
-				bul->setDirection(myVector2(0.0, -5.0));
+				bul->setDirection(myVector2(0.0, -8.0));
 				bul->setPosition(position);
 				break;
 			}

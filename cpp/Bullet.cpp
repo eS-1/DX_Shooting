@@ -54,10 +54,10 @@ void Bullet::draw()
 	{
 		color = GetColor(255, 0, 255);
 	}
-	DrawBox(position.x - 5.0, position.y - 5.0, position.x + 5.0, position.y + 5.0, color, 1);
+	DrawBox(position.x - 8, position.y - 8, position.x + 8, position.y + 8, color, 1);
 }
 
 bool Bullet::checkHit(MyObject& obj)
 {
-	return position.distanceFrom(obj.getPosition()) <= 20;
+	return position.distanceFrom(obj.getPosition()) <= 22;
 }

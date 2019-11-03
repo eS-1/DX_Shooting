@@ -5,7 +5,13 @@
 unsigned int mySetup::X = 1600;
 unsigned int mySetup::Y = 900;
 unsigned int mySetup::gameScore = 0;
-std::vector<unsigned int> mySetup::resultScores{ 0, 0, 0, 0, 0 };
+std::vector<std::pair<unsigned int, std::string>> mySetup::resultScores { 
+	{0, std::string("aaa")},
+    {0, std::string("bbb")},
+    {0, std::string("ccc")},
+    {0, std::string("ddd")},
+    {0, std::string("eee")}
+};
 difficulty mySetup::diff = difficulty::normal;
 
 

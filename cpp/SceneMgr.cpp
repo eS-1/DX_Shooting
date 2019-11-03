@@ -4,6 +4,7 @@
 #include "../header/Game.h"
 #include "../header/Menu.h"
 #include "../header/Result.h"
+#include "../header/SaveName.h"
 
 
 namespace
@@ -37,6 +38,9 @@ void SceneMgrUpdate()
 	case myScene::mySceneResult:
 		ResultUpdate();
 		break;
+	case myScene::mySceneSaveName:
+		SaveNameUpdate();
+		break;
 	}
 }
 
@@ -57,6 +61,9 @@ void SceneMgrDraw()
 		break;
 	case myScene::mySceneResult:
 		ResultDraw();
+		break;
+	case myScene::mySceneSaveName:
+		SaveNameDraw();
 		break;
 	}
 }

@@ -6,7 +6,8 @@ enum class myScene
 	mySceneMenu,
 	mySceneGame,
 	mySceneConfig,
-	mySceneResult
+	mySceneResult,
+	mySceneSaveName
 };
 
 // シーン管理の更新

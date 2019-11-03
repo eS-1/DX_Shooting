@@ -7,13 +7,13 @@
 #include "DxLib.h"
 
 
-// vectorの最小値のイテレータを返す関数
-std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& result)
+// vectorの最小値のイテレータを返す
+std::vector<std::pair<unsigned int, std::string>>::iterator MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result)
 {
 	auto minItr = result.begin();
 	for (auto itr = result.begin(); itr != result.end(); itr++)
 	{
-		if (*minItr > *itr) { minItr = itr; }
+		if (minItr->first > itr->first) { minItr = itr; }
 	}
 	return minItr;
 }
@@ -138,6 +138,8 @@ void GameUpdate()
 	// メニュー画面に遷移
 	if (isQuit)
 	{
+		bool SaveNameFlag = false;
+
 		delete obj::player;
 		obj::player = nullptr;
 
@@ -150,20 +152,26 @@ void GameUpdate()
 		
 		// リザルトスコアにゲームスコアを追加
 		auto minItr = MinItrOfVector(mySetup::resultScores);
-		if (mySetup::gameScore > *minItr)
+		if (mySetup::gameScore > minItr->first)
 		{
-			*minItr = mySetup::gameScore;
+			minItr->first = mySetup::gameScore;
 			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end(),
-				std::greater<std::vector<int>::value_type>());
+				std::greater<std::vector<std::pair<unsigned int, std::string>>::value_type>());
+			SaveNameFlag = true;
 		}
 
 		mySetup::gameScore = 0;
-
 		isGameOver = false;
-
 		isPose = false;
 
-		SceneMgrChange(myScene::mySceneMenu);
+		if (SaveNameFlag)
+		{
+			SceneMgrChange(myScene::mySceneSaveName);
+		}
+		else
+		{
+			SceneMgrChange(myScene::mySceneMenu);
+		}
 		return;
 	}
 

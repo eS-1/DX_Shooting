@@ -161,6 +161,7 @@
     <ClCompile Include="cpp\Objects.cpp" />
     <ClCompile Include="cpp\Player.cpp" />
     <ClCompile Include="cpp\Result.cpp" />
+    <ClCompile Include="cpp\SaveName.cpp" />
     <ClCompile Include="cpp\SceneMgr.cpp" />
     <ClCompile Include="cpp\setup.cpp" />
   </ItemGroup>
@@ -175,6 +176,7 @@
     <ClInclude Include="header\Objects.h" />
     <ClInclude Include="header\Player.h" />
     <ClInclude Include="header\Result.h" />
+    <ClInclude Include="header\SaveName.h" />
     <ClInclude Include="header\SceneMgr.h" />
     <ClInclude Include="header\setup.h" />
     <ClInclude Include="resource1.h" />

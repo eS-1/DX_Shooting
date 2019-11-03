@@ -22,7 +22,7 @@ namespace mySetup
 	// ゲーム画面のスコア
 	extern unsigned int gameScore;
 	// リザルト画面で表示するスコア
-	extern std::vector<unsigned int> resultScores;
+	extern std::vector<std::pair<unsigned int, std::string>> resultScores;
 	// ゲームの難易度
 	extern difficulty diff;
 };

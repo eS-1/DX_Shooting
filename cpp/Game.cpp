@@ -7,18 +7,6 @@
 #include "DxLib.h"
 
 
-// vectorの最小値のイテレータを返す
-std::vector<std::pair<unsigned int, std::string>>::iterator MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result)
-{
-	auto minItr = result.begin();
-	for (auto itr = result.begin(); itr != result.end(); itr++)
-	{
-		if (minItr->first > itr->first) { minItr = itr; }
-	}
-	return minItr;
-}
-
-
 // 弾の全消去
 void EraseAllBullets()
 {
@@ -151,16 +139,12 @@ void GameUpdate()
 		EraseAllBullets();
 		
 		// リザルトスコアにゲームスコアを追加
-		auto minItr = MinItrOfVector(mySetup::resultScores);
+		auto minItr = setup::MinItrOfVector(mySetup::resultScores);
 		if (mySetup::gameScore > minItr->first)
 		{
-			minItr->first = mySetup::gameScore;
-			std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end(),
-				std::greater<std::vector<std::pair<unsigned int, std::string>>::value_type>());
 			SaveNameFlag = true;
 		}
 
-		mySetup::gameScore = 0;
 		isGameOver = false;
 		isPose = false;
 
@@ -170,8 +154,10 @@ void GameUpdate()
 		}
 		else
 		{
+			mySetup::gameScore = 0;
 			SceneMgrChange(myScene::mySceneMenu);
 		}
+
 		return;
 	}
 

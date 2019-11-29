@@ -79,3 +79,14 @@ void setup::drawCursor(int x, int y, unsigned int Color, int FillFlag, int direc
 		break;
 	}
 }
+
+// vectorの最小値のイテレータを返す
+std::vector<std::pair<unsigned int, std::string>>::iterator setup::MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result)
+{
+	auto minItr = result.begin();
+	for (auto itr = result.begin(); itr != result.end(); itr++)
+	{
+		if (minItr->first > itr->first) { minItr = itr; }
+	}
+	return minItr;
+}

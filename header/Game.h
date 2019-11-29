@@ -22,5 +22,3 @@ void GameDraw();
 void EraseAllBullets();
 
 void EraseEnemyBullets();
-
-std::vector<unsigned int>::iterator MinItrOfVector(std::vector<unsigned int>& result);

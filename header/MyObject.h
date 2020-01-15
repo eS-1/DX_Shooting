@@ -11,7 +11,7 @@ protected:
 
 public:
 	MyObject(const myVector2& pos);
-	~MyObject() = default;
+	virtual ~MyObject() = default;
 
 	virtual myVector2 getPosition() const;
 	virtual myVector2 getDirection() const;

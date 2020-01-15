@@ -8,11 +8,6 @@ Bullet::Bullet(const myVector2& p, const myVector2& dir)
 	direction = dir;
 }
 
-Bullet::~Bullet()
-{
-	// デストラクタ
-}
-
 bool Bullet::isBullet()
 {
 	return true;

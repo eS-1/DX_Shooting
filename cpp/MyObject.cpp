@@ -4,11 +4,6 @@
 MyObject::MyObject(const myVector2& pos)
 	: position(pos), direction(myVector2(0, 0)), removeFlag(false) {}
 
-MyObject::~MyObject()
-{
-	// デストラクタ
-}
-
 myVector2 MyObject::getPosition() const
 {
 	return position;

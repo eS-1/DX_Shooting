@@ -6,7 +6,7 @@ class Bullet : public MyObject
 {
 public:
 	Bullet(const myVector2& p, const myVector2& dir);
-	~Bullet();
+	~Bullet() = default;
 
 	bool isBullet() override;
 	void move() override;

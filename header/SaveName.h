@@ -3,5 +3,3 @@
 #include <string>
 
 void SaveNameUpdate();
-
-void SaveNameDraw();

@@ -21,7 +21,3 @@ void SaveNameUpdate()
 	SceneMgrChange(myScene::mySceneMenu);
 }
 
-void SaveNameDraw()
-{
-	//
-}

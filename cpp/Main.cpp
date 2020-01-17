@@ -17,7 +17,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetWindowIconID(IDI_ICON1);
 
 	// initialize of DXLib
-	if (DxLib_Init() == -1) { return -1; }
+	if (DxLib_Init() == -1)
+	{
+		return -1;
+	}
 
 	SetDrawScreen(DX_SCREEN_BACK);
 
@@ -32,7 +35,10 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		SceneMgrUpdate();
 		SceneMgrDraw();
 
-		if (Menu::exitFlag) { break; }
+		if (Menu::exitFlag)
+		{
+			break;
+		}
 	}
 
 

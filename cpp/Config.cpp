@@ -47,7 +47,7 @@ void ConfigDraw()
 	// “ïˆÕ“x’²®•`‰æ
 	DrawStringToHandle(bX, Y + 100, "“ïˆÕ“x: ", GetColor(255, 255, 255), obj::fontInGame);
 	DrawFormatStringToHandle(bX + 150, Y + 100, GetColor(255, 255, 255), obj::fontInGame,
-		"%s", setup::NameOf(mySetup::diff).c_str());
+		"%s", setup::NameOfDiff(mySetup::diff).c_str());
 	if (currentDiff < extreme)
 	{
 		setup::drawCursor(bX + 270, Y + 117, GetColor(255, 255, 255), 1, 0);

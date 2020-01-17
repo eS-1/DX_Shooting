@@ -29,7 +29,7 @@ int keyInput::oldE = 0;
 int keyInput::oldQ = 0;
 
 
-std::string setup::NameOf(difficulty diffi)
+std::string setup::NameOfDiff(difficulty diffi)
 {
 	switch (diffi)
 	{

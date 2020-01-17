@@ -48,8 +48,9 @@ namespace keyInput
 
 namespace setup
 {
-	extern std::string NameOf(difficulty diff);
+	extern std::string NameOfDiff(difficulty diff);
 	extern void KeyInput();
 	extern void drawCursor(int x, int y, unsigned int Color, int FillFlag, int direction);
-	extern std::vector<std::pair<unsigned int, std::string>>::iterator MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result);
+	extern std::vector<std::pair<unsigned int, std::string>>::iterator
+		MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result);
 }

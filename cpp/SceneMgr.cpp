@@ -62,9 +62,6 @@ void SceneMgrDraw()
 	case myScene::mySceneResult:
 		ResultDraw();
 		break;
-	case myScene::mySceneSaveName:
-		SaveNameDraw();
-		break;
 	}
 }
 

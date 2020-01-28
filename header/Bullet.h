@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include "MyObject.h"
 
 
@@ -11,12 +12,12 @@ public:
 	bool isBullet() override;
 	void move() override;
 	void draw() override;
-	bool checkHit(MyObject& obj);
+	bool checkHit(std::unique_ptr<MyObject>& obj) override;
 
 	bool getIsPlaBul();
 	bool getIsEnBul();
-	void setIsPlaBul(bool state);
-	void setIsEnBul(bool state);
+	void setIsPlaBul(bool state) override;
+	void setIsEnBul(bool state) override;
 
 private:
 	bool isPlaBullet;

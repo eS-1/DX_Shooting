@@ -52,7 +52,7 @@ void Bullet::draw()
 	DrawBox(position.x - 8, position.y - 8, position.x + 8, position.y + 8, color, 1);
 }
 
-bool Bullet::checkHit(MyObject& obj)
+bool Bullet::checkHit(std::unique_ptr<MyObject>& obj)
 {
-	return position.distanceFrom(obj.getPosition()) <= 22;
+	return position.distanceFrom(obj->getPosition()) <= 22;
 }

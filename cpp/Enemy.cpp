@@ -22,12 +22,14 @@ bool Enemy::isEnemy()
 
 void Enemy::draw()
 {
+	int x = static_cast<int>(position.x);
+	int y = static_cast<int>(position.y);
 	if (imgHandle == -1)
 	{
-		DrawBox(position.x - 40, position.y - 40, position.x + 40, position.y + 40, GetColor(0, 255, 0), true);
+		DrawBox(x - 40, y - 40, x + 40, y + 40, GetColor(0, 255, 0), true);
 		return;
 	}
-	DrawExtendGraph(position.x - 40.0, position.y - 40.0, position.x + 40.0, position.y + 40.0, imgHandle, true);
+	DrawExtendGraph(x - 40.0, y - 40.0, x + 40.0, y + 40.0, imgHandle, true);
 }
 
 void Enemy::move()
@@ -54,18 +56,18 @@ void Enemy::move()
 	position += direction;
 }
 
-void Enemy::fire(std::vector<Bullet*>& bullets)
+void Enemy::fire(std::vector<std::unique_ptr<Bullet>>& bullets)
 {
 	fireCount++;
 	if (fireCount == 60)
 	{
-		for (Bullet* bul : bullets)
+		for (unsigned int i = 0; i < bullets.size(); i++)
 		{
-			if (bul->getRemoveFlag())
+			if (bullets[i]->getRemoveFlag())
 			{
-				bul->setRemoveFlag(false);
-				bul->setDirection(myVector2(0.0, 5.0));
-				bul->setPosition(position);
+				bullets[i]->setRemoveFlag(false);
+				bullets[i]->setDirection(myVector2(0.0, 5.0));
+				bullets[i]->setPosition(position);
 				break;
 			}
 		}
@@ -73,7 +75,7 @@ void Enemy::fire(std::vector<Bullet*>& bullets)
 	}
 }
 
-myVector2 Enemy::getInitPosition()
+myVector2 Enemy::getInitPosition() const
 {
 	return initPosition;
 }

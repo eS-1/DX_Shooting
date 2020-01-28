@@ -1,5 +1,6 @@
 #pragma once
 #include <vector>
+#include <memory>
 #include "Bullet.h"
 
 
@@ -12,7 +13,7 @@ public:
 	bool isPlayer() override;
 	void move() override;
 	void draw() override;
-	void fire(std::vector<Bullet*>& bullets);
+	void fire(std::vector<std::unique_ptr<MyObject>>& bullets) override;
 
 private:
 	int key;

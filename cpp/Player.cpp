@@ -60,20 +60,20 @@ void Player::move()
 }
 
 
-void Player::fire(std::vector<Bullet*>& bullets)
+void Player::fire(std::vector<std::unique_ptr<MyObject>>& bullets)
 {
 	oldKey = key;
 	key = CheckHitKey(KEY_INPUT_SPACE);
 
 	if ((key & ~oldKey) & KEY_INPUT_SPACE)
 	{
-		for (Bullet* bul : bullets)
+		for (int i = 0; i < bullets.size(); i++)
 		{
-			if (bul->getRemoveFlag())
+			if (bullets[i]->getRemoveFlag())
 			{
-				bul->setRemoveFlag(false);
-				bul->setDirection(myVector2(0.0, -8.0));
-				bul->setPosition(position);
+				bullets[i]->setRemoveFlag(false);
+				bullets[i]->setDirection(myVector2(0.0, -8.0));
+				bullets[i]->setPosition(position);
 				break;
 			}
 		}

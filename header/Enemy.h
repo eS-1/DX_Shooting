@@ -1,4 +1,5 @@
 #pragma once
+#include <memory>
 #include <vector>
 #include "Bullet.h"
 
@@ -12,9 +13,9 @@ public:
 	bool isEnemy() override;
 	void move() override;
 	void draw() override;
-	void fire(std::vector<Bullet*>& bullets);
-	myVector2 getInitPosition();
-	void setIsReached(bool state);
+	void fire(std::vector<std::unique_ptr<Bullet>>& bullets);
+	myVector2 getInitPosition() const override;
+	void setIsReached(bool state) override;
 
 private:
 	int fireCount;

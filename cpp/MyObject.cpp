@@ -14,6 +14,11 @@ myVector2 MyObject::getDirection() const
 	return direction;
 }
 
+myVector2 MyObject::getInitPosition() const
+{
+	return position;
+}
+
 void MyObject::setDirection(const myVector2& dir)
 {
 	direction = dir;
@@ -44,10 +49,23 @@ bool MyObject::getRemoveFlag() const
 	return removeFlag;
 }
 
+bool MyObject::checkHit(std::unique_ptr<MyObject>& obj)
+{
+	return true;
+}
+
+void MyObject::setIsReached(bool state) {}
+
 void MyObject::setRemoveFlag(bool state)
 {
 	removeFlag = state;
 }
+
+void MyObject::setIsEnBul(bool state) {}
+
+void MyObject::setIsPlaBul(bool state) {}
+
+void MyObject::fire(std::vector<std::unique_ptr<MyObject>>& bullets) {}
 
 void MyObject::move() {}
 

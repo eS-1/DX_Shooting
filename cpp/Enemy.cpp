@@ -56,18 +56,18 @@ void Enemy::move()
 	position += direction;
 }
 
-void Enemy::fire(std::vector<std::unique_ptr<Bullet>>& bullets)
+void Enemy::fire()
 {
 	fireCount++;
 	if (fireCount == 60)
 	{
-		for (unsigned int i = 0; i < bullets.size(); i++)
+		for (const auto& bul : obj::enBullets)
 		{
-			if (bullets[i]->getRemoveFlag())
+			if (bul->getRemoveFlag())
 			{
-				bullets[i]->setRemoveFlag(false);
-				bullets[i]->setDirection(myVector2(0.0, 5.0));
-				bullets[i]->setPosition(position);
+				bul->setRemoveFlag(false);
+				bul->setDirection(myVector2(0.0, 5.0));
+				bul->setPosition(position);
 				break;
 			}
 		}

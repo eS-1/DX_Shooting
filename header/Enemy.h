@@ -2,6 +2,7 @@
 #include <memory>
 #include <vector>
 #include "Bullet.h"
+#include "Objects.h"
 
 
 class Enemy : public MyObject
@@ -13,7 +14,7 @@ public:
 	bool isEnemy() override;
 	void move() override;
 	void draw() override;
-	void fire(std::vector<std::unique_ptr<Bullet>>& bullets);
+	void fire() override;
 	myVector2 getInitPosition() const override;
 	void setIsReached(bool state) override;
 

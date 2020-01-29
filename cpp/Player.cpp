@@ -21,12 +21,14 @@ bool Player::isPlayer()
 
 void Player::draw()
 {
+	int x = static_cast<int>(position.x);
+	int y = static_cast<int>(position.y);
 	if (imgHandle == -1)
 	{
-		DrawBox(position.x - 40, position.y - 40, position.x + 40, position.y + 40, GetColor(255, 255, 255), true);
+		DrawBox(x - 40, y - 40, x + 40, y + 40, GetColor(255, 255, 255), true);
 		return;
 	}
-	DrawExtendGraph(position.x - 40, position.y - 40, position.x + 40, position.y + 40, imgHandle, true);
+	DrawExtendGraph(x - 40, y - 40, x + 40, y + 40, imgHandle, true);
 }
 
 
@@ -60,20 +62,20 @@ void Player::move()
 }
 
 
-void Player::fire(std::vector<std::unique_ptr<MyObject>>& bullets)
+void Player::fire()
 {
 	oldKey = key;
 	key = CheckHitKey(KEY_INPUT_SPACE);
 
 	if ((key & ~oldKey) & KEY_INPUT_SPACE)
 	{
-		for (int i = 0; i < bullets.size(); i++)
+		for (const auto& bul : obj::bullets)
 		{
-			if (bullets[i]->getRemoveFlag())
+			if (bul->getRemoveFlag())
 			{
-				bullets[i]->setRemoveFlag(false);
-				bullets[i]->setDirection(myVector2(0.0, -8.0));
-				bullets[i]->setPosition(position);
+				bul->setRemoveFlag(false);
+				bul->setDirection(myVector2(0.0, -8.0));
+				bul->setPosition(position);
 				break;
 			}
 		}

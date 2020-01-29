@@ -2,6 +2,7 @@
 #include <vector>
 #include <memory>
 #include "Bullet.h"
+#include "Objects.h"
 
 
 class Player : public MyObject
@@ -13,7 +14,7 @@ public:
 	bool isPlayer() override;
 	void move() override;
 	void draw() override;
-	void fire(std::vector<std::unique_ptr<MyObject>>& bullets) override;
+	void fire() override;
 
 private:
 	int key;

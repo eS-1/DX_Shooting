@@ -49,9 +49,9 @@ bool MyObject::getRemoveFlag() const
 	return removeFlag;
 }
 
-bool MyObject::checkHit(std::unique_ptr<MyObject>& obj)
+bool MyObject::checkHit(const MyObject& obj)
 {
-	return true;
+	return false;
 }
 
 void MyObject::setIsReached(bool state) {}
@@ -65,7 +65,7 @@ void MyObject::setIsEnBul(bool state) {}
 
 void MyObject::setIsPlaBul(bool state) {}
 
-void MyObject::fire(std::vector<std::unique_ptr<MyObject>>& bullets) {}
+void MyObject::fire() {}
 
 void MyObject::move() {}
 

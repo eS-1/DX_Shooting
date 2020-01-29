@@ -24,12 +24,12 @@ public:
 	virtual bool isEnemy();
 	virtual bool isBullet();
 	virtual bool getRemoveFlag() const;
-	virtual bool checkHit(std::unique_ptr<MyObject>& obj);
+	virtual bool checkHit(const MyObject& obj);
 	virtual void setIsReached(bool state);
 	virtual void setRemoveFlag(bool state);
 	virtual void setIsPlaBul(bool state);
 	virtual void setIsEnBul(bool state);
-	virtual void fire(std::vector<std::unique_ptr<MyObject>>& bullets);
+	virtual void fire();
 	virtual void move();
 	virtual void draw();
 };

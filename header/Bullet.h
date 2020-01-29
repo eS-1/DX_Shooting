@@ -12,7 +12,7 @@ public:
 	bool isBullet() override;
 	void move() override;
 	void draw() override;
-	bool checkHit(std::unique_ptr<MyObject>& obj) override;
+	bool checkHit(const MyObject& obj) override;
 
 	bool getIsPlaBul();
 	bool getIsEnBul();

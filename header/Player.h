@@ -18,6 +18,8 @@ public:
 
 private:
 	int key;
-	int oldKey;
-	int imgHandle;
+	int old_key;
+	int input_pad;
+	int old_pad;
+	int img_handle;
 };

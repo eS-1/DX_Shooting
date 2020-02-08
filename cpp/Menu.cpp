@@ -19,12 +19,14 @@ void MenuUpdate()
 {
 	setup::KeyInput();
 
-	if (keyInput::W != 0 && (keyInput::W & ~keyInput::oldW) && selection > menuSelect::start)
+	int input_pad = GetJoypadInputState(DX_INPUT_PAD1);
+
+	if ((keyInput::W != 0 && (keyInput::W & ~keyInput::oldW) || (input_pad & PAD_INPUT_UP)) && selection > menuSelect::start)
 	{
 		int current = static_cast<int>(selection);
 		selection = static_cast<menuSelect>(current - 1);
 	}
-	else if (keyInput::S != 0 && (keyInput::S & ~keyInput::oldS) && selection < menuSelect::exit)
+	else if ((keyInput::S != 0 && (keyInput::S & ~keyInput::oldS) || (input_pad & PAD_INPUT_DOWN)) && selection < menuSelect::exit)
 	{
 		int current = static_cast<int>(selection);
 		selection = static_cast<menuSelect>(current + 1);

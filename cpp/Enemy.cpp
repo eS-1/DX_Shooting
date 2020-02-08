@@ -5,14 +5,14 @@
 
 Enemy::Enemy(const myVector2& pos) : MyObject(pos), fireCount(0), isReached(true), initPosition(pos),
                                      destination(myVector2(pos.x, pos.y + 200.0)),
-	                                 imgHandle(LoadGraph("images/enemy.png"))
+	                                 img_handle(LoadGraph("images/enemy.png"))
 {
 	direction = myVector2(0.0, 3.0);
 }
 
 Enemy::~Enemy()
 {
-	DeleteGraph(imgHandle);
+	DeleteGraph(img_handle);
 }
 
 bool Enemy::isEnemy()
@@ -24,12 +24,12 @@ void Enemy::draw()
 {
 	int x = static_cast<int>(position.x);
 	int y = static_cast<int>(position.y);
-	if (imgHandle == -1)
+	if (img_handle == -1)
 	{
 		DrawBox(x - 40, y - 40, x + 40, y + 40, GetColor(0, 255, 0), true);
 		return;
 	}
-	DrawExtendGraph(x - 40.0, y - 40.0, x + 40.0, y + 40.0, imgHandle, true);
+	DrawExtendGraph(x - 40.0, y - 40.0, x + 40.0, y + 40.0, img_handle, true);
 }
 
 void Enemy::move()

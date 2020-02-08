@@ -4,12 +4,12 @@
 
 
 Player::Player(const myVector2& position)
-	: MyObject(position), key(0), oldKey(0), imgHandle(LoadGraph("images/player.png")) {}
+	: MyObject(position), key(0), old_key(0), img_handle(LoadGraph("images/player.png")) {}
 
 
 Player::~Player()
 {
-	DeleteGraph(imgHandle);
+	DeleteGraph(img_handle);
 }
 
 
@@ -23,33 +23,39 @@ void Player::draw()
 {
 	int x = static_cast<int>(position.x);
 	int y = static_cast<int>(position.y);
-	if (imgHandle == -1)
+	if (img_handle == -1)
 	{
 		DrawBox(x - 40, y - 40, x + 40, y + 40, GetColor(255, 255, 255), true);
 		return;
 	}
-	DrawExtendGraph(x - 40, y - 40, x + 40, y + 40, imgHandle, true);
+	DrawExtendGraph(x - 40, y - 40, x + 40, y + 40, img_handle, true);
 }
 
 
 void Player::move()
 {
-	if (CheckHitKey(KEY_INPUT_A) && position.x > 25)
+	input_pad = GetJoypadInputState(DX_INPUT_PAD1);
+	int is_hit_A = CheckHitKey(KEY_INPUT_A);
+	int is_hit_D = CheckHitKey(KEY_INPUT_D);
+	int is_hit_W = CheckHitKey(KEY_INPUT_W);
+	int is_hit_S = CheckHitKey(KEY_INPUT_S);
+
+	if ((is_hit_A || (input_pad & PAD_INPUT_LEFT)) && position.x > 25)
 	{
 		direction.x -= 5.0;
 	}
 
-	if (CheckHitKey(KEY_INPUT_D) && position.x < mySetup::X - 25)
+	if ((is_hit_D || (input_pad & PAD_INPUT_RIGHT)) && position.x < mySetup::X - 25)
 	{
 		direction.x += 5.0;
 	}
 
-	if (CheckHitKey(KEY_INPUT_W) && position.y > 25)
+	if ((is_hit_W || (input_pad & PAD_INPUT_UP)) && position.y > 25)
 	{
 		direction.y -= 5.0;
 	}
 
-	if (CheckHitKey(KEY_INPUT_S) && position.y < mySetup::Y - 25)
+	if ((is_hit_S || (input_pad & PAD_INPUT_DOWN)) && position.y < mySetup::Y - 25)
 	{
 		direction.y += 5.0;
 	}
@@ -64,10 +70,12 @@ void Player::move()
 
 void Player::fire()
 {
-	oldKey = key;
+	old_pad = input_pad;
+	input_pad = GetJoypadInputState(DX_INPUT_PAD1);
+	old_key = key;
 	key = CheckHitKey(KEY_INPUT_SPACE);
 
-	if ((key & ~oldKey) & KEY_INPUT_SPACE)
+	if (((key & ~old_key) & KEY_INPUT_SPACE) || (input_pad & PAD_INPUT_3))
 	{
 		for (const auto& bul : obj::bullets)
 		{

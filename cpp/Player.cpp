@@ -4,7 +4,7 @@
 
 
 Player::Player(const myVector2& position)
-	: MyObject(position), key(0), old_key(0), img_handle(LoadGraph("images/player.png")) {}
+	: MyObject(position), img_handle(LoadGraph("images/player.png")) {}
 
 
 Player::~Player()
@@ -34,28 +34,22 @@ void Player::draw()
 
 void Player::move()
 {
-	input_pad = GetJoypadInputState(DX_INPUT_PAD1);
-	int is_hit_A = CheckHitKey(KEY_INPUT_A);
-	int is_hit_D = CheckHitKey(KEY_INPUT_D);
-	int is_hit_W = CheckHitKey(KEY_INPUT_W);
-	int is_hit_S = CheckHitKey(KEY_INPUT_S);
-
-	if ((is_hit_A || (input_pad & PAD_INPUT_LEFT)) && position.x > 25)
+	if ((keyInput::A || (setup::input_pad & PAD_INPUT_LEFT)) && position.x > 25)
 	{
 		direction.x -= 5.0;
 	}
 
-	if ((is_hit_D || (input_pad & PAD_INPUT_RIGHT)) && position.x < mySetup::X - 25)
+	if ((keyInput::D || (setup::input_pad & PAD_INPUT_RIGHT)) && position.x < mySetup::X - 25)
 	{
 		direction.x += 5.0;
 	}
 
-	if ((is_hit_W || (input_pad & PAD_INPUT_UP)) && position.y > 25)
+	if ((keyInput::W || (setup::input_pad & PAD_INPUT_UP)) && position.y > 25)
 	{
 		direction.y -= 5.0;
 	}
 
-	if ((is_hit_S || (input_pad & PAD_INPUT_DOWN)) && position.y < mySetup::Y - 25)
+	if ((keyInput::S || (setup::input_pad & PAD_INPUT_DOWN)) && position.y < mySetup::Y - 25)
 	{
 		direction.y += 5.0;
 	}
@@ -70,12 +64,7 @@ void Player::move()
 
 void Player::fire()
 {
-	old_pad = input_pad;
-	input_pad = GetJoypadInputState(DX_INPUT_PAD1);
-	old_key = key;
-	key = CheckHitKey(KEY_INPUT_SPACE);
-
-	if (((key & ~old_key) & KEY_INPUT_SPACE) || (input_pad & PAD_INPUT_3))
+	if ((keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE)) || (setup::input_pad & PAD_INPUT_3))
 	{
 		for (const auto& bul : obj::bullets)
 		{

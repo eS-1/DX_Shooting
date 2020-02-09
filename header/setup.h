@@ -36,6 +36,7 @@ namespace keyInput
 	extern int D;
 	extern int E;
 	extern int Q;
+	extern int SPACE;
 
 	extern int oldW;
 	extern int oldA;
@@ -43,11 +44,14 @@ namespace keyInput
 	extern int oldD;
 	extern int oldE;
 	extern int oldQ;
+	extern int oldSPACE;
 };
 
 
 namespace setup
 {
+	extern int input_pad;
+
 	extern std::string NameOfDiff(difficulty diff);
 	extern void KeyInput();
 	extern void drawCursor(int x, int y, unsigned int Color, int FillFlag, int direction);

@@ -17,9 +17,5 @@ public:
 	void fire() override;
 
 private:
-	int key;
-	int old_key;
-	int input_pad;
-	int old_pad;
 	int img_handle;
 };

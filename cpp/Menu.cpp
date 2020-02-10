@@ -19,14 +19,12 @@ void MenuUpdate()
 {
 	setup::KeyInput();
 
-	int input_pad = GetJoypadInputState(DX_INPUT_PAD1);
-
-	if ((keyInput::W && (keyInput::W & ~keyInput::oldW) || (input_pad & PAD_INPUT_UP)) && selection > menuSelect::start)
+	if (((keyInput::W & ~keyInput::old_W) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)) && selection > menuSelect::start)
 	{
 		int current = static_cast<int>(selection);
 		selection = static_cast<menuSelect>(current - 1);
 	}
-	else if ((keyInput::S && (keyInput::S & ~keyInput::oldS) || (input_pad & PAD_INPUT_DOWN)) && selection < menuSelect::exit)
+	else if (((keyInput::S & ~keyInput::old_S) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)) && selection < menuSelect::exit)
 	{
 		int current = static_cast<int>(selection);
 		selection = static_cast<menuSelect>(current + 1);
@@ -36,25 +34,25 @@ void MenuUpdate()
 	switch (selection)
 	{
 	case menuSelect::start:
-		if (keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE))
+		if ((keyInput::space & ~keyInput::old_space) || (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
 		{
 			SceneMgrChange(myScene::mySceneGame);
 		}
 		break;
 	case menuSelect::config:
-		if (keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE))
+		if ((keyInput::space & ~keyInput::old_space) || (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
 		{
 			SceneMgrChange(myScene::mySceneConfig);
 		}
 		break;
 	case menuSelect::result:
-		if (keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE))
+		if ((keyInput::space & ~keyInput::old_space) || (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
 		{
 			SceneMgrChange(myScene::mySceneResult);
 		}
 		break;
 	case menuSelect::exit:
-		if (keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE))
+		if ((keyInput::space & ~keyInput::old_space) || (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
 		{
 			Menu::exitFlag = true;
 		}

@@ -8,24 +8,24 @@
 // 設定画面の更新
 void ConfigUpdate()
 {
-	// メニュー画面に遷移
-	if (CheckHitKey(KEY_INPUT_Q) != 0)
+	setup::KeyInput();
+
+	if (keyInput::Q != 0 || (keyInput::pad & PAD_INPUT_2))
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}
-
-	// キーの入力状態を取得
-	setup::KeyInput();
 
 	int currentDiff = static_cast<int>(mySetup::diff);
 	int easy = static_cast<int>(difficulty::easy);
 	int extreme = static_cast<int>(difficulty::extreme);
 	
-	if (keyInput::D != 0 && currentDiff < extreme && (keyInput::D & ~keyInput::oldD))
+	if ((keyInput::D & ~keyInput::old_D) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)
+		&& currentDiff < extreme)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff + 1);
 	}
-	else if (keyInput::A != 0 && currentDiff > easy && (keyInput::A & ~keyInput::oldA))
+	else if ((keyInput::A & ~keyInput::old_A) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
+		&& currentDiff > easy)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff - 1);
 	}

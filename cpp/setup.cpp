@@ -5,15 +5,16 @@
 unsigned int mySetup::X = 1600;
 unsigned int mySetup::Y = 900;
 unsigned int mySetup::gameScore = 0;
-std::vector<std::pair<unsigned int, std::string>> mySetup::resultScores { 
-	{0, std::string("aaa")},
-    {0, std::string("bbb")},
-    {0, std::string("ccc")},
-    {0, std::string("ddd")},
-    {0, std::string("eee")}
-};
-difficulty mySetup::diff = difficulty::normal;
 
+std::vector<std::pair<unsigned int, std::string>> mySetup::resultScores { 
+	{0, std::string("No name")},
+    {0, std::string("No name")},
+    {0, std::string("No name")},
+    {0, std::string("No name")},
+    {0, std::string("No name")}
+};
+
+difficulty mySetup::diff = difficulty::normal;
 
 int keyInput::W = 0;
 int keyInput::A = 0;
@@ -21,16 +22,16 @@ int keyInput::S = 0;
 int keyInput::D = 0;
 int keyInput::E = 0;
 int keyInput::Q = 0;
-int keyInput::SPACE = 0;
-int keyInput::oldW = 0;
-int keyInput::oldA = 0;
-int keyInput::oldS = 0;
-int keyInput::oldD = 0;
-int keyInput::oldE = 0;
-int keyInput::oldQ = 0;
-int keyInput::oldSPACE = 0;
-
-int setup::input_pad = GetJoypadInputState(DX_INPUT_PAD1);
+int keyInput::pad = 0;
+int keyInput::space = 0;
+int keyInput::old_W = 0;
+int keyInput::old_A = 0;
+int keyInput::old_S = 0;
+int keyInput::old_D = 0;
+int keyInput::old_E = 0;
+int keyInput::old_Q = 0;
+int keyInput::old_space = 0;
+int keyInput::old_pad = 0;
 
 
 std::string setup::NameOfDiff(difficulty diffi)
@@ -52,20 +53,22 @@ std::string setup::NameOfDiff(difficulty diffi)
 
 void setup::KeyInput()
 {
-	keyInput::oldW = keyInput::W;
-	keyInput::oldA = keyInput::A;
-	keyInput::oldS = keyInput::S;
-	keyInput::oldD = keyInput::D;
-	keyInput::oldE = keyInput::E;
-	keyInput::oldQ = keyInput::Q;
-	keyInput::oldSPACE = keyInput::SPACE;
+	keyInput::old_W = keyInput::W;
+	keyInput::old_A = keyInput::A;
+	keyInput::old_S = keyInput::S;
+	keyInput::old_D = keyInput::D;
+	keyInput::old_E = keyInput::E;
+	keyInput::old_Q = keyInput::Q;
+	keyInput::old_space = keyInput::space;
+	keyInput::old_pad = keyInput::pad;
 	keyInput::W = CheckHitKey(KEY_INPUT_W);
 	keyInput::A = CheckHitKey(KEY_INPUT_A);
 	keyInput::S = CheckHitKey(KEY_INPUT_S);
 	keyInput::D = CheckHitKey(KEY_INPUT_D);
 	keyInput::E = CheckHitKey(KEY_INPUT_E);
 	keyInput::Q = CheckHitKey(KEY_INPUT_Q);
-	keyInput::SPACE = CheckHitKey(KEY_INPUT_SPACE);
+	keyInput::space = CheckHitKey(KEY_INPUT_SPACE);
+	keyInput::pad = GetJoypadInputState(DX_INPUT_PAD1);
 }
 
 

@@ -34,22 +34,22 @@ void Player::draw()
 
 void Player::move()
 {
-	if ((keyInput::A || (setup::input_pad & PAD_INPUT_LEFT)) && position.x > 25)
+	if ((keyInput::A || (keyInput::pad & PAD_INPUT_LEFT)) && position.x > 25)
 	{
 		direction.x -= 5.0;
 	}
 
-	if ((keyInput::D || (setup::input_pad & PAD_INPUT_RIGHT)) && position.x < mySetup::X - 25)
+	if ((keyInput::D || (keyInput::pad & PAD_INPUT_RIGHT)) && position.x < mySetup::X - 25)
 	{
 		direction.x += 5.0;
 	}
 
-	if ((keyInput::W || (setup::input_pad & PAD_INPUT_UP)) && position.y > 25)
+	if ((keyInput::W || (keyInput::pad & PAD_INPUT_UP)) && position.y > 25)
 	{
 		direction.y -= 5.0;
 	}
 
-	if ((keyInput::S || (setup::input_pad & PAD_INPUT_DOWN)) && position.y < mySetup::Y - 25)
+	if ((keyInput::S || (keyInput::pad & PAD_INPUT_DOWN)) && position.y < mySetup::Y - 25)
 	{
 		direction.y += 5.0;
 	}
@@ -64,7 +64,7 @@ void Player::move()
 
 void Player::fire()
 {
-	if ((keyInput::SPACE && (keyInput::SPACE & ~keyInput::oldSPACE)) || (setup::input_pad & PAD_INPUT_3))
+	if ((keyInput::space & ~keyInput::old_space) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3))
 	{
 		for (const auto& bul : obj::bullets)
 		{

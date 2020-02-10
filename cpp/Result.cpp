@@ -8,7 +8,9 @@
 // リザルト画面の更新
 void ResultUpdate()
 {
-	if (CheckHitKey(KEY_INPUT_Q) != 0)
+	setup::KeyInput();
+
+	if (keyInput::Q != 0 || (keyInput::pad & PAD_INPUT_2))
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}

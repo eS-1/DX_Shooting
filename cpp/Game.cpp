@@ -111,11 +111,14 @@ void GameUpdate()
 
 	if (isGameOver || isTimeOver)
 	{
-		if (keyInput::Q && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
+		if ((keyInput::Q & ~keyInput::old_Q) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_10))
+		{
+			isQuit = true;
+		}
 	}
 	else
 	{
-		if (!isPose && keyInput::Q)
+		if (!isPose && (keyInput::Q || (keyInput::pad & PAD_INPUT_10)))
 		{
 			// ポーズ画面のフラグを建てる
 			isPose = true;
@@ -124,9 +127,18 @@ void GameUpdate()
 
 		if (isPose)
 		{
-			if (keyInput::E && (keyInput::E & ~keyInput::oldE)) { isPose = false; }
-			else if (keyInput::Q && (keyInput::Q & ~keyInput::oldQ)) { isQuit = true; }
-			else { return; }
+			if ((keyInput::E & ~keyInput::old_E) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_2))
+			{
+				isPose = false;
+			}
+			else if ((keyInput::Q & ~keyInput::old_Q) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3))
+			{
+				isQuit = true;
+			}
+			else
+			{
+				return;
+			}
 		}
 	}
 

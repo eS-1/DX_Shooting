@@ -19,13 +19,15 @@ void ConfigUpdate()
 	int easy = static_cast<int>(difficulty::easy);
 	int extreme = static_cast<int>(difficulty::extreme);
 	
-	if ((keyInput::D & ~keyInput::old_D) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)
-		&& currentDiff < extreme)
+	if ((keyInput::D & ~keyInput::old_D) ||
+		((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT) &&
+		currentDiff < extreme)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff + 1);
 	}
-	else if ((keyInput::A & ~keyInput::old_A) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
-		&& currentDiff > easy)
+	else if ((keyInput::A & ~keyInput::old_A) ||
+		     ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT) &&
+		     currentDiff > easy)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff - 1);
 	}
@@ -44,7 +46,6 @@ void ConfigDraw()
 
 	DrawStringToHandle(bX, Y, "ê›íË", GetColor(255, 255, 255), obj::fontTitle);
 
-	// ìÔà’ìxí≤êÆï`âÊ
 	DrawStringToHandle(bX, Y + 100, "ìÔà’ìx: ", GetColor(255, 255, 255), obj::fontInGame);
 	DrawFormatStringToHandle(bX + 150, Y + 100, GetColor(255, 255, 255), obj::fontInGame,
 		"%s", setup::NameOfDiff(mySetup::diff).c_str());

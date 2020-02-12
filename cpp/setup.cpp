@@ -6,7 +6,7 @@ unsigned int mySetup::X = 1600;
 unsigned int mySetup::Y = 900;
 unsigned int mySetup::gameScore = 0;
 
-std::vector<std::pair<unsigned int, std::string>> mySetup::resultScores { 
+std::vector<scorePair> mySetup::resultScores { 
 	{0, std::string("No name")},
     {0, std::string("No name")},
     {0, std::string("No name")},
@@ -90,12 +90,15 @@ void setup::drawCursor(int x, int y, unsigned int Color, int FillFlag, int direc
 }
 
 // vectorの最小値のイテレータを返す
-std::vector<std::pair<unsigned int, std::string>>::iterator setup::MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result)
+std::vector<scorePair>::iterator setup::MinItrOfVector(std::vector<scorePair>& result)
 {
-	auto minItr = result.begin();
+	std::vector<scorePair>::iterator minItr = result.begin();
 	for (auto itr = result.begin(); itr != result.end(); itr++)
 	{
-		if (minItr->first > itr->first) { minItr = itr; }
+		if (minItr->first > itr->first)
+		{
+			minItr = itr;
+		}
 	}
 	return minItr;
 }

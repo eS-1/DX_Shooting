@@ -8,16 +8,15 @@
 
 void SaveNameUpdate()
 {
+	using namespace mySetup;
 	char name[21];
-	auto minItr = setup::MinItrOfVector(mySetup::resultScores);
-	DrawStringToHandle(mySetup::X / 3, mySetup::Y / 4, "–¼‘O‚Ì“o˜^", GetColor(255, 255, 255), obj::fontTitle);
-	KeyInputString(mySetup::X / 3, mySetup::Y * 2 / 5, 20, name, false);
-	minItr->first = mySetup::gameScore;
+	std::vector<scorePair>::iterator minItr = setup::MinItrOfVector(resultScores);
+	DrawStringToHandle(X / 3, Y / 4, "–¼‘O‚Ì“o˜^", GetColor(255, 255, 255), obj::fontTitle);
+	KeyInputString(X / 3, Y * 2 / 5, 20, name, false);
+	minItr->first = gameScore;
 	minItr->second = std::string(name);
-	std::sort(mySetup::resultScores.begin(), mySetup::resultScores.end(),
-		std::greater<std::vector<std::pair<unsigned int, std::string>>::value_type>());
+	std::sort(resultScores.begin(), resultScores.end(), std::greater<std::vector<scorePair>::value_type>());
 
-	mySetup::gameScore = 0;
+	gameScore = 0;
 	SceneMgrChange(myScene::mySceneMenu);
 }
-

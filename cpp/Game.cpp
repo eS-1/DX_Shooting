@@ -180,7 +180,7 @@ void GameUpdate()
 		EraseAllBullets();
 		
 		// リザルトスコアにゲームスコアを追加
-		auto minItr = setup::MinItrOfVector(mySetup::resultScores);
+		std::vector<scorePair>::iterator minItr = setup::MinItrOfVector(mySetup::resultScores);
 		if (mySetup::gameScore > minItr->first)
 		{
 			SaveNameFlag = true;
@@ -315,7 +315,10 @@ void GameDraw()
 	using namespace mySetup;
 
 	// playerの描画
-	if (obj::player != nullptr && !(obj::player->getRemoveFlag())) { obj::player->draw(); }
+	if (obj::player != nullptr && !(obj::player->getRemoveFlag()))
+	{
+		obj::player->draw();
+	}
 
 	// enemyの描画
 	for (const auto& en : obj::enemys)

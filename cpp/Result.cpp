@@ -26,7 +26,7 @@ void ResultDraw()
 	// スコア表示
 	int i = 1;
 	int dy = mySetup::Y * 2 / 5;
-	for (auto sc : mySetup::resultScores)
+	for (scorePair sc : mySetup::resultScores)
 	{
 		DrawFormatStringToHandle(mySetup::X / 3, dy, GetColor(255, 255, 255), obj::fontInGame,
 			                     "%d: %d, %s", i, sc.first, sc.second.c_str());

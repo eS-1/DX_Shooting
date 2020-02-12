@@ -3,6 +3,8 @@
 #include <string>
 
 
+using scorePair = std::pair<unsigned int, std::string>;
+
 // 難易度
 enum class difficulty
 {
@@ -22,7 +24,7 @@ namespace mySetup
 	// ゲーム画面のスコア
 	extern unsigned int gameScore;
 	// リザルト画面で表示するスコア
-	extern std::vector<std::pair<unsigned int, std::string>> resultScores;
+	extern std::vector<scorePair> resultScores;
 	// ゲームの難易度
 	extern difficulty diff;
 };
@@ -55,6 +57,5 @@ namespace setup
 	extern std::string NameOfDiff(difficulty diff);
 	extern void KeyInput();
 	extern void drawCursor(int x, int y, unsigned int Color, int FillFlag, int direction);
-	extern std::vector<std::pair<unsigned int, std::string>>::iterator
-		MinItrOfVector(std::vector<std::pair<unsigned int, std::string>>& result);
+	extern std::vector<scorePair>::iterator MinItrOfVector(std::vector<scorePair>& result);
 }

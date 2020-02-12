@@ -2,7 +2,7 @@
 #include "setup.h"
 
 
-enum class menuSelect
+enum class MenuSelect
 {
 	start,
 	config,

@@ -7,12 +7,12 @@
 
 bool Menu::exitFlag;
 
-
 namespace
 {
 	myScene scene;
-	menuSelect selection;
+	MenuSelect selection;
 }
+
 
 // メニュー画面の更新
 void MenuUpdate()
@@ -21,17 +21,17 @@ void MenuUpdate()
 
 	if (((keyInput::W & ~keyInput::old_W) ||
 		((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)) &&
-		selection > menuSelect::start)
+		selection > MenuSelect::start)
 	{
 		int current = static_cast<int>(selection);
-		selection = static_cast<menuSelect>(current - 1);
+		selection = static_cast<MenuSelect>(current - 1);
 	}
 	else if (((keyInput::S & ~keyInput::old_S) ||
 		     ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)) &&
-		     selection < menuSelect::exit)
+		     selection < MenuSelect::exit)
 	{
 		int current = static_cast<int>(selection);
-		selection = static_cast<menuSelect>(current + 1);
+		selection = static_cast<MenuSelect>(current + 1);
 	}
 
 	// 各シーンに遷移
@@ -39,16 +39,16 @@ void MenuUpdate()
 	{
 		switch (selection)
 		{
-		case menuSelect::start:
+		case MenuSelect::start:
 			SceneMgrChange(myScene::mySceneGame);
 			break;
-		case menuSelect::config:
+		case MenuSelect::config:
 			SceneMgrChange(myScene::mySceneConfig);
 			break;
-		case menuSelect::result:
+		case MenuSelect::result:
 			SceneMgrChange(myScene::mySceneResult);
 			break;
-		case menuSelect::exit:
+		case MenuSelect::exit:
 			Menu::exitFlag = true;
 			break;
 		default:

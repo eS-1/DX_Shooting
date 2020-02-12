@@ -127,13 +127,36 @@ void GameUpdate()
 
 		if (isPose)
 		{
-			if ((keyInput::E & ~keyInput::old_E) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_2))
+			if (((keyInput::W & ~keyInput::old_W) ||
+				((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)) &&
+				poseSelection > PoseSelect::restart)
 			{
-				isPose = false;
+				int current = static_cast<int>(poseSelection);
+				poseSelection = static_cast<PoseSelect>(current - 1);
+				return;
 			}
-			else if ((keyInput::Q & ~keyInput::old_Q) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3))
+			else if (((keyInput::S & ~keyInput::old_S) ||
+				((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)) &&
+				poseSelection < PoseSelect::exit)
 			{
-				isQuit = true;
+				int current = static_cast<int>(poseSelection);
+				poseSelection = static_cast<PoseSelect>(current + 1);
+				return;
+			}
+			else if ((keyInput::space & ~keyInput::old_space) ||
+				     (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
+			{
+				switch (poseSelection)
+				{
+				case PoseSelect::restart:
+					isPose = false;
+					return;
+				case PoseSelect::exit:
+					isQuit = true;
+					break;
+				default:
+					break;
+				}
 			}
 			else
 			{
@@ -289,6 +312,8 @@ void GameUpdate()
 // ÉQÅ[ÉÄâÊñ ÇÃï`âÊ
 void GameDraw()
 {
+	using namespace mySetup;
+
 	// playerÇÃï`âÊ
 	if (obj::player != nullptr && !(obj::player->getRemoveFlag())) { obj::player->draw(); }
 
@@ -319,32 +344,30 @@ void GameDraw()
 		}
 	}
 
-	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "scoreÅF%d", mySetup::gameScore);
+	DrawFormatStringToHandle(0, 0, GetColor(255, 255, 255), obj::fontInGame, "scoreÅF%d", gameScore);
 	DrawFormatStringToHandle(0, 30, GetColor(255, 255, 255), obj::fontInGame, "remaining time: %d", remainingTime);
 
 	if (isGameOver)
 	{
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 8 + 30, mySetup::Y * 3 / 7 + 80,
-			"Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
+		DrawStringToHandle(X * 3 / 8, Y * 3 / 7, "Game Over", GetColor(255, 0, 0), obj::fontTitle);
+		DrawStringToHandle(X * 3 / 8 + 30, Y * 3 / 7 + 80, "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 		return;
 	}
 
 	if (isTimeOver)
 	{
-		DrawStringToHandle(mySetup::X * 3 / 8, mySetup::Y * 3 / 7, "Time Over", GetColor(0, 255, 0), obj::fontTitle);
-		DrawStringToHandle(mySetup::X * 3 / 8 + 30, mySetup::Y * 3 / 7 + 80,
-			               "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
+		DrawStringToHandle(X * 3 / 8, Y * 3 / 7, "Time Over", GetColor(0, 255, 0), obj::fontTitle);
+		DrawStringToHandle(X * 3 / 8 + 30, Y * 3 / 7 + 80, "Press Q to back menu", GetColor(255, 255, 255), obj::fontInGame);
 		return;
 	}
 
 	if (isPose)
 	{
-		DrawBox(mySetup::X / 4, mySetup::Y / 4, mySetup::X * 3 / 4, mySetup::Y * 3 / 4, GetColor(128, 128, 128), true);
-		DrawFormatStringToHandle(mySetup::X * 3 / 7, mySetup::Y / 4, GetColor(255, 255, 255), obj::fontInGame, "Pose Menu");
-		DrawFormatStringToHandle(mySetup::X / 3, mySetup::Y * 3 / 7,
-			GetColor(255, 255, 255), obj::fontInGame, "Q: back to main menu");
-		DrawFormatStringToHandle(mySetup::X / 3, mySetup::Y * 3 / 7 + 40,
-			GetColor(255, 255, 255), obj::fontInGame, "E: continue");
+		int stateSelect = static_cast<int>(poseSelection);
+		DrawBox(X / 4, Y / 4, X * 3 / 4, Y * 3 / 4, GetColor(128, 128, 128), true);
+		DrawFormatStringToHandle(X * 3 / 7, Y / 4, GetColor(255, 255, 255), obj::fontInGame, "Pose Menu");
+		DrawFormatStringToHandle(X / 3, Y * 3 / 7, GetColor(255, 255, 255), obj::fontInGame, "Continue");
+		DrawFormatStringToHandle(X / 3, Y * 3 / 7 + 40, GetColor(255, 255, 255), obj::fontInGame, "Back to Main Menu");
+		setup::drawCursor(X / 3 - 5, Y * 3 / 7 + 15 + (stateSelect * 40), GetColor(255, 255, 255), 1, 0);
 	}
 }

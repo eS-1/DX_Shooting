@@ -2,6 +2,12 @@
 #include <vector>
 
 
+enum class PoseSelect
+{
+	restart,
+	exit
+};
+
 namespace
 {
 	time_t startTime;
@@ -11,6 +17,7 @@ namespace
 	bool isGameOver;
 	bool isPose;
 	bool isQuit;
+	PoseSelect poseSelection;
 }
 
 void Game_Init();

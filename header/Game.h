@@ -8,18 +8,6 @@ enum class PoseSelect
 	exit
 };
 
-namespace
-{
-	time_t startTime;
-	time_t diffTime;
-	int remainingTime;
-	bool isTimeOver;
-	bool isGameOver;
-	bool isPose;
-	bool isQuit;
-	PoseSelect poseSelection;
-}
-
 void Game_Init();
 
 void GameUpdate();

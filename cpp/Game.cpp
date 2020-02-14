@@ -7,6 +7,18 @@
 #include "DxLib.h"
 
 
+namespace
+{
+	time_t startTime;
+	time_t diffTime;
+	int remainingTime;
+	bool isTimeOver;
+	bool isGameOver;
+	bool isPose;
+	bool isQuit;
+	PoseSelect poseSelection;
+}
+
 // 弾の全消去
 void EraseAllBullets()
 {
@@ -52,38 +64,32 @@ void Game_Init()
 	}
 
 	// 敵の生成
-	int rand_y;
+	int enemySpawn = 0;
+	double xInitPos = 0.0;
 	switch (mySetup::diff)
 	{
 	case difficulty::easy:
-		for (int i = 1; i < 6; i++)
-		{
-			rand_y = GetRand(100);
-			obj::enemys.emplace_back(new Enemy(myVector2(260.0 * i + 20, rand_y - 140.0)));
-		}
+		enemySpawn = 6;
+		xInitPos = 260.0;
 		break;
 	case difficulty::normal:
-		for (int i = 1; i < 8; i++)
-		{
-			rand_y = GetRand(100);
-			obj::enemys.emplace_back(new Enemy(myVector2(200.0 * i, rand_y - 140.0)));
-		}
+		enemySpawn = 8;
+		xInitPos = 200.0;
 		break;
 	case difficulty::hard:
-		for (int i = 1; i < 13; i++)
-		{
-			rand_y = GetRand(100);
-			obj::enemys.emplace_back(new Enemy(myVector2(130.0 * i - 50, rand_y - 140.0)));
-		}
+		enemySpawn = 13;
+		xInitPos = 130.0;
 		break;
 	case difficulty::extreme:
-		for (int i = 1; i < 16; i++)
-		{
-			rand_y = GetRand(100);
-			obj::enemys.emplace_back(new Enemy(myVector2(100.0 * i - 50, rand_y - 140.0)));
-		}
+		enemySpawn = 16;
+		xInitPos = 100.0;
 	default:
 		break;
+	}
+	for (int i = 1; i < enemySpawn; i++)
+	{
+		int rand_y = GetRand(100);
+		obj::enemys.emplace_back(new Enemy(myVector2(xInitPos * i + 20, rand_y - 140.0)));
 	}
 
 	// タイマーの初期化
@@ -157,6 +163,7 @@ void GameUpdate()
 				default:
 					break;
 				}
+				poseSelection = PoseSelect::restart;
 			}
 			else
 			{

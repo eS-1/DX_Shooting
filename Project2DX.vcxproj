@@ -154,6 +154,7 @@
     <ClCompile Include="cpp\Config.cpp" />
     <ClCompile Include="cpp\Enemy.cpp" />
     <ClCompile Include="cpp\Game.cpp" />
+    <ClCompile Include="cpp\Keyboard.cpp" />
     <ClCompile Include="cpp\Main.cpp" />
     <ClCompile Include="cpp\Menu.cpp" />
     <ClCompile Include="cpp\MyObject.cpp" />
@@ -170,6 +171,7 @@
     <ClInclude Include="header\Config.h" />
     <ClInclude Include="header\Enemy.h" />
     <ClInclude Include="header\Game.h" />
+    <ClInclude Include="header\Keyboard.h" />
     <ClInclude Include="header\Menu.h" />
     <ClInclude Include="header\MyObject.h" />
     <ClInclude Include="header\MyVector2D.h" />

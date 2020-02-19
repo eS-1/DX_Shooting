@@ -3,3 +3,5 @@
 #include <string>
 
 void SaveNameUpdate();
+
+void SaveNameUpdate();

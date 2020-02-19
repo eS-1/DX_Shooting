@@ -20,3 +20,8 @@ void SaveNameUpdate()
 	gameScore = 0;
 	SceneMgrChange(myScene::mySceneMenu);
 }
+
+void SaveNameUpdate()
+{
+	//
+}

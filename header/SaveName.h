@@ -4,4 +4,4 @@
 
 void SaveNameUpdate();
 
-void SaveNameUpdate();
+void SaveNameDraw();

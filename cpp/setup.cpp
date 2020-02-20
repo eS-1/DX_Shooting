@@ -16,22 +16,22 @@ std::vector<scorePair> mySetup::resultScores {
 
 difficulty mySetup::diff = difficulty::normal;
 
-int keyInput::W = 0;
-int keyInput::A = 0;
-int keyInput::S = 0;
-int keyInput::D = 0;
-int keyInput::E = 0;
-int keyInput::Q = 0;
-int keyInput::pad = 0;
-int keyInput::space = 0;
-int keyInput::old_W = 0;
-int keyInput::old_A = 0;
-int keyInput::old_S = 0;
-int keyInput::old_D = 0;
-int keyInput::old_E = 0;
-int keyInput::old_Q = 0;
+int keyInput::W         = 0;
+int keyInput::A         = 0;
+int keyInput::S         = 0;
+int keyInput::D         = 0;
+int keyInput::E         = 0;
+int keyInput::Q         = 0;
+int keyInput::pad       = 0;
+int keyInput::space     = 0;
+int keyInput::old_W     = 0;
+int keyInput::old_A     = 0;
+int keyInput::old_S     = 0;
+int keyInput::old_D     = 0;
+int keyInput::old_E     = 0;
+int keyInput::old_Q     = 0;
 int keyInput::old_space = 0;
-int keyInput::old_pad = 0;
+int keyInput::old_pad   = 0;
 
 
 std::string setup::NameOfDiff(difficulty diffi)

@@ -1,7 +1,7 @@
 #include "../header/Keyboard.h"
 
 
-MyKeyboard::MyKeyboard() : position(0.0, 0.0),
+MyKeyboard::MyKeyboard() : position(100.0, 100.0),
                            color(GetColor(128, 128, 128)),
 	                       size_x(700.0),
 	                       size_y(500.0)

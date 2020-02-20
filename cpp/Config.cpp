@@ -19,14 +19,14 @@ void ConfigUpdate()
 	int easy = static_cast<int>(difficulty::easy);
 	int extreme = static_cast<int>(difficulty::extreme);
 	
-	if ((keyInput::D & ~keyInput::old_D) ||
-		((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT) &&
+	if (((keyInput::D & ~keyInput::old_D) ||
+		((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)) &&
 		currentDiff < extreme)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff + 1);
 	}
-	else if ((keyInput::A & ~keyInput::old_A) ||
-		     ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT) &&
+	else if (((keyInput::A & ~keyInput::old_A) ||
+		     ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)) &&
 		     currentDiff > easy)
 	{
 		mySetup::diff = static_cast<difficulty>(currentDiff - 1);

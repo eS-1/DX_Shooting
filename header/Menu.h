@@ -7,7 +7,8 @@ enum class MenuSelect
 	start,
 	config,
 	result,
-	exit
+	exit,
+	keyboard,
 };
 
 namespace Menu

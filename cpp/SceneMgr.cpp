@@ -5,6 +5,7 @@
 #include "../header/Menu.h"
 #include "../header/Result.h"
 #include "../header/SaveName.h"
+#include "../header/TestKeyboard.h"
 
 
 namespace
@@ -41,6 +42,9 @@ void SceneMgrUpdate()
 	case myScene::mySceneSaveName:
 		SaveNameUpdate();
 		break;
+	case myScene::mySceneKeyboard:
+		KeyboardUpdate();
+		break;
 	}
 }
 
@@ -61,6 +65,12 @@ void SceneMgrDraw()
 		break;
 	case myScene::mySceneResult:
 		ResultDraw();
+		break;
+	case myScene::mySceneSaveName:
+		SaveNameDraw();
+		break;
+	case myScene::mySceneKeyboard:
+		KeyboardDraw();
 		break;
 	}
 }

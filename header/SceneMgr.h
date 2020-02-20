@@ -7,7 +7,8 @@ enum class myScene
 	mySceneGame,
 	mySceneConfig,
 	mySceneResult,
-	mySceneSaveName
+	mySceneSaveName,
+	mySceneKeyboard,
 };
 
 void SceneMgrUpdate();

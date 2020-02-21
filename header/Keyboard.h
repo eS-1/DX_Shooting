@@ -20,5 +20,9 @@ private:
 	myVector2 position;
 	double size_x;
 	double size_y;
-	unsigned int color;
+	double size_key_x;
+	double size_key_y;
+	double distance_key;
+	unsigned int color_base;
+	unsigned int color_keys;
 };

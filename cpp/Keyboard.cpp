@@ -3,7 +3,7 @@
 #include "../header/Objects.h"
 
 
-MyKeyboard::MyKeyboard() : position(100.0, 100.0),
+MyKeyboard::MyKeyboard() : position(200.0, 200.0),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -19,21 +19,57 @@ MyKeyboard::MyKeyboard() : position(100.0, 100.0),
 
 void MyKeyboard::update()
 {
-	if (keyInput::pad & PAD_INPUT_LEFT)
+	if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
 	{
-		cursor--;
+		if (cursor == 46)
+		{
+			cursor -= 4;
+		}
+		else if (cursor % 10 == 0)
+		{
+			cursor += 9;
+		}
+		else
+		{
+			cursor--;
+		}
 	}
-	else if (keyInput::pad & PAD_INPUT_RIGHT)
+	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)
 	{
-		cursor++;
+		if (cursor == 43)
+		{
+			cursor += 4;
+		}
+		else if (cursor % 10 == 9)
+		{
+			cursor -= 9;
+		}
+		else
+		{
+			cursor++;
+		}
 	}
-	else if (keyInput::pad & PAD_INPUT_UP)
+	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)
 	{
-		cursor -= 10;
+		if (cursor >= 0 && cursor < 10)
+		{
+			cursor += 50;
+		}
+		else
+		{
+			cursor -= 10;
+		}
 	}
-	else if (keyInput::pad & PAD_INPUT_DOWN)
+	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)
 	{
-		cursor += 10;
+		if (cursor > 49 && cursor < 60)
+		{
+			cursor -= 50;
+		}
+		else
+		{
+			cursor += 10;
+		}
 	}
 }
 
@@ -46,7 +82,7 @@ void MyKeyboard::draw()
 	double x_start = position.x + distance_key * 4.5;
 	double y_start = position.y + distance_key;
 	unsigned int draw_color;
-	for (int i = 0; i < 4; i++)
+	for (int i = 0; i < 6; i++)
 	{
 		for (int k = 0; k < 10; k++)
 		{
@@ -54,29 +90,15 @@ void MyKeyboard::draw()
 			{
 				draw_color = color_selected;
 			}
-			else
+			else if (i < 4)
 			{
 				draw_color = color_keys;
-			}
-			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
-			x_start += size_key_x + distance_key;
-		}
-		x_start = position.x + distance_key * 4.5;
-		y_start += size_key_y + distance_key;
-	}
-	for (int i = 0; i < 2; i++)
-	{
-		for (int k = 0; k < 10; k++)
-		{
-			if (cursor == k + 10 * i)
-			{
-				draw_color = color_selected;
 			}
 			else
 			{
 				draw_color = color_keys_others;
 			}
-			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, color_keys_others, true);
+			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
 			x_start += size_key_x + distance_key;
 		}
 		x_start = position.x + distance_key * 4.5;

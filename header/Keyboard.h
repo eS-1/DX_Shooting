@@ -14,8 +14,8 @@ public:
 	void draw();
 
 private:
-	const std::string KEYS_LOWER = "1234567890qwertyuiopasdfghjkl'zxcvbnm,.?";
-	const std::string KEYS_UPPER = "1234567890QWERTYUIOPASDFGHJKL'ZXCVBNM,.?";
+	const std::string KEYS_LOWER = "1234567890qwertyuiopasdfghjkl\'zxcvbnm,.?";
+	const std::string KEYS_UPPER = "1234567890QWERTYUIOPASDFGHJKL\"ZXCVBNM-_/";
 
 	myVector2 position;
 	double size_x;

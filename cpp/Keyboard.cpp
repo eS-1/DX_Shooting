@@ -80,6 +80,8 @@ void MyKeyboard::draw()
 
 	// draw keys
 	double x_start = position.x + distance_key * 4.5;
+	double x_start_space;
+	double x_end_space = size_key_x * 4 + distance_key * 3;
 	double y_start = position.y + distance_key;
 	unsigned int draw_color;
 	for (int i = 0; i < 6; i++)
@@ -98,6 +100,23 @@ void MyKeyboard::draw()
 			{
 				draw_color = color_keys_others;
 			}
+			// ‚±‚±‚©‚ç
+			if (k + 10 * i == 43)
+			{
+				DrawBox(x_start, y_start, x_start + x_end_space, y_start + size_key_y, draw_color, true);
+				x_start_space = x_start;
+				x_start += (size_key_x + distance_key) * 4;
+				continue;
+			}
+			else if (k + 10 * i > 43 && k + 10 * i < 47)
+			{
+				if (cursor > 43 && cursor < 47)
+				{
+					DrawBox(x_start_space, y_start, x_start_space + x_end_space, y_start + size_key_y, color_selected, true);
+				}
+				continue;
+			}
+			// ‚±‚±‚Ü‚ÅSpaceƒL[Žü‚è
 			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
 			x_start += size_key_x + distance_key;
 		}

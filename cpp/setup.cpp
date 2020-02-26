@@ -7,11 +7,11 @@ unsigned int mySetup::Y = 900;
 unsigned int mySetup::gameScore = 0;
 
 std::vector<scorePair> mySetup::resultScores { 
-	{0, std::string("No name")},
-    {0, std::string("No name")},
-    {0, std::string("No name")},
-    {0, std::string("No name")},
-    {0, std::string("No name")}
+	{0, "No name"},
+    {0, "No name"},
+    {0, "No name"},
+    {0, "No name"},
+    {0, "No name"}
 };
 
 difficulty mySetup::diff = difficulty::normal;
@@ -53,22 +53,22 @@ std::string setup::NameOfDiff(difficulty diffi)
 
 void setup::KeyInput()
 {
-	keyInput::old_W = keyInput::W;
-	keyInput::old_A = keyInput::A;
-	keyInput::old_S = keyInput::S;
-	keyInput::old_D = keyInput::D;
-	keyInput::old_E = keyInput::E;
-	keyInput::old_Q = keyInput::Q;
+	keyInput::old_W     = keyInput::W;
+	keyInput::old_A     = keyInput::A;
+	keyInput::old_S     = keyInput::S;
+	keyInput::old_D     = keyInput::D;
+	keyInput::old_E     = keyInput::E;
+	keyInput::old_Q     = keyInput::Q;
 	keyInput::old_space = keyInput::space;
-	keyInput::old_pad = keyInput::pad;
-	keyInput::W = CheckHitKey(KEY_INPUT_W);
-	keyInput::A = CheckHitKey(KEY_INPUT_A);
-	keyInput::S = CheckHitKey(KEY_INPUT_S);
-	keyInput::D = CheckHitKey(KEY_INPUT_D);
-	keyInput::E = CheckHitKey(KEY_INPUT_E);
-	keyInput::Q = CheckHitKey(KEY_INPUT_Q);
-	keyInput::space = CheckHitKey(KEY_INPUT_SPACE);
-	keyInput::pad = GetJoypadInputState(DX_INPUT_PAD1);
+	keyInput::old_pad   = keyInput::pad;
+	keyInput::W         = CheckHitKey(KEY_INPUT_W);
+	keyInput::A         = CheckHitKey(KEY_INPUT_A);
+	keyInput::S         = CheckHitKey(KEY_INPUT_S);
+	keyInput::D         = CheckHitKey(KEY_INPUT_D);
+	keyInput::E         = CheckHitKey(KEY_INPUT_E);
+	keyInput::Q         = CheckHitKey(KEY_INPUT_Q);
+	keyInput::space     = CheckHitKey(KEY_INPUT_SPACE);
+	keyInput::pad       = GetJoypadInputState(DX_INPUT_PAD1);
 }
 
 

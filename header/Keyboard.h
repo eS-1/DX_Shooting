@@ -1,7 +1,7 @@
 #pragma once
 #include <string>
-#include "DxLib.h"
 #include "MyVector2D.h"
+#include "setup.h"
 
 
 class MyKeyboard
@@ -18,6 +18,7 @@ private:
 	const std::string KEYS_UPPER = "1234567890QWERTYUIOPASDFGHJKL\"ZXCVBNM-_/";
 
 	myVector2 position;
+	keyboard_draw flag_draw_key;
 	double size_x;
 	double size_y;
 	double size_key_x;

@@ -1,3 +1,4 @@
+#include "DxLib.h"
 #include "../header/TestKeyboard.h"
 #include "../header/Objects.h"
 #include "../header/setup.h"

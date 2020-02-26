@@ -14,6 +14,13 @@ enum class difficulty
 	extreme
 };
 
+// キーボード描画
+enum class keyboard_draw
+{
+	lower,
+	upper
+};
+
 
 namespace mySetup
 {

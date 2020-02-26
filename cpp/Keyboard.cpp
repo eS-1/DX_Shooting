@@ -1,9 +1,11 @@
+#include "DxLib.h"
 #include "../header/Keyboard.h"
 #include "../header/setup.h"
 #include "../header/Objects.h"
 
 
 MyKeyboard::MyKeyboard() : position(200.0, 200.0),
+                           flag_draw_key(keyboard_draw::lower),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -71,6 +73,20 @@ void MyKeyboard::update()
 			cursor += 10;
 		}
 	}
+	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_11)
+	{
+		switch (flag_draw_key)
+		{
+		case keyboard_draw::lower:
+			flag_draw_key = keyboard_draw::upper;
+			break;
+		case keyboard_draw::upper:
+			flag_draw_key = keyboard_draw::lower;
+			break;
+		default:
+			break;
+		}
+	}
 }
 
 void MyKeyboard::draw()
@@ -127,12 +143,25 @@ void MyKeyboard::draw()
 	// draw key string
 	x_start = position.x + distance_key * 4.5;
 	y_start = position.y + distance_key;
+
+	std::string key_str;
+	switch (flag_draw_key)
+	{
+	case keyboard_draw::lower:
+		key_str = KEYS_LOWER;
+		break;
+	case keyboard_draw::upper:
+		key_str = KEYS_UPPER;
+		break;
+	default:
+		break;
+	}
 	for (int i = 0; i < 4; i++)
 	{
 		for (int k = 0; k < 10; k++)
 		{
-			std::string key_str = KEYS_LOWER.substr(k + 10 * i, 1);
-			DrawStringToHandle(x_start + 32, y_start + 8, key_str.c_str(), color_str, obj::fontInGame);
+			std::string key_char = key_str.substr(k + 10 * i, 1);
+			DrawStringToHandle(x_start + 32, y_start + 8, key_char.c_str(), color_str, obj::fontInGame);
 			x_start += size_key_x + distance_key;
 		}
 		x_start = position.x + distance_key * 4.5;

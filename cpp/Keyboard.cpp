@@ -73,7 +73,7 @@ void MyKeyboard::update()
 			cursor += 10;
 		}
 	}
-	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_11)
+	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_7)
 	{
 		switch (flag_draw_key)
 		{
@@ -162,6 +162,23 @@ void MyKeyboard::draw()
 		{
 			std::string key_char = key_str.substr(k + 10 * i, 1);
 			DrawStringToHandle(x_start + 32, y_start + 8, key_char.c_str(), color_str, obj::fontInGame);
+			x_start += size_key_x + distance_key;
+		}
+		x_start = position.x + distance_key * 4.5;
+		y_start += size_key_y + distance_key;
+	}
+	for (int i = 0; i < 2; i++)
+	{
+		for (int k = 0; k < 10; k++)
+		{
+			switch (k + 10 * i)
+			{
+			case 0:
+				DrawStringToHandle(x_start, y_start, "L2", color_str, obj::fontKeySmall);
+				break;
+			default:
+				break;
+			}
 			x_start += size_key_x + distance_key;
 		}
 		x_start = position.x + distance_key * 4.5;

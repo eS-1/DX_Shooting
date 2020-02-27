@@ -25,8 +25,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 	SetDrawScreen(DX_SCREEN_BACK);
 
 	// create fonts
-	obj::fontTitle = CreateFontToHandle(NULL, 80, 3, DX_FONTTYPE_ANTIALIASING);
-	obj::fontInGame = CreateFontToHandle(NULL, 30, 3, DX_FONTTYPE_ANTIALIASING);
+	obj::fontTitle    = CreateFontToHandle(NULL, 80, 3, DX_FONTTYPE_ANTIALIASING);
+	obj::fontInGame   = CreateFontToHandle(NULL, 30, 3, DX_FONTTYPE_ANTIALIASING);
+	obj::fontKeySmall = CreateFontToHandle(NULL, 20, 3, DX_FONTTYPE_ANTIALIASING);
 
 	Menu::exitFlag = false;
 
@@ -41,9 +42,9 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 		}
 	}
 
-
 	DeleteFontToHandle(obj::fontTitle);
 	DeleteFontToHandle(obj::fontInGame);
+	DeleteFontToHandle(obj::fontKeySmall);
 
 	DxLib_End();
 

@@ -15,4 +15,5 @@ namespace obj
 	extern MyKeyboard myKeyboard;
 	extern int fontTitle;
 	extern int fontInGame;
+	extern int fontKeySmall;
 }

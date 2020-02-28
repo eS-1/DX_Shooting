@@ -98,6 +98,7 @@ void MyKeyboard::draw()
 	double x_start = position.x + distance_key * 4.5;
 	double x_start_space;
 	double x_end_space = size_key_x * 4 + distance_key * 3;
+	double x_end_done = size_key_x * 2 + distance_key;
 	double y_start = position.y + distance_key;
 	unsigned int draw_color;
 	for (int i = 0; i < 6; i++)
@@ -133,6 +134,14 @@ void MyKeyboard::draw()
 				continue;
 			}
 			// ‚±‚±‚Ü‚ÅSpaceƒL[Žü‚è
+			else if (k + 10 * i == 58)
+			{
+				DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
+			}
+			else if (k + 10 * i == 59)
+			{
+				continue;
+			}
 			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
 			x_start += size_key_x + distance_key;
 		}
@@ -175,6 +184,15 @@ void MyKeyboard::draw()
 			{
 			case 0:
 				DrawStringToHandle(x_start, y_start, "L2", color_str, obj::fontKeySmall);
+				break;
+			case 12:
+				DrawStringToHandle(x_start, y_start, "L1", color_str, obj::fontKeySmall);
+				break;
+			case 13:
+				DrawStringToHandle(x_start, y_start, "R1", color_str, obj::fontKeySmall);
+				break;
+			case 18:
+				DrawStringToHandle(x_start, y_start, "R2", color_str, obj::fontKeySmall);
 				break;
 			default:
 				break;

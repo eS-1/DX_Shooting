@@ -23,9 +23,13 @@ void MyKeyboard::update()
 {
 	if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
 	{
-		if (cursor == 46)
+		if (cursor == 59)
 		{
-			cursor -= 4;
+			cursor -= 2;
+		}
+		else if (cursor >= 43 && cursor <= 46)
+		{
+			cursor = 42;
 		}
 		else if (cursor % 10 == 0)
 		{
@@ -38,9 +42,13 @@ void MyKeyboard::update()
 	}
 	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)
 	{
-		if (cursor == 43)
+		if (cursor == 58)
 		{
-			cursor += 4;
+			cursor -= 8;
+		}
+		else if (cursor >= 43 && cursor <= 46)
+		{
+			cursor = 47;
 		}
 		else if (cursor % 10 == 9)
 		{
@@ -137,9 +145,15 @@ void MyKeyboard::draw()
 			else if (k + 10 * i == 58)
 			{
 				DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
+				// x_start += size_key_x + distance_key;
+				continue;
 			}
 			else if (k + 10 * i == 59)
 			{
+				if (cursor == 59)
+				{
+					DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
+				}
 				continue;
 			}
 			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);

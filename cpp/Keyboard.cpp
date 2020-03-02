@@ -11,6 +11,7 @@ MyKeyboard::MyKeyboard() : position(200.0, 200.0),
 	                       color_keys_others(GetColor(80, 80, 80)),
 	                       color_selected(GetColor(150, 150, 150)),
 	                       color_str(GetColor(255, 255, 255)),
+	                       color_black(GetColor(0, 0, 0)),
 	                       size_x(940.0),
 	                       size_y(370.0),
 	                       size_key_x(80.0),
@@ -125,7 +126,7 @@ void MyKeyboard::draw()
 			{
 				draw_color = color_keys_others;
 			}
-			// Ç±Ç±Ç©ÇÁ
+			// SpaceÇ±Ç±Ç©ÇÁ
 			if (k + 10 * i == 43)
 			{
 				DrawBox(x_start, y_start, x_start + x_end_space, y_start + size_key_y, draw_color, true);
@@ -141,11 +142,26 @@ void MyKeyboard::draw()
 				}
 				continue;
 			}
-			// Ç±Ç±Ç‹Ç≈SpaceÉLÅ[é¸ÇË
+			// SpaceÇ±Ç±Ç‹Ç≈
+			// DeleteÇ±Ç±Ç©ÇÁ
+			else if (k + 10 * i == 48)
+			{
+				DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
+				continue;
+			}
+			else if (k + 10 * i == 49)
+			{
+				if (cursor == 49)
+				{
+					DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
+				}
+				continue;
+			}
+			// DeleteÇ±Ç±Ç‹Ç≈
+			// EnterÇ±Ç±Ç©ÇÁ
 			else if (k + 10 * i == 58)
 			{
 				DrawBox(x_start, y_start, x_start + x_end_done, y_start + size_key_y, draw_color, true);
-				// x_start += size_key_x + distance_key;
 				continue;
 			}
 			else if (k + 10 * i == 59)
@@ -156,6 +172,7 @@ void MyKeyboard::draw()
 				}
 				continue;
 			}
+			// EnterÇ±Ç±Ç‹Ç≈
 			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
 			x_start += size_key_x + distance_key;
 		}
@@ -194,19 +211,35 @@ void MyKeyboard::draw()
 	{
 		for (int k = 0; k < 10; k++)
 		{
+			double x_tri = x_start + 33.0;
+			double y_tri = y_start + 27.0;
 			switch (k + 10 * i)
 			{
 			case 0:
-				DrawStringToHandle(x_start, y_start, "L2", color_str, obj::fontKeySmall);
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
+				DrawStringToHandle(x_start + 5, y_start + 3, "L2", color_str, obj::fontKeySmall);
+				break;
+			case 3:
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
+				DrawStringToHandle(x_start + x_end_space / 2 - 40, y_start + 10, "Space", color_str, obj::fontInGame);
+				break;
+			case 8:
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
 				break;
 			case 12:
-				DrawStringToHandle(x_start, y_start, "L1", color_str, obj::fontKeySmall);
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
+				DrawStringToHandle(x_start + 5, y_start + 3, "L1", color_str, obj::fontKeySmall);
+				DrawTriangle(x_tri, y_tri, x_tri + 14 * sqrt(3.0), y_tri - 14, x_tri + 14 * sqrt(3.0), y_tri + 14, color_str, 1);
 				break;
 			case 13:
-				DrawStringToHandle(x_start, y_start, "R1", color_str, obj::fontKeySmall);
+				x_tri += 30.0;
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
+				DrawStringToHandle(x_start + 5, y_start + 3, "R1", color_str, obj::fontKeySmall);
+				DrawTriangle(x_tri, y_tri, x_tri - 14 * sqrt(3.0), y_tri - 14, x_tri - 14 * sqrt(3.0), y_tri + 14, color_str, 1);
 				break;
 			case 18:
-				DrawStringToHandle(x_start, y_start, "R2", color_str, obj::fontKeySmall);
+				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
+				DrawStringToHandle(x_start + 5, y_start + 3, "R2", color_str, obj::fontKeySmall);
 				break;
 			default:
 				break;

@@ -29,5 +29,6 @@ private:
 	unsigned int color_keys_others;
 	unsigned int color_selected;
 	unsigned int color_str;
+	unsigned int color_black;
 	unsigned int cursor;
 };

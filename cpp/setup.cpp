@@ -16,22 +16,26 @@ std::vector<scorePair> mySetup::resultScores {
 
 difficulty mySetup::diff = difficulty::normal;
 
-int keyInput::W         = 0;
-int keyInput::A         = 0;
-int keyInput::S         = 0;
-int keyInput::D         = 0;
-int keyInput::E         = 0;
-int keyInput::Q         = 0;
-int keyInput::pad       = 0;
-int keyInput::space     = 0;
-int keyInput::old_W     = 0;
-int keyInput::old_A     = 0;
-int keyInput::old_S     = 0;
-int keyInput::old_D     = 0;
-int keyInput::old_E     = 0;
-int keyInput::old_Q     = 0;
-int keyInput::old_space = 0;
-int keyInput::old_pad   = 0;
+int keyInput::W            = 0;
+int keyInput::A            = 0;
+int keyInput::S            = 0;
+int keyInput::D            = 0;
+int keyInput::E            = 0;
+int keyInput::Q            = 0;
+int keyInput::pad          = 0;
+int keyInput::space        = 0;
+int keyInput::analog_x     = 0;
+int keyInput::analog_y     = 0;
+int keyInput::old_W        = 0;
+int keyInput::old_A        = 0;
+int keyInput::old_S        = 0;
+int keyInput::old_D        = 0;
+int keyInput::old_E        = 0;
+int keyInput::old_Q        = 0;
+int keyInput::old_space    = 0;
+int keyInput::old_pad      = 0;
+int keyInput::old_analog_x = 0;
+int keyInput::old_analog_y = 0;
 
 
 std::string setup::NameOfDiff(difficulty diffi)
@@ -53,22 +57,26 @@ std::string setup::NameOfDiff(difficulty diffi)
 
 void setup::KeyInput()
 {
-	keyInput::old_W     = keyInput::W;
-	keyInput::old_A     = keyInput::A;
-	keyInput::old_S     = keyInput::S;
-	keyInput::old_D     = keyInput::D;
-	keyInput::old_E     = keyInput::E;
-	keyInput::old_Q     = keyInput::Q;
-	keyInput::old_space = keyInput::space;
-	keyInput::old_pad   = keyInput::pad;
-	keyInput::W         = CheckHitKey(KEY_INPUT_W);
-	keyInput::A         = CheckHitKey(KEY_INPUT_A);
-	keyInput::S         = CheckHitKey(KEY_INPUT_S);
-	keyInput::D         = CheckHitKey(KEY_INPUT_D);
-	keyInput::E         = CheckHitKey(KEY_INPUT_E);
-	keyInput::Q         = CheckHitKey(KEY_INPUT_Q);
-	keyInput::space     = CheckHitKey(KEY_INPUT_SPACE);
-	keyInput::pad       = GetJoypadInputState(DX_INPUT_PAD1);
+	using namespace keyInput;
+	old_W        = W;
+	old_A        = A;
+	old_S        = S;
+	old_D        = D;
+	old_E        = E;
+	old_Q        = Q;
+	old_space    = space;
+	old_pad      = pad;
+	old_analog_x = analog_x;
+	old_analog_y = analog_y;
+	W            = CheckHitKey(KEY_INPUT_W);
+	A            = CheckHitKey(KEY_INPUT_A);
+	S            = CheckHitKey(KEY_INPUT_S);
+	D            = CheckHitKey(KEY_INPUT_D);
+	E            = CheckHitKey(KEY_INPUT_E);
+	Q            = CheckHitKey(KEY_INPUT_Q);
+	space        = CheckHitKey(KEY_INPUT_SPACE);
+	pad          = GetJoypadInputState(DX_INPUT_PAD1);
+	GetJoypadAnalogInput(&analog_x, &analog_y, DX_INPUT_PAD1);
 }
 
 

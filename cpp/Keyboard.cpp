@@ -22,6 +22,8 @@ MyKeyboard::MyKeyboard() : position(200.0, 200.0),
 
 void MyKeyboard::update()
 {
+	position.x += keyInput::analog_x / 100;
+	position.y += keyInput::analog_y / 100;
 	if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
 	{
 		if (cursor == 59)
@@ -240,6 +242,7 @@ void MyKeyboard::draw()
 			case 18:
 				DrawBox(x_start, y_start, x_start + 30, y_start + 25, color_black, true);
 				DrawStringToHandle(x_start + 5, y_start + 3, "R2", color_str, obj::fontKeySmall);
+				DrawStringToHandle(x_start + 55, y_start + 10, "Done", color_str, obj::fontInGame);
 				break;
 			default:
 				break;

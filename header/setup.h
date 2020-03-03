@@ -45,8 +45,10 @@ namespace keyInput
 	extern int D;
 	extern int E;
 	extern int Q;
-	extern int space;
 	extern int pad;
+	extern int space;
+	extern int analog_x;
+	extern int analog_y;
 
 	extern int old_W;
 	extern int old_A;
@@ -56,6 +58,8 @@ namespace keyInput
 	extern int old_Q;
 	extern int old_space;
 	extern int old_pad;
+	extern int old_analog_x;
+	extern int old_analog_y;
 };
 
 

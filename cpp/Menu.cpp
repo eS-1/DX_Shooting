@@ -19,15 +19,15 @@ void MenuUpdate()
 {
 	setup::KeyInput();
 
-	if (((keyInput::W & ~keyInput::old_W) ||
-		((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)) &&
+	if (((Input::W & ~Input::old_W) ||
+		((Input::pad & ~Input::old_pad) & PAD_INPUT_UP)) &&
 		selection > MenuSelect::start)
 	{
 		int current = static_cast<int>(selection);
 		selection = static_cast<MenuSelect>(current - 1);
 	}
-	else if (((keyInput::S & ~keyInput::old_S) ||
-		     ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)) &&
+	else if (((Input::S & ~Input::old_S) ||
+		     ((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)) &&
 		     selection < MenuSelect::keyboard)
 	{
 		int current = static_cast<int>(selection);
@@ -35,7 +35,7 @@ void MenuUpdate()
 	}
 
 	// ŠeƒV[ƒ“‚É‘JˆÚ
-	if ((keyInput::space & ~keyInput::old_space) || (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
+	if ((Input::space & ~Input::old_space) || (Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 	{
 		switch (selection)
 		{

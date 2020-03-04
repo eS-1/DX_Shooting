@@ -8,7 +8,7 @@
 void KeyboardUpdate()
 {
 	setup::KeyInput();
-	if (keyInput::Q != 0 || (keyInput::pad & PAD_INPUT_2))
+	if (Input::Q != 0)
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}
@@ -17,5 +17,26 @@ void KeyboardUpdate()
 
 void KeyboardDraw()
 {
+	using namespace Input;
 	obj::myKeyboard.draw();
+
+	// パッドの入力テスト
+	GetJoypadDirectInputState(DX_INPUT_PAD1, &pad_input);
+
+	int Color = GetColor(255, 255, 255);
+	DrawFormatString(0, 0, Color, "X:%d Y:%d Z:%d",
+		pad_input.X, pad_input.Y, pad_input.Z);
+	DrawFormatString(0, 16, Color, "Rx:%d Ry:%d Rz:%d",
+		pad_input.Rx, pad_input.Ry, pad_input.Rz);
+	DrawFormatString(0, 32, Color, "Slider 0:%d 1:%d",
+		pad_input.Slider[0], pad_input.Slider[1]);
+	DrawFormatString(0, 48, Color, "POV 0:%d 1:%d 2:%d 3:%d",
+		pad_input.POV[0], pad_input.POV[1],
+		pad_input.POV[2], pad_input.POV[3]);
+	DrawString(0, 64, "Button", Color);
+	for (int i = 0; i < 32; i++)
+	{
+		DrawFormatString(64 + i % 8 * 64, 64 + i / 8 * 16, Color,
+			"%2d:%d", i, pad_input.Buttons[i]);
+	}
 }

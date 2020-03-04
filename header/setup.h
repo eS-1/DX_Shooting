@@ -1,6 +1,7 @@
 #pragma once
 #include <vector>
 #include <string>
+#include "DxLib.h"
 
 
 using scorePair = std::pair<unsigned int, std::string>;
@@ -37,8 +38,9 @@ namespace mySetup
 };
 
 
-namespace keyInput
+namespace Input
 {
+	extern DINPUT_JOYSTATE pad_input;
 	extern int W;
 	extern int A;
 	extern int S;
@@ -47,8 +49,10 @@ namespace keyInput
 	extern int Q;
 	extern int pad;
 	extern int space;
-	extern int analog_x;
-	extern int analog_y;
+	extern int analog_LX;
+	extern int analog_LY;
+	extern int analog_RX;
+	extern int analog_RY;
 
 	extern int old_W;
 	extern int old_A;
@@ -58,8 +62,6 @@ namespace keyInput
 	extern int old_Q;
 	extern int old_space;
 	extern int old_pad;
-	extern int old_analog_x;
-	extern int old_analog_y;
 };
 
 

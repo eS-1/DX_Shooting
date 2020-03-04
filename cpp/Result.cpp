@@ -10,7 +10,7 @@ void ResultUpdate()
 {
 	setup::KeyInput();
 
-	if (keyInput::Q != 0 || (keyInput::pad & PAD_INPUT_2))
+	if (Input::Q != 0 || (Input::pad & PAD_INPUT_2))
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}

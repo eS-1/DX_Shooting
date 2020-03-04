@@ -1,5 +1,4 @@
 #include "../header/setup.h"
-#include "DxLib.h"
 
 
 unsigned int mySetup::X = 1600;
@@ -16,26 +15,28 @@ std::vector<scorePair> mySetup::resultScores {
 
 difficulty mySetup::diff = difficulty::normal;
 
-int keyInput::W            = 0;
-int keyInput::A            = 0;
-int keyInput::S            = 0;
-int keyInput::D            = 0;
-int keyInput::E            = 0;
-int keyInput::Q            = 0;
-int keyInput::pad          = 0;
-int keyInput::space        = 0;
-int keyInput::analog_x     = 0;
-int keyInput::analog_y     = 0;
-int keyInput::old_W        = 0;
-int keyInput::old_A        = 0;
-int keyInput::old_S        = 0;
-int keyInput::old_D        = 0;
-int keyInput::old_E        = 0;
-int keyInput::old_Q        = 0;
-int keyInput::old_space    = 0;
-int keyInput::old_pad      = 0;
-int keyInput::old_analog_x = 0;
-int keyInput::old_analog_y = 0;
+DINPUT_JOYSTATE Input::pad_input;
+
+int Input::W           = 0;
+int Input::A           = 0;
+int Input::S           = 0;
+int Input::D           = 0;
+int Input::E           = 0;
+int Input::Q           = 0;
+int Input::pad         = 0;
+int Input::space       = 0;
+int Input::analog_LX   = 0;
+int Input::analog_LY   = 0;
+int Input::analog_RX   = 0;
+int Input::analog_RY   = 0;
+int Input::old_W       = 0;
+int Input::old_A       = 0;
+int Input::old_S       = 0;
+int Input::old_D       = 0;
+int Input::old_E       = 0;
+int Input::old_Q       = 0;
+int Input::old_space   = 0;
+int Input::old_pad     = 0;
 
 
 std::string setup::NameOfDiff(difficulty diffi)
@@ -57,7 +58,7 @@ std::string setup::NameOfDiff(difficulty diffi)
 
 void setup::KeyInput()
 {
-	using namespace keyInput;
+	using namespace Input;
 	old_W        = W;
 	old_A        = A;
 	old_S        = S;
@@ -66,8 +67,6 @@ void setup::KeyInput()
 	old_Q        = Q;
 	old_space    = space;
 	old_pad      = pad;
-	old_analog_x = analog_x;
-	old_analog_y = analog_y;
 	W            = CheckHitKey(KEY_INPUT_W);
 	A            = CheckHitKey(KEY_INPUT_A);
 	S            = CheckHitKey(KEY_INPUT_S);
@@ -76,7 +75,11 @@ void setup::KeyInput()
 	Q            = CheckHitKey(KEY_INPUT_Q);
 	space        = CheckHitKey(KEY_INPUT_SPACE);
 	pad          = GetJoypadInputState(DX_INPUT_PAD1);
-	GetJoypadAnalogInput(&analog_x, &analog_y, DX_INPUT_PAD1);
+	GetJoypadDirectInputState(DX_INPUT_PAD1, &pad_input);
+	analog_LX = pad_input.X;
+	analog_LY = pad_input.Y;
+	analog_RX = pad_input.Z;
+	analog_RY = pad_input.Rz;
 }
 
 

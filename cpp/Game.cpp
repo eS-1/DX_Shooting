@@ -117,14 +117,14 @@ void GameUpdate()
 
 	if (isGameOver || isTimeOver)
 	{
-		if ((keyInput::Q & ~keyInput::old_Q) || ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_10))
+		if ((Input::Q & ~Input::old_Q) || ((Input::pad & ~Input::old_pad) & PAD_INPUT_10))
 		{
 			isQuit = true;
 		}
 	}
 	else
 	{
-		if (!isPose && (keyInput::Q || (keyInput::pad & PAD_INPUT_10)))
+		if (!isPose && (Input::Q || (Input::pad & PAD_INPUT_10)))
 		{
 			// ポーズ画面のフラグを建てる
 			isPose = true;
@@ -133,24 +133,24 @@ void GameUpdate()
 
 		if (isPose)
 		{
-			if (((keyInput::W & ~keyInput::old_W) ||
-				((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)) &&
+			if (((Input::W & ~Input::old_W) ||
+				((Input::pad & ~Input::old_pad) & PAD_INPUT_UP)) &&
 				poseSelection > PoseSelect::restart)
 			{
 				int current = static_cast<int>(poseSelection);
 				poseSelection = static_cast<PoseSelect>(current - 1);
 				return;
 			}
-			else if (((keyInput::S & ~keyInput::old_S) ||
-				((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)) &&
+			else if (((Input::S & ~Input::old_S) ||
+				((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)) &&
 				poseSelection < PoseSelect::exit)
 			{
 				int current = static_cast<int>(poseSelection);
 				poseSelection = static_cast<PoseSelect>(current + 1);
 				return;
 			}
-			else if ((keyInput::space & ~keyInput::old_space) ||
-				     (keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_3)
+			else if ((Input::space & ~Input::old_space) ||
+				     (Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 			{
 				switch (poseSelection)
 				{

@@ -4,7 +4,7 @@
 #include "../header/Objects.h"
 
 
-MyKeyboard::MyKeyboard() : position(200.0, 200.0),
+MyKeyboard::MyKeyboard() : position(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
@@ -22,9 +22,9 @@ MyKeyboard::MyKeyboard() : position(200.0, 200.0),
 
 void MyKeyboard::update()
 {
-	position.x += keyInput::analog_x / 100;
-	position.y += keyInput::analog_y / 100;
-	if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_LEFT)
+	position.x += Input::analog_RX / 100;
+	position.y += Input::analog_RY / 100;
+	if ((Input::pad & ~Input::old_pad) & PAD_INPUT_LEFT)
 	{
 		if (cursor == 59)
 		{
@@ -43,7 +43,7 @@ void MyKeyboard::update()
 			cursor--;
 		}
 	}
-	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_RIGHT)
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_RIGHT)
 	{
 		if (cursor == 58)
 		{
@@ -62,7 +62,7 @@ void MyKeyboard::update()
 			cursor++;
 		}
 	}
-	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_UP)
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_UP)
 	{
 		if (cursor >= 0 && cursor < 10)
 		{
@@ -73,7 +73,7 @@ void MyKeyboard::update()
 			cursor -= 10;
 		}
 	}
-	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_DOWN)
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)
 	{
 		if (cursor > 49 && cursor < 60)
 		{
@@ -84,7 +84,7 @@ void MyKeyboard::update()
 			cursor += 10;
 		}
 	}
-	else if ((keyInput::pad & ~keyInput::old_pad) & PAD_INPUT_7)
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{
 		switch (flag_draw_key)
 		{

@@ -25,15 +25,10 @@ enum class keyboard_draw
 
 namespace mySetup
 {
-	// 画面サイズのx成分
 	extern unsigned int X;
-	// 画面サイズのy成分
 	extern unsigned int Y;
-	// ゲーム画面のスコア
 	extern unsigned int gameScore;
-	// リザルト画面で表示するスコア
 	extern std::vector<scorePair> resultScores;
-	// ゲームの難易度
 	extern difficulty diff;
 };
 

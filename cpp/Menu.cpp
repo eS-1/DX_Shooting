@@ -20,18 +20,30 @@ void MenuUpdate()
 	setup::KeyInput();
 
 	if (((Input::W & ~Input::old_W) ||
-		((Input::pad & ~Input::old_pad) & PAD_INPUT_UP)) &&
-		selection > MenuSelect::start)
+		((Input::pad & ~Input::old_pad) & PAD_INPUT_UP)))
 	{
 		int current = static_cast<int>(selection);
-		selection = static_cast<MenuSelect>(current - 1);
+		if (selection > MenuSelect::start)
+		{
+			selection = static_cast<MenuSelect>(current - 1);
+		}
+		else
+		{
+			selection = MenuSelect::keyboard;
+		}
 	}
 	else if (((Input::S & ~Input::old_S) ||
-		     ((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)) &&
-		     selection < MenuSelect::keyboard)
+		     ((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)))
 	{
 		int current = static_cast<int>(selection);
-		selection = static_cast<MenuSelect>(current + 1);
+		if (selection < MenuSelect::keyboard)
+		{
+			selection = static_cast<MenuSelect>(current + 1);
+		}
+		else
+		{
+			selection = MenuSelect::start;
+		}
 	}
 
 	// 各シーンに遷移
@@ -67,12 +79,13 @@ void MenuDraw()
 	using namespace mySetup;
 
 	int stateSelect = static_cast<int>(selection);
+	int color_white = GetColor(255, 255, 255);
 
-	DrawStringToHandle(X * 5 / 16, Y / 3, "Simple Shooter 2D", GetColor(255, 255, 255), obj::fontTitle);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 200, "ゲーム開始", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 240, "設定", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 280, "リザルト", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 320, "ゲーム終了", GetColor(255, 255, 255), obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 360, "keyboard test", GetColor(255, 255, 255), obj::fontInGame);
-	setup::drawCursor(X * 4 / 9 - 15, Y / 3 + 215 + (stateSelect * 40), GetColor(255, 255, 255), 1, 0);
+	DrawStringToHandle(X * 5 / 16, Y / 3, "Simple Shooter 2D", color_white, obj::fontTitle);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 200, "ゲーム開始", color_white, obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 240, "設定", color_white, obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 280, "リザルト", color_white, obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 320, "ゲーム終了", color_white, obj::fontInGame);
+	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 360, "keyboard test", color_white, obj::fontInGame);
+	setup::drawCursor(X * 4 / 9 - 15, Y / 3 + 215 + (stateSelect * 40), color_white, 1, 0);
 }

@@ -19,6 +19,7 @@ private:
 
 	myVector2 position;
 	keyboard_draw flag_draw_key;
+	std::string typed;
 	double size_x;
 	double size_y;
 	double size_key_x;

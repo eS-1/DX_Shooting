@@ -6,6 +6,7 @@
 
 MyKeyboard::MyKeyboard() : position(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
+	                       typed("test"),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -252,4 +253,6 @@ void MyKeyboard::draw()
 		x_start = position.x + distance_key * 4.5;
 		y_start += size_key_y + distance_key;
 	}
+
+	DrawStringToHandle(position.x + 50, position.y - 40, typed.c_str(), color_str, obj::fontInGame);
 }

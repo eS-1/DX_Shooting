@@ -6,7 +6,7 @@
 
 MyKeyboard::MyKeyboard() : position(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
-	                       typed("test"),
+	                       typed(""),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -84,6 +84,10 @@ void MyKeyboard::update()
 		{
 			cursor += 10;
 		}
+	}
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_2)
+	{
+		typed.append(KEYS_LOWER.at(cursor));
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{

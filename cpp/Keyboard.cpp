@@ -85,9 +85,13 @@ void MyKeyboard::update()
 			cursor += 10;
 		}
 	}
-	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_2)
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 	{
-		typed.append(KEYS_LOWER.at(cursor));
+		typed += KEYS_LOWER.at(cursor);
+	}
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_1)
+	{
+		typed.pop_back();
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{

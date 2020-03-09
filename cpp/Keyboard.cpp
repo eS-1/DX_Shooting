@@ -87,7 +87,17 @@ void MyKeyboard::update()
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 	{
-		typed += KEYS_LOWER.at(cursor);
+		switch (flag_draw_key)
+		{
+		case keyboard_draw::lower:
+			typed += KEYS_LOWER.at(cursor);
+			break;
+		case keyboard_draw::upper:
+			typed += KEYS_UPPER.at(cursor);
+			break;
+		default:
+			break;
+		}
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_1)
 	{

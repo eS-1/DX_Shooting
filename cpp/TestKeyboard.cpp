@@ -8,7 +8,7 @@
 void KeyboardUpdate()
 {
 	setup::KeyInput();
-	if (Input::Q != 0)
+	if ((Input::pad & ~Input::old_pad) & PAD_INPUT_2)
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}
@@ -21,8 +21,6 @@ void KeyboardDraw()
 	obj::myKeyboard.draw();
 
 	// パッドの入力テスト
-	GetJoypadDirectInputState(DX_INPUT_PAD1, &pad_input);
-
 	int Color = GetColor(255, 255, 255);
 	DrawFormatString(0, 0, Color, "X:%d Y:%d Z:%d",
 		pad_input.X, pad_input.Y, pad_input.Z);

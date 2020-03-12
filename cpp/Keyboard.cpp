@@ -21,6 +21,11 @@ MyKeyboard::MyKeyboard() : position(400.0, 400.0),
 	                       cursor(0)
 {}
 
+std::string MyKeyboard::get_typed()
+{
+	return typed;
+}
+
 void MyKeyboard::update()
 {
 	position.x += Input::analog_RX / 100;
@@ -87,21 +92,31 @@ void MyKeyboard::update()
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 	{
-		switch (flag_draw_key)
+		if (cursor >= 0 && cursor < 40)
 		{
-		case keyboard_draw::lower:
-			typed += KEYS_LOWER.at(cursor);
-			break;
-		case keyboard_draw::upper:
-			typed += KEYS_UPPER.at(cursor);
-			break;
-		default:
-			break;
+			switch (flag_draw_key)
+			{
+			case keyboard_draw::lower:
+				typed += KEYS_LOWER.at(cursor);
+				break;
+			case keyboard_draw::upper:
+				typed += KEYS_UPPER.at(cursor);
+				break;
+			default:
+				break;
+			}
+		}
+		else if (cursor > 42 && cursor < 47)
+		{
+			typed += " ";
 		}
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_1)
 	{
-		typed.pop_back();
+		if (!typed.empty())
+		{
+			typed.pop_back();
+		}
 	}
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{

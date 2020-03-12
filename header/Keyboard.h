@@ -10,6 +10,7 @@ public:
 	MyKeyboard();
 	~MyKeyboard() = default;
 
+	std::string get_typed();
 	void update();
 	void draw();
 

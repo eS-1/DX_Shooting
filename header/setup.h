@@ -36,6 +36,7 @@ namespace mySetup
 namespace Input
 {
 	extern DINPUT_JOYSTATE pad_input;
+	extern int is_key_hit;
 	extern int W;
 	extern int A;
 	extern int S;

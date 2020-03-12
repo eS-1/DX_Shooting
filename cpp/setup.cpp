@@ -17,6 +17,7 @@ difficulty mySetup::diff = difficulty::normal;
 
 DINPUT_JOYSTATE Input::pad_input;
 
+int Input::is_key_hit  = 0;
 int Input::W           = 0;
 int Input::A           = 0;
 int Input::S           = 0;
@@ -67,6 +68,7 @@ void setup::KeyInput()
 	old_Q        = Q;
 	old_space    = space;
 	old_pad      = pad;
+	is_key_hit   = CheckHitKeyAll();
 	W            = CheckHitKey(KEY_INPUT_W);
 	A            = CheckHitKey(KEY_INPUT_A);
 	S            = CheckHitKey(KEY_INPUT_S);

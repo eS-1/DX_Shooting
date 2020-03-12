@@ -28,6 +28,7 @@ std::string MyKeyboard::get_typed()
 
 void MyKeyboard::update()
 {
+	char key = GetInputChar(1);
 	position.x += Input::analog_RX / 100;
 	position.y += Input::analog_RY / 100;
 	if ((Input::pad & ~Input::old_pad) & PAD_INPUT_LEFT)
@@ -132,6 +133,17 @@ void MyKeyboard::update()
 			break;
 		}
 	}
+	else if (key != 0)
+	{
+	    if (key == CTRL_CODE_BS && !typed.empty())
+		{
+			typed.pop_back();
+		}
+		else if (key >= CTRL_CODE_CMP)
+		{
+			typed += key;
+		}
+    }
 }
 
 void MyKeyboard::draw()

@@ -11,16 +11,17 @@ public:
 	~MyKeyboard() = default;
 
 	std::string get_typed();
+	bool get_flag_enter();
 	void update();
 	void draw();
 
 private:
 	const std::string KEYS_LOWER = "1234567890qwertyuiopasdfghjkl\'zxcvbnm,.?";
 	const std::string KEYS_UPPER = "1234567890QWERTYUIOPASDFGHJKL\"ZXCVBNM-_/";
-
 	myVector2 position;
 	keyboard_draw flag_draw_key;
 	std::string typed;
+	bool flag_enter;
 	double size_x;
 	double size_y;
 	double size_key_x;
@@ -33,4 +34,6 @@ private:
 	unsigned int color_str;
 	unsigned int color_black;
 	unsigned int cursor;
+
+	void switch_shift();
 };

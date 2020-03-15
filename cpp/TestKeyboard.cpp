@@ -37,4 +37,8 @@ void KeyboardDraw()
 		DrawFormatString(64 + i % 8 * 64, 64 + i / 8 * 16, Color,
 			"%2d:%d", i, pad_input.Buttons[i]);
 	}
+	if (obj::myKeyboard.get_flag_enter())
+	{
+		DrawString(200, 0, "pushed enter", Color);
+	}
 }

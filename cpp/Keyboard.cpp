@@ -7,6 +7,7 @@
 MyKeyboard::MyKeyboard() : position(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
 	                       typed(""),
+	                       flag_enter(false),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -24,6 +25,26 @@ MyKeyboard::MyKeyboard() : position(400.0, 400.0),
 std::string MyKeyboard::get_typed()
 {
 	return typed;
+}
+
+bool MyKeyboard::get_flag_enter()
+{
+	return flag_enter;
+}
+
+void MyKeyboard::switch_shift()
+{
+	switch (flag_draw_key)
+	{
+	case keyboard_draw::lower:
+		flag_draw_key = keyboard_draw::upper;
+		break;
+	case keyboard_draw::upper:
+		flag_draw_key = keyboard_draw::lower;
+		break;
+	default:
+		break;
+	}
 }
 
 void MyKeyboard::update()
@@ -91,6 +112,7 @@ void MyKeyboard::update()
 			cursor += 10;
 		}
 	}
+	// ○ボタン
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_3)
 	{
 		if (cursor >= 0 && cursor < 40)
@@ -107,11 +129,20 @@ void MyKeyboard::update()
 				break;
 			}
 		}
+		else if (cursor == 40)
+		{
+			switch_shift();
+		}
 		else if (cursor > 42 && cursor < 47)
 		{
 			typed += " ";
 		}
+		else if (cursor == 58 || cursor == 59)
+		{
+			flag_enter = true;
+		}
 	}
+	// □ボタン
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_1)
 	{
 		if (!typed.empty())
@@ -119,19 +150,15 @@ void MyKeyboard::update()
 			typed.pop_back();
 		}
 	}
+	// L2
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{
-		switch (flag_draw_key)
-		{
-		case keyboard_draw::lower:
-			flag_draw_key = keyboard_draw::upper;
-			break;
-		case keyboard_draw::upper:
-			flag_draw_key = keyboard_draw::lower;
-			break;
-		default:
-			break;
-		}
+		switch_shift();
+	}
+	// R2
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_8)
+    {
+	    flag_enter = true;
 	}
 	else if (key != 0)
 	{

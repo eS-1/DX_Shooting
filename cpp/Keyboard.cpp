@@ -122,10 +122,11 @@ void MyKeyboard::update()
 			switch (flag_draw_key)
 			{
 			case keyboard_draw::lower:
-				typed += KEYS_LOWER.at(ptr);
+				typed.insert(typed.begin() + cursor, KEYS_LOWER.at(ptr));
 				break;
 			case keyboard_draw::upper:
 				typed += KEYS_UPPER.at(ptr);
+				typed.insert(typed.begin() + cursor, KEYS_UPPER.at(ptr));
 				break;
 			default:
 				break;
@@ -141,6 +142,14 @@ void MyKeyboard::update()
 			typed += " ";
 			cursor++;
 		}
+		else if (ptr == 52 && cursor > 0)
+		{
+			cursor--;
+		}
+		else if (ptr == 53 && cursor < typed.size())
+		{
+			cursor++;
+		}
 		else if (ptr == 58 || ptr == 59)
 		{
 			flag_enter = true;
@@ -151,10 +160,26 @@ void MyKeyboard::update()
 	{
 		if (!typed.empty())
 		{
-			typed.pop_back();
+			typed.erase(typed.begin() + cursor - 1);
 			cursor--;
 		}
 	}
+	// L1
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_5)
+	{
+	    if (cursor > 0)
+	    {
+		    cursor--;
+		}
+    }
+	// R1
+	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_6)
+	{
+	    if (cursor < typed.size())
+	    {
+			cursor++;
+		}
+    }
 	// L2
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_7)
 	{
@@ -169,12 +194,12 @@ void MyKeyboard::update()
 	{
 	    if (key == CTRL_CODE_BS && !typed.empty())
 		{
-			typed.pop_back();
+			typed.erase(typed.begin() + cursor - 1);
 			cursor--;
 		}
 		else if (key >= CTRL_CODE_CMP)
 		{
-			typed += key;
+			typed.insert(typed.begin() + cursor, key);
 			cursor++;
 		}
     }

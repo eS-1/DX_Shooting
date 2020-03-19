@@ -1,13 +1,16 @@
 #include "DxLib.h"
+#include <time.h>
 #include "../header/Keyboard.h"
 #include "../header/setup.h"
 #include "../header/Objects.h"
 
 
-MyKeyboard::MyKeyboard() : pos(400.0, 400.0),
+MyKeyboard::MyKeyboard() : start_time(0.0),
+	                       pos(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
 	                       typed(""),
 	                       flag_enter(false),
+	                       flag_caps_count(false),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -35,6 +38,8 @@ bool MyKeyboard::get_flag_enter()
 
 void MyKeyboard::switch_shift()
 {
+	start_time = time(NULL);
+	flag_caps_count = !flag_caps_count;
 	switch (flag_draw_key)
 	{
 	case keyboard_draw::lower:
@@ -52,6 +57,10 @@ void MyKeyboard::update()
 {
 	char key = GetInputChar(1);
 	flag_enter = false;
+	if (flag_caps_count)
+	{
+		//
+	}
 	pos.x += Input::analog_RX / 100;
 	pos.y += Input::analog_RY / 100;
 	if ((Input::pad & ~Input::old_pad) & PAD_INPUT_LEFT)
@@ -125,7 +134,6 @@ void MyKeyboard::update()
 				typed.insert(typed.begin() + cursor, KEYS_LOWER.at(ptr));
 				break;
 			case keyboard_draw::upper:
-				typed += KEYS_UPPER.at(ptr);
 				typed.insert(typed.begin() + cursor, KEYS_UPPER.at(ptr));
 				break;
 			default:
@@ -158,7 +166,7 @@ void MyKeyboard::update()
 	//  ƒ{ƒ^ƒ“
 	else if ((Input::pad & ~Input::old_pad) & PAD_INPUT_1)
 	{
-		if (!typed.empty())
+		if (!typed.empty() && cursor > 0)
 		{
 			typed.erase(typed.begin() + cursor - 1);
 			cursor--;

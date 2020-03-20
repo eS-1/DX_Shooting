@@ -6,11 +6,13 @@
 
 
 MyKeyboard::MyKeyboard() : start_time(0.0),
+                           remaining_time(0.0),
 	                       pos(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
 	                       typed(""),
 	                       flag_enter(false),
 	                       flag_caps_count(false),
+	                       flag_caps_lock(false),
                            color_base(GetColor(30, 30, 30)),
 	                       color_keys(GetColor(60, 60, 60)),
 	                       color_keys_others(GetColor(80, 80, 80)),
@@ -38,7 +40,7 @@ bool MyKeyboard::get_flag_enter()
 
 void MyKeyboard::switch_shift()
 {
-	start_time = time(NULL);
+	start_time = GetTickCount();
 	flag_caps_count = !flag_caps_count;
 	switch (flag_draw_key)
 	{
@@ -46,7 +48,15 @@ void MyKeyboard::switch_shift()
 		flag_draw_key = keyboard_draw::upper;
 		break;
 	case keyboard_draw::upper:
-		flag_draw_key = keyboard_draw::lower;
+		if (flag_caps_count)
+		{
+			flag_caps_lock = false;
+			flag_draw_key = keyboard_draw::lower;
+		}
+		else
+		{
+			flag_caps_lock = true;
+		}
 		break;
 	default:
 		break;
@@ -59,7 +69,11 @@ void MyKeyboard::update()
 	flag_enter = false;
 	if (flag_caps_count)
 	{
-		//
+		remaining_time = GetTickCount() - start_time;
+		if ((double)remaining_time / 1000 > 0.5)
+		{
+			flag_caps_count = false;
+		}
 	}
 	pos.x += Input::analog_RX / 100;
 	pos.y += Input::analog_RY / 100;
@@ -135,6 +149,10 @@ void MyKeyboard::update()
 				break;
 			case keyboard_draw::upper:
 				typed.insert(typed.begin() + cursor, KEYS_UPPER.at(ptr));
+				if (!flag_caps_lock)
+				{
+					flag_draw_key = keyboard_draw::lower;
+				}
 				break;
 			default:
 				break;
@@ -289,6 +307,10 @@ void MyKeyboard::draw()
 			}
 			// Enter‚±‚±‚Ü‚Å
 			DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, draw_color, true);
+			if (k + 10 * i == 40 && flag_caps_lock)
+			{
+				DrawBox(x_start, y_start, x_start + size_key_x, y_start + size_key_y, color_str, false);
+			}
 			x_start += size_key_x + distance_key;
 		}
 		x_start = pos.x + distance_key * 4.5;

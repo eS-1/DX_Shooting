@@ -5,8 +5,8 @@
 #include "../header/Objects.h"
 
 
-MyKeyboard::MyKeyboard() : start_time(0.0),
-                           remaining_time(0.0),
+MyKeyboard::MyKeyboard() : start_time(0),
+                           remaining_time(0),
 	                       pos(400.0, 400.0),
                            flag_draw_key(keyboard_draw::lower),
 	                       typed(""),
@@ -51,6 +51,7 @@ void MyKeyboard::switch_shift()
 		if (flag_caps_count)
 		{
 			flag_caps_lock = false;
+			flag_caps_count = false;
 			flag_draw_key = keyboard_draw::lower;
 		}
 		else
@@ -393,4 +394,6 @@ void MyKeyboard::draw()
 
 	// draw cursor
 	DrawLine(pos.x + 50 + cursor * 15, pos.y - 40, pos.x + 50 + cursor * 15, pos.y - 10, color_str);
+
+	DrawFormatString(150, 180, color_str, "%lf", (double)remaining_time / 1000);
 }

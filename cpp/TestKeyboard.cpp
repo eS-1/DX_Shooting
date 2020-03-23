@@ -5,6 +5,11 @@
 #include "../header/SceneMgr.h"
 
 
+void Keyboard_Init()
+{
+	obj::myKeyboard.reset(new MyKeyboard());
+}
+
 void KeyboardUpdate()
 {
 	setup::KeyInput();
@@ -12,13 +17,16 @@ void KeyboardUpdate()
 	{
 		SceneMgrChange(myScene::mySceneMenu);
 	}
-	obj::myKeyboard.update();
+	obj::myKeyboard->update();
 }
 
 void KeyboardDraw()
 {
 	using namespace Input;
-	obj::myKeyboard.draw();
+	if (obj::myKeyboard != nullptr)
+	{
+		obj::myKeyboard->draw();
+	}
 
 	// パッドの入力テスト
 	int Color = GetColor(255, 255, 255);
@@ -36,9 +44,5 @@ void KeyboardDraw()
 	{
 		DrawFormatString(64 + i % 8 * 64, 64 + i / 8 * 16, Color,
 			"%2d:%d", i, pad_input.Buttons[i]);
-	}
-	if (obj::myKeyboard.get_flag_enter())
-	{
-		DrawString(200, 0, "pushed enter", Color);
 	}
 }

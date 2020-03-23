@@ -10,10 +10,11 @@
 
 namespace
 {
-	// 画面遷移用の変数
 	myScene Scene = myScene::mySceneMenu;
-	// ゲーム画面の初期化フラグ
-	bool gameInitFlag = false;
+
+	bool flag_game_init = false;
+
+	bool flag_keyboard_init = false;
 }
 
 // シーン管理の更新
@@ -23,13 +24,14 @@ void SceneMgrUpdate()
 	{
 	case myScene::mySceneMenu:
 		MenuUpdate();
-		gameInitFlag = true;
+		flag_game_init = true;
+		flag_keyboard_init = true;
 		break;
 	case myScene::mySceneGame:
-		if (gameInitFlag)
+		if (flag_game_init)
 		{
 			Game_Init();
-			gameInitFlag = false;
+			flag_game_init = false;
 		}
 		GameUpdate();
 		break;
@@ -43,6 +45,11 @@ void SceneMgrUpdate()
 		SaveNameUpdate();
 		break;
 	case myScene::mySceneKeyboard:
+		if (flag_keyboard_init)
+		{
+			Keyboard_Init();
+			flag_keyboard_init = false;
+		}
 		KeyboardUpdate();
 		break;
 	}

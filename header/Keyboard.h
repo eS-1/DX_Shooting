@@ -42,3 +42,5 @@ private:
 
 	void switch_shift();
 };
+
+void Keyboard_Init();

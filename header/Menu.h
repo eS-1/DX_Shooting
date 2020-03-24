@@ -16,6 +16,6 @@ namespace Menu
 	extern bool exitFlag;
 }
 
-void MenuUpdate();
+void Menu_Update();
 
-void MenuDraw();
+void Menu_Draw();

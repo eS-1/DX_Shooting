@@ -6,7 +6,7 @@
 
 
 // İ’è‰æ–Ê‚ÌXV
-void ConfigUpdate()
+void Config_Update()
 {
 	setup::KeyInput();
 
@@ -35,7 +35,7 @@ void ConfigUpdate()
 
 
 // İ’è‰æ–Ê‚Ì•`‰æ
-void ConfigDraw()
+void Config_Draw()
 {
 	unsigned int bX = mySetup::X / 3;
 	unsigned int Y = mySetup::Y / 4;

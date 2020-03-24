@@ -6,7 +6,7 @@
 
 
 // リザルト画面の更新
-void ResultUpdate()
+void Result_Update()
 {
 	setup::KeyInput();
 
@@ -18,7 +18,7 @@ void ResultUpdate()
 
 
 // リザルト画面の描画
-void ResultDraw()
+void Result_Draw()
 {
 	DrawStringToHandle(mySetup::X / 3, mySetup::Y / 4, "ハイスコア", GetColor(255, 255, 255), obj::fontTitle);
 	DrawStringToHandle(0, 5, "q: 戻る", GetColor(255, 255, 255), obj::fontInGame);

@@ -5,12 +5,7 @@
 #include "../header/SceneMgr.h"
 
 
-void Keyboard_Init()
-{
-	obj::myKeyboard.reset(new MyKeyboard());
-}
-
-void KeyboardUpdate()
+void Keyboard_Update()
 {
 	setup::KeyInput();
 	if ((Input::pad & ~Input::old_pad) & PAD_INPUT_2)
@@ -20,7 +15,7 @@ void KeyboardUpdate()
 	obj::myKeyboard->update();
 }
 
-void KeyboardDraw()
+void Keyboard_Draw()
 {
 	using namespace Input;
 	if (obj::myKeyboard != nullptr)

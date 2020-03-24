@@ -2,6 +2,8 @@
 #include <vector>
 #include <string>
 
-void SaveNameUpdate();
+void SaveName_Init();
 
-void SaveNameDraw();
+void SaveName_Update();
+
+void SaveName_Draw();

@@ -33,8 +33,8 @@ int WINAPI WinMain(_In_ HINSTANCE hInstance, _In_opt_ HINSTANCE hPrevInstance, _
 
 	while (ScreenFlip() == 0 && ProcessMessage() == 0 && ClearDrawScreen() == 0)
 	{
-		SceneMgrUpdate();
-		SceneMgrDraw();
+		SceneMgr_Update();
+		SceneMgr_Draw();
 
 		if (Menu::exitFlag)
 		{

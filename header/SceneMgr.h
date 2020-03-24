@@ -11,8 +11,8 @@ enum class myScene
 	mySceneKeyboard,
 };
 
-void SceneMgrUpdate();
+void SceneMgr_Update();
 
-void SceneMgrDraw();
+void SceneMgr_Draw();
 
 void SceneMgrChange(myScene next);

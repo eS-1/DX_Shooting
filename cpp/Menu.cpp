@@ -15,7 +15,7 @@ namespace
 
 
 // メニュー画面の更新
-void MenuUpdate()
+void Menu_Update()
 {
 	setup::KeyInput();
 
@@ -74,7 +74,7 @@ void MenuUpdate()
 
 
 // メニュー画面の描画
-void MenuDraw()
+void Menu_Draw()
 {
 	using namespace mySetup;
 

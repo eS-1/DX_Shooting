@@ -111,7 +111,7 @@ void Game_Init()
 
 
 // ゲーム画面の更新
-void GameUpdate()
+void Game_Update()
 {
 	setup::KeyInput();
 
@@ -317,7 +317,7 @@ void GameUpdate()
 
 
 // ゲーム画面の描画
-void GameDraw()
+void Game_Draw()
 {
 	using namespace mySetup;
 

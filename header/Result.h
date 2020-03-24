@@ -1,6 +1,6 @@
 #pragma once
 
 
-void ResultUpdate();
+void Result_Update();
 
-void ResultDraw();
+void Result_Draw();

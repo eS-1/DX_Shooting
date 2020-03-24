@@ -1,7 +1,6 @@
 #pragma once
 
-void Keyboard_Init();
 
-void KeyboardUpdate();
+void Keyboard_Update();
 
-void KeyboardDraw();
+void Keyboard_Draw();

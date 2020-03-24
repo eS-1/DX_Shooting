@@ -11,19 +11,17 @@
 namespace
 {
 	myScene Scene = myScene::mySceneMenu;
-
 	bool flag_game_init = false;
-
 	bool flag_keyboard_init = false;
 }
 
 // シーン管理の更新
-void SceneMgrUpdate()
+void SceneMgr_Update()
 {
 	switch (Scene)
 	{
 	case myScene::mySceneMenu:
-		MenuUpdate();
+		Menu_Update();
 		flag_game_init = true;
 		flag_keyboard_init = true;
 		break;
@@ -33,16 +31,22 @@ void SceneMgrUpdate()
 			Game_Init();
 			flag_game_init = false;
 		}
-		GameUpdate();
+		Game_Update();
 		break;
 	case myScene::mySceneConfig:
-		ConfigUpdate();
+		Config_Update();
 		break;
 	case myScene::mySceneResult:
-		ResultUpdate();
+		Result_Update();
 		break;
 	case myScene::mySceneSaveName:
-		SaveNameUpdate();
+		if (flag_keyboard_init)
+		{
+			Keyboard_Init();
+			SaveName_Init();
+			flag_keyboard_init = false;
+		}
+		SaveName_Update();
 		break;
 	case myScene::mySceneKeyboard:
 		if (flag_keyboard_init)
@@ -50,34 +54,34 @@ void SceneMgrUpdate()
 			Keyboard_Init();
 			flag_keyboard_init = false;
 		}
-		KeyboardUpdate();
+		Keyboard_Update();
 		break;
 	}
 }
 
 
 // シーン管理の描画
-void SceneMgrDraw()
+void SceneMgr_Draw()
 {
 	switch (Scene)
 	{
 	case myScene::mySceneMenu:
-		MenuDraw();
+		Menu_Draw();
 		break;
 	case myScene::mySceneGame:
-		GameDraw();
+		Game_Draw();
 		break;
 	case myScene::mySceneConfig:
-		ConfigDraw();
+		Config_Draw();
 		break;
 	case myScene::mySceneResult:
-		ResultDraw();
+		Result_Draw();
 		break;
 	case myScene::mySceneSaveName:
-		SaveNameDraw();
+		SaveName_Draw();
 		break;
 	case myScene::mySceneKeyboard:
-		KeyboardDraw();
+		Keyboard_Draw();
 		break;
 	}
 }

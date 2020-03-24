@@ -1,6 +1,6 @@
 #pragma once
 
 
-void ConfigUpdate();
+void Config_Update();
 
-void ConfigDraw();
+void Config_Draw();

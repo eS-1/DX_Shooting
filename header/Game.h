@@ -10,9 +10,9 @@ enum class PoseSelect
 
 void Game_Init();
 
-void GameUpdate();
+void Game_Update();
 
-void GameDraw();
+void Game_Draw();
 
 void EraseAllBullets();
 

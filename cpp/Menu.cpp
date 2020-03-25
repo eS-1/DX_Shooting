@@ -29,14 +29,14 @@ void Menu_Update()
 		}
 		else
 		{
-			selection = MenuSelect::keyboard;
+			selection = MenuSelect::exit;
 		}
 	}
 	else if (((Input::S & ~Input::old_S) ||
 		     ((Input::pad & ~Input::old_pad) & PAD_INPUT_DOWN)))
 	{
 		int current = static_cast<int>(selection);
-		if (selection < MenuSelect::keyboard)
+		if (selection < MenuSelect::exit)
 		{
 			selection = static_cast<MenuSelect>(current + 1);
 		}
@@ -63,9 +63,6 @@ void Menu_Update()
 		case MenuSelect::exit:
 			Menu::exitFlag = true;
 			break;
-		case MenuSelect::keyboard:
-			SceneMgrChange(myScene::mySceneKeyboard);
-			break;
 		default:
 			break;
 		}
@@ -86,6 +83,6 @@ void Menu_Draw()
 	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 240, "設定", color_white, obj::fontInGame);
 	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 280, "リザルト", color_white, obj::fontInGame);
 	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 320, "ゲーム終了", color_white, obj::fontInGame);
-	DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 360, "keyboard test", color_white, obj::fontInGame);
+	// DrawStringToHandle(X * 4 / 9 - 10, Y / 3 + 360, "keyboard test", color_white, obj::fontInGame);
 	setup::drawCursor(X * 4 / 9 - 15, Y / 3 + 215 + (stateSelect * 40), color_white, 1, 0);
 }

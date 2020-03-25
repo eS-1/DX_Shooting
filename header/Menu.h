@@ -8,7 +8,7 @@ enum class MenuSelect
 	config,
 	result,
 	exit,
-	keyboard,
+	test_keyboard,
 };
 
 namespace Menu

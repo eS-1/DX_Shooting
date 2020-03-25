@@ -48,13 +48,15 @@ void SceneMgr_Update()
 		}
 		SaveName_Update();
 		break;
-	case myScene::mySceneKeyboard:
+	/*case myScene::mySceneTestKeyboard:
 		if (flag_keyboard_init)
 		{
 			Keyboard_Init();
 			flag_keyboard_init = false;
 		}
 		Keyboard_Update();
+		break;*/
+	default:
 		break;
 	}
 }
@@ -80,8 +82,10 @@ void SceneMgr_Draw()
 	case myScene::mySceneSaveName:
 		SaveName_Draw();
 		break;
-	case myScene::mySceneKeyboard:
+	/*case myScene::mySceneTestKeyboard:
 		Keyboard_Draw();
+		break;*/
+	default:
 		break;
 	}
 }
